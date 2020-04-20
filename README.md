@@ -4,3 +4,7 @@ A repository for 42 project related to grocery shopping
 
 ### google drive PPT
 [PPT link](https://docs.google.com/presentation/d/1EN3TAtF8lsTNXHVXwIvmMj1gMbD1q4g1TvFnuGrBpf8/edit?usp=sharing)
+
+### Kamis api url
+http://www.kamis.or.kr/service/price/xml.do?action=periodProductList&p_cert_key=bceaf385-9d34-4a75-9c6f-0607eb325485&p_cert_id=pje1740&p_returntype=json
+여기서 action= 부분과 뒤에 옵션들만 붙여가면서 다른 데이터셋을 볼 수 있음.
