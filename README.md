@@ -4,9 +4,12 @@ A repository for 42 project related to grocery shopping
 김치 짜다고 친구 머리 떼먹는 양파쿵야 인성 
 
 ### File Naming Convention
-파일 업로드 시, 파일명 뒤에 작성자 아이디 추가
+파일 업로드 시, 파일명 뒤에 작성자 아이디 추가. 소스코드는 제외.
+
 ex) data_set_sohpark
+
 ex) design_ui_jilim
+
 ex) data_eda_dachung
 
 ### Kamis api url
