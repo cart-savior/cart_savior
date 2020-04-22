@@ -12,15 +12,15 @@ ex) data_eda_dachung
 ### Kamis api url
 기본 url 뒤에 옵션을 붙여서 필요한 정보를 추출할 수 있음. 
 ```
-"http://www.kamis.or.kr/service/price/xml.do?action=periodProductList" +\
+"http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList" +\
 "&p_cert_key=bceaf385-9d34-4a75-9c6f-0607eb325485&p_cert_id=pje1740&p_returntype=json" +\
 ```
 여기까지는 수정할 필요 없음. 단, 데이터셋을 바꾸려면 action= 뒤를 변경해야 함.
 ```
 "&p_product_cls_code=01" +\
-"p_startday=2020-04-01" +\
+"&p_regday=" + today_date +\
 "&p_country_code=1101" +\
-"&p_itemcategorycode=400"
+"&p_item_category_code=100"
 ```
 
 참고 사이트
