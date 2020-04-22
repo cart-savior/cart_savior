@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="140px" height="140px" viewBox="0 0 140 140" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="아이콘" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon">
+            <circle id="Oval" fill="#4EA37A" fill-rule="evenodd" cx="70" cy="70" r="70"></circle>
+            <circle id="Oval" fill="#FFFFFF" fill-rule="evenodd" cx="44.5" cy="113.5" r="6.5"></circle>
+            <circle id="Oval" fill="#FFFFFF" fill-rule="evenodd" cx="86.5" cy="113.5" r="6.5"></circle>
+            <path d="M31,63.2413347 L36.5588928,93.408604 C37.3680341,97.1362013 39.749202,99 43.7023965,99 C47.655591,99 62.2354403,99 87.4419444,99 C90.6577625,98.5811946 92.7406467,96.7173959 93.690597,93.408604 C94.6405473,90.0998121 99.7436816,69.6302774 109,32" id="Path-2" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M31,62.6376953 L41.0288086,62.6376953 C44.7124023,61.9720052 47.1707357,59.3624674 48.4038086,54.809082 C50.253418,47.9790039 51.1533203,43 55.3652344,43 C58.1731771,43 59.718099,44.808431 60,48.425293 C62.0022786,68.808431 64.8720703,79 68.609375,79 C72.3466797,79 75.0813802,74.1666667 76.8134766,64.5 C77.889974,60.8333333 80.1904297,59 83.7148438,59 C87.2392578,59 89.4244792,59 90.2705078,59" id="Path-5" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>
