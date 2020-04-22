@@ -14,7 +14,7 @@ ex) data_eda_dachung
 ```"http://www.kamis.or.kr/service/price/xml.do?action=periodProductList" +\
 "&p_cert_key=bceaf385-9d34-4a75-9c6f-0607eb325485&p_cert_id=pje1740&p_returntype=json" +\
 ```
-여기까지는 수정할 필요 없음. 단, 데이터셋을 바꾸려면 ```action= 뒤를 변경해야 함.
+여기까지는 수정할 필요 없음. 단, 데이터셋을 바꾸려면 action= 뒤를 변경해야 함.
 ```
 "&p_product_cls_code=01" +\
 "p_startday=2020-04-01" +\
