@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-ul[class],
-ol[class] {
+ul,
+ol {
   padding: 0;
 }
 
@@ -15,15 +15,17 @@ h2,
 h3,
 h4,
 p,
-ul[class],
-ol[class],
+ul,
+ol,
 li,
 figure,
 figcaption,
 blockquote,
 dl,
-dd {
+dd,
+a {
   margin: 0;
+  color: #444;
 }
 
 body {
@@ -33,11 +35,18 @@ body {
   line-height: 1.5;
 }
 
-ul[class],
+/* ul[class],
 ol[class] {
+  list-style: none;
+} */
+li{
   list-style: none;
 }
 
+a {
+  /* color: #444; */
+  text-decoration: none;
+}
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
