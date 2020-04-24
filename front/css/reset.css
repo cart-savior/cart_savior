@@ -67,6 +67,10 @@ select {
   font: inherit;
 }
 
+em {
+  font-style: normal;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

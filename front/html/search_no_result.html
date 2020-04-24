@@ -4,29 +4,37 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cart Savior | 검색 결과</title>
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<header class="header">
-		<h1 class="logo"><img src="images/logo_pc.svg" alt="cart savior"></h1>
+		<h1 class="logo">
+			<a href="#">
+				<img class="hidden-m" src="../images/logo_pc.svg" alt="cart savior">
+				<img class="hidden-p visible-m" src="../images/logo_m.svg" alt="cart savior">
+			</a>
+		</h1>
 	</header>
 	<section class="container">
-		<div class="col_12">
-			<h2 class="title"><span class="txt_green">검색 결과가 없습니다.</span></br>다른 키워드로 검색해주세요.</h2>
-			<div class="search_bar">
-				<form action="/search">
-					<input type="text" name="" id="" placeholder="오늘의 무 값은?">
-					<button type="submit">검색하기</button>
-				</form>
+		<div class="no_result_wrap flex-layout">
+			<div class="flex-item col-p-12">
+				<h2 class="title_md"><span class="txt_green">검색 결과가 없습니다.</span></br>다른 키워드로 검색해주세요.</h2>
+				<div class="search_bar">
+					<form action="/search">
+						<input class="inp_search" type="text" name="" id="" placeholder="오늘의 무 값은?"/>
+						<button class="btn_search" type="submit">검색하기</button>
+					</form>
+				</div>
+				<ul class="hash_list">
+					<li class="hash_item"><a href="#"># 계란</a></li>
+					<li class="hash_item"><a href="#"># 만드라고라</a></li>
+					<li class="hash_item"><a href="#"># 고구마</a></li>
+				</ul>
 			</div>
-			<ul class="hash_list">
-				<li class="hash_item"># 게란</li>
-				<li class="hash_item"># 만드라고라</li>
-				<li class="hash_item"># 고구마</li>
-			</ul>
 		</div>
 	</section>
 	<footer class="footer">
-		Copyright (C) 2020. CART SAVIOR all rights reserved.
+		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
 </body>
 </html>

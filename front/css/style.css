@@ -1,4 +1,6 @@
 @import "reset.css";
+@import "breakpoints.css";
+
 button, input {
 	border: none;
 	background-color: transparent;
@@ -6,8 +8,14 @@ button, input {
 button {
 	cursor: pointer;
 }
+.txt_white {
+	color: #fff !important;
+}
 .txt_green {
-	color: #4ea37a;
+	color: #4ea37a !important;
+}
+.txt_orange {
+	color: #fa6400 !important;
 }
 
 body {
@@ -15,10 +23,11 @@ body {
 	height: 100%;
 	background-color: #f2f8f1;
 }
+/* header */
 header {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 30px 0;
+	padding: 30px 2rem;
 	display: flex;
 	justify-content: space-between;
 }
@@ -26,13 +35,15 @@ header .logo {
 	display: inline-block;
 }
 header .logo img {
-	width: 207px;
+	height: 50px;
 }
+/* container */
 .container {
 	max-width: 1200px;
 	min-height: calc(100vh - 190px);
 	margin: 0 auto;
 }
+/* footer */
 footer {
 	display: flex;
 	justify-content: center;
@@ -44,25 +55,42 @@ footer p {
 	font-size: 16px;
 	color: #999;
 }
+/* main */
 .main_wrap {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	padding-top: 200px;
 }
-.main_wrap .title {
-	font-size: 36px;
-	  font-weight: 500;
-	  color: #444;
+.no_result_wrap {
+	padding-top: 200px;
+	text-align: center;
 }
-.main_wrap .title {
-	font-size: 36px;
-	  font-weight: 500;
-	  color: #444;
+.sub_wrap {
+	padding-top: 100px;
 }
-.main_wrap .title+.search_bar {
+.no_result_wrap .search_bar {
+	margin: 18px auto 0;
+}
+.no_result_wrap .hash_list {
+	justify-content: center;
+}
+.detail_wrap {
+	padding-top: 100px;
+}
+.title_md {
+	line-height: 1.2em;
+	font-size: 24px;
+	font-weight: 500;
+	color: #444;
+}
+.title_lg {
+	line-height: 1.2em;
+	font-size: 36px;
+	font-weight: 500;
+	color: #444;
+}
+.main_wrap *[class^="title_"]+.search_bar {
 	margin-top: 10px;
 }
+/* search bar */
 .search_bar {
 	width: 100%;
 	max-width: 416px;
@@ -81,12 +109,12 @@ footer p {
 }
 .btn_search {
 	width: 60px;
-	text-indent: -999px;
+	text-indent: -9999px;
 	background: url(../images/search.svg) no-repeat center;
 }
 .hash_list {
 	display: flex;
-	padding-top: 10px;
+	padding-top: 15px;
 }
 .hash_list li+li {
 	margin-left: 10px;
@@ -99,14 +127,119 @@ footer p {
 	border-radius: 8px;
   	background-color: #4ea37a;
 }
-.item_top .title {
-	padding-left: 25px;
-	background: url(../images/icon_type01.png) left center no-repeat;
-	background-size: 20px auto;
+.sub_item {
+	margin-top: 2rem;
+	padding: 24px 30px;
+	border-radius: 10px;
+	background-color: #fff;
 }
-.title.type_01 {
-	background-image: url(../images/icon_type01.png);
+.item_info {
+	position: relative;
+	padding-left: 60px;
 }
+.item_info:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #FFFAE4 url(../images/itemcode_100.png) center no-repeat;
+	background-size: 25px auto;
+}
+.item_info.type_100:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/itemcode_100.png);
+}
+.item_info .title {
+	font-size: 20px;
+	font-weight: 500;
+}
+.item_info .sub_title {
+	font-size: 14px;
+	font-weight: 500;
+	color: #999;
+}
+.item_price {
+	margin-top: 26px;
+}
+.item_price .price {
+	font-size: 24px;
+  	font-weight: bold;
+}
+.item_price .status {
+	display: block;
+	font-size: 14px;
+	font-weight: bold;  
+	color: #999;
+}
+.txt_up {
+	padding-right: 20px;
+	color: #fa6400;
+	background: url(../images/arrow_up.svg) no-repeat right center;
+	background-size: 10px auto;
+}
+.item_bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 83px;
+}
+.item_bottom .date {
+	font-size: 14px;
+	font-weight: 500;
+	color: #999;
+}
+.btn_more {
+	padding: 16px 27px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #4ea37a;
+	transition: all .5s;
+	border-radius: 8px;
+  	background-color: #f2f8f1;
+}
+.btn_more:hover {
+	transition: all .5s;
+	color: #f2f8f1;
+	background-color: #4ea37a;
+}
+.detail_info_wrap {
+	margin-top: 35px;
+}
+.detail_item {
+	min-height: 460px;
+	padding: 24px 30px;
+	border-radius: 10px;
+	background-color: #fff;
+}
+.detail_item .date {
+	display: block;
+	font-size: 16px;
+	font-weight: 400;
+	color: #999;
+}
+.detail_item .price {
+	display: block;
+	font-size: 24px;
+	font-weight: 500;
+	color: #444;
+}
+.detail_item .price+.price {
+	margin-top: 30px;
+}
+.detail_item .source {
+
+}
+.detail_graph {
+	min-height: 460px;
+	padding: 24px 30px;
+	border-radius: 10px;
+	background-color: #4ea37a;
+}
+
 @media screen and (max-width: 768px) {
 	
 }
