@@ -31,7 +31,7 @@ https://www.kamis.or.kr/customer/reference/openapi_list.do?action=detail&boardno
 
 
 ### Flask app 실행방법
-1. app.py 를 실행시킨다 (python app.py)
+1. flask 디렉토리 안의 app.py 를 실행시킨다 (python app.py)
 2. 백그라운드에 실행시켜둔 채로 127.0.0.1:8000 으로 접속하여 메인 페이지로 접속한다. 
 3. 검색어를 입력해가며 테스트한다. 
 4. 종료하는 경우 실행시킨 app.py를 ctrl+c로 종료시킨다. 
