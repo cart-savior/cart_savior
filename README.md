@@ -1,6 +1,7 @@
 # cart_savior
 내가 집어든 이 양파, 싼 걸까, 비싼걸까? 그 기준을 제시해 드립니다.
 
+---
 ### 협업 도구
 - Messaging: Slack, Kakaotalk
 - Code sharing: Github, Slack
@@ -12,10 +13,12 @@
 
 ### 사용 데이터
 농산물유통정보:::KAMIS
+
 https://www.kamis.or.kr/customer/reference/openapi_list.do
 
 ---
 ## 기타 
+
 ### File Naming Convention
 파일 업로드 시, 파일명 뒤에 작성자 아이디 추가. 소스코드는 제외.
 
