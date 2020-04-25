@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cart Savior | 상세</title>
+	<link rel="stylesheet" href="../static/css/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+<body>
+	<header class="header">
+		<h1 class="logo">
+			<a href="#">
+				<img class="hidden-m" src="../images/logo_pc.svg" alt="cart savior">
+				<img class="hidden-p visible-m" src="../images/logo_m.svg" alt="cart savior">
+			</a>
+		</h1>
+		<div class="search_bar">
+			<form action="{{url_for('search')}}">
+				<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?"/>
+				<button class="btn_search" type="submit">검색하기</button>
+			</form>
+		</div>
+	</header>
+	<section class="container detail_wrap">
+		<div class="flex-item">
+			<div class="item_info type_100">
+				<h3 class="title">{{ item_name }} ({{ rank }})</h3>
+				<span class="sub_title">{{ kind_name }}</span>
+			</div>
+		</div>
+		<div class="detail_info_wrap flex-layout">
+			<div class="flex-item col-p-4 col-m-12">
+				<div class="detail_item">
+					<span class="date">{{ date }} 기준</span>
+					<strong class="price">평균가는<br/><span class="txt_green">{{ item_price }}원</span>입니다.</strong>
+					<strong class="price">전주 대비<br/><span class="txt_up">{{ diff }}원 더 비싸요.</span></strong>
+					<span class="date">지난 주 평균가 : {{ last_week }}원</span>
+					<!-- <span class="source">자료 : 한국농수산식품유통공사</span> -->
+				</div>
+			</div>
+			<div class="flex-item col-p-8 col-m-12">
+				<div class="detail_graph">
+					<h3 class="title_md txt_white">지난 {{ item_name }}의 가격을 확인해보세요.</h3>
+					<canvas id="myChart" width="400" height="200"></canvas>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="footer">
+		Copyright (C) 2020. CART SAVIOR all rights reserved.
+	</footer>
+</body>
+<script>
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ['오늘', '하루 전', '한달 전', '일년 전'],
+			datasets: [{
+				label: '# of Votes',
+				data: [23000, 19000, 10000, 30000],
+				// backgroundColor: [
+				// 	'rgba(255, 255, 255)',
+				// ],
+				borderColor: [
+					'rgba(255, 255, 255)',
+				],
+				borderWidth: 2
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						// stacked: true
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});
+</script>
+</html>

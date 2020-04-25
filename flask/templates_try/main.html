@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cart Savior</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+	<header class="header">
+		<h1 class="logo"><a href="#"><img src="../images/logo_pc.svg" alt="cart savior"></a></h1>
+	</header>
+	<section class="container">
+		<div class="main_wrap">
+			<div class="col_pc_6 col_m_12">
+				<h2 class="title">장보기 전,</br>이제는 <span class="txt_green">시세</span>먼저 보자.</h2>
+				<div class="search_bar">
+					<form action="{{url_for('search')}}">
+						<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?"/>
+						<button class="btn_search" type="submit">검색하기</button>
+					</form>
+				</div>
+				<ul class="hash_list">
+					<li class="hash_item"><a href="#"># 계란</a></li>
+					<li class="hash_item"><a href="#"># 만드라고라</a></li>
+					<li class="hash_item"><a href="#"># 고구마</a></li>
+				</ul>
+			</div> 
+			<div class="col_pc_6 col_pc_12">
+				<img src="" alt="임시">
+			</div>
+		</div>
+	</section>
+	<footer class="footer">
+		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
+	</footer>
+</body>
+</html>
