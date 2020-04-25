@@ -153,6 +153,26 @@ footer p {
 	background-color: #FFFAE4;
 	background-image: url(../images/itemcode_100.png);
 }
+.item_info.type_200:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_211.png);
+}
+.item_info.type_300:after {
+	background-color: #FFCAC4;
+	background-image: url(../images/itemcode_300.png);
+}
+.item_info.type_400:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/itemcode_400.png);
+}
+.item_info.type_500:after {
+	background-color: #FFF7E7;
+	background-image: url(../images/itemcode_500.png);
+}
+.item_info.type_600:after {
+	background-color: #E0F7FF;
+	background-image: url(../images/item_611.png);
+}
 .item_info .title {
 	font-size: 20px;
 	font-weight: 500;
@@ -176,10 +196,16 @@ footer p {
 	color: #999;
 }
 .txt_up {
-	padding-right: 20px;
+	padding-right: 22px;
 	color: #fa6400;
 	background: url(../images/arrow_up.svg) no-repeat right center;
-	background-size: 10px auto;
+	background-size: 20px auto;
+}
+.txt_down {
+	padding-right: 22px;
+	color: #0091ff;
+	background: url(../images/arrow_down.svg) no-repeat right center;
+	background-size: 20px auto;
 }
 .item_bottom {
 	display: flex;
