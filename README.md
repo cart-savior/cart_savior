@@ -1,8 +1,22 @@
 # cart_savior
-A repository for 42 project related to grocery shopping
-![](https://scontent-gmp1-1.xx.fbcdn.net/v/t1.0-9/68523665_920286595013777_8017496360037122048_n.jpg?_nc_cat=103&_nc_sid=8024bb&_nc_ohc=1nx5ANFV5MoAX9Cg5am&_nc_ht=scontent-gmp1-1.xx&oh=54e9a9a3083ff4ae8aa14cc5f796d79e&oe=5EC10CA4)
-김치 짜다고 친구 머리 떼먹는 양파쿵야 인성 
+내가 집어든 이 양파, 싼 걸까, 비싼걸까? 그 기준을 제시해 드립니다. 
+---
 
+### 협업 도구
+- Messaging: Slack, Kakaotalk
+- Code sharing: Github, Slack
+- Productivity: Notion
+
+### 개발 환경 및 언어
+- Python: Flask, Pandas
+- HTML, CSS, Javascript
+
+### 사용 데이터
+농산물유통정보:::KAMIS
+https://www.kamis.or.kr/customer/reference/openapi_list.do
+
+---
+## 기타 
 ### File Naming Convention
 파일 업로드 시, 파일명 뒤에 작성자 아이디 추가. 소스코드는 제외.
 
