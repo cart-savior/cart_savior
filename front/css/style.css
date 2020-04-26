@@ -318,5 +318,8 @@ footer p {
 	.detail_item .price {
 		font-size: 20px;
 	}
+	.detail_source {
+		margin-top: 30px;
+	}
 
 }
