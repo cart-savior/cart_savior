@@ -1,11 +1,11 @@
 .flex-layout {
 	display: flex;
-	justify-content: space-between;
+	justify-content: start;
 	align-items: center;
 	flex-wrap: wrap;
 }
 .flex-item {
-	padding: 0 20px;
+	padding: 10px 20px;
 }
 
 .col-p-1 { max-width:  8.333333%; flex: 0 0 8.333333%; }
