@@ -14,8 +14,6 @@
 ### 배포 플랫폼
 AWS Beanstalk
 
-http://cartsavior.us-east-2.elasticbeanstalk.com/
-
 ### 사용 데이터
 농산물유통정보:::KAMIS
 
