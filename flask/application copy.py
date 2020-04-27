@@ -7,41 +7,64 @@ from flask import redirect
 import urllib.request 
 import json
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 import os
 import jinja2
 
-today = str(datetime.now())
-today_date = re.search(r'\d{4}-\d{2}-\d{2}', today)[0]
-today_date = "2020-04-20"
-template = jinja2.Template("{{ date.strftime('%-m월 %d일') }}")
-date_now = datetime.now()
-formated_date = template.render(date= date_now)
+today = datetime.today()
+# 일요일 테스트
+# today = datetime.today() - timedelta(days=1)
+site_template = jinja2.Template("{{ date.strftime('%-m월 %d일') }}")
+api_template = jinja2.Template("{{ date.strftime('%Y-%m-%d') }}")
+# formated_date = site_template.render(date=today)
+
 infos = []
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 app.secret_key = "cart_savior"
 
 @app.route('/')
 def search_form():
 	return render_template("main.html")
 
-def get_info(today_date, item):
+
+# 날짜와 아이템을 넣어서 obj 까지 생성하여 반환해주는 함수
+def extract_from_url(date, item):
 	url = "http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList" +\
 	"&p_cert_key=bceaf385-9d34-4a75-9c6f-0607eb325485&p_cert_id=pje1740&p_returntype=json" +\
 	"&p_product_cls_code=01" +\
-	"&p_regday=" + today_date +\
+	"&p_regday=" + api_template.render(date=today) +\
 	"&p_country_code=1101" +\
 	"&p_item_category_code=" + str(item['category_code'])
 	response = urllib.request.urlopen(url) 
 	json_str = response.read().decode("utf-8")
 	obj = json.loads(json_str)
-	# 모든 타입에 대한 (중품, 상품 등) 구분이 있는 가격의 딕셔너리 리스트
+	return obj
+
+def get_info(today, item):
 	result = []
-	# 해당 품목의 df 행 불러오기
-	df = pd.DataFrame(obj['data']['item'])
-	df = df[df.item_name == item['item_name']]
+	df = None
+	url = None
+	# 일요일이면 되돌아가기 위한 반복문
+	while (1):
+		url = "http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList" +\
+		"&p_cert_key=bceaf385-9d34-4a75-9c6f-0607eb325485&p_cert_id=pje1740&p_returntype=json" +\
+		"&p_product_cls_code=01" +\
+		"&p_regday=" + api_template.render(date=today) +\
+		"&p_country_code=1101" +\
+		"&p_item_category_code=" + str(item['category_code'])
+		response = urllib.request.urlopen(url) 
+		json_str = response.read().decode("utf-8")
+		obj = json.loads(json_str)
+		# 모든 타입에 대한 (중품, 상품 등) 구분이 있는 가격의 딕셔너리 리스트
+		# 해당 품목의 df 행 불러오기
+		try:
+			df = pd.DataFrame(obj['data']['item'])
+			df = df[df.item_name == item['item_name']]
+			break
+		except TypeError:
+			today = today - timedelta(days=1)
 	for row in df.itertuples():
 		one_item = {'item_name': None, 'item_price': None, 'date': None, 'kind_name': None, 'rank': None, 'last_week': None, 'diff': None}
 		one_item['item_name'] = row.item_name
@@ -51,14 +74,11 @@ def get_info(today_date, item):
 		this_week = int(row.dpr1.replace(',', ''))
 		last_week = int(row.dpr3.replace(',', ''))
 		one_item['diff'] = f"{this_week - last_week:,d}"
-		one_item['date'] = formated_date
+		one_item['date'] = site_template.render(date=today)
 		one_item['kind_name'] = row.kind_name
 		one_item['rank'] = row.rank
 		result.append(one_item)
 	return result
-	# today_price = df.dpr1.values[0]
-	# kind_name = df.kind_name.values[0]
-	# return {'item_name': item['item_name'], 'item_price': today_price, 'date': today_date, 'kind_name': kind_name}
 
 # 검색어를 포함하는 상품명을 모두 받아와 반복문을 돌면서 정보를 뽑는다. 
 # item은 해당 상품에 대한 정보를 가지고 있는 딕셔너리.
@@ -91,7 +111,7 @@ def search(item_name="오류", item_price=0, date=None):
 	# 검색 결과가 없으면
 	if len(items) == 0:
 		return render_template("search_no_result.html")
-	infos = append_info(items, today_date)
+	infos = append_info(items, today)
 	# infos 리스트를 세션에 저장한다
 	session['list'] = infos
 	# 받아온 item 마다 검색하여 get_info를 하고 해당 딕셔너리를 모아 리스트로 만든다. 

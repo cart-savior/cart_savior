@@ -7,7 +7,7 @@ from flask import render_template
 import urllib.request 
 import json
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 import os
 import jinja2
@@ -27,22 +27,25 @@ import jinja2
 # print(items)
 
 
-# list = ["쌀", "찹쌀"]
 # url = "http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList" +\
 # 	"&p_cert_key=bceaf385-9d34-4a75-9c6f-0607eb325485&p_cert_id=pje1740&p_returntype=json" +\
 # 	"&p_product_cls_code=01" +\
-# 	"&p_regday=" + "2020-04-20" +\
+# 	"&p_regday=" + "2020-04-19" +\
 # 	"&p_country_code=1101" +\
 # 	"&p_item_category_code=" + "100"
 
 # response = urllib.request.urlopen(url)
 # json_str = response.read().decode("utf-8")
 # obj = json.loads(json_str)
+# print(obj)
 # df = pd.DataFrame(obj['data']['item'])
-# for row in df.iterrows():
-#    print(row[1])
 
-template = jinja2.Template("{{ date.strftime('%Y년%m월%d일') }}")
-date_now = datetime.now()
-formated_date = template.render(date= date_now)
-print(formated_date)
+# template = jinja2.Template("{{ date.strftime('%Y년%m월%d일') }}")
+# date_now = datetime.now()
+# formated_date = template.render(date= date_now)
+# print(formated_date)
+
+today = datetime.today()
+# print(today - timedelta(days=10))
+template = jinja2.Template("{{ date.strftime('%Y-%m-%d') }}")
+print(template.render(date= today))
