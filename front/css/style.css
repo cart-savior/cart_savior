@@ -2,28 +2,6 @@
 @import "common.css";
 @import "breakpoints.css";
 
-button, input {
-	border: none;
-	background-color: transparent;
-}
-button {
-	cursor: pointer;
-}
-.txt_white {
-	color: #fff !important;
-}
-.txt_green {
-	color: #4ea37a !important;
-}
-.txt_orange {
-	color: #fa6400 !important;
-}
-
-body {
-	width: 100%;
-	height: 100%;
-	background-color: #f2f8f1;
-}
 /* header */
 header {
 	max-width: 1200px;
@@ -77,18 +55,7 @@ footer p {
 .detail_wrap {
 	padding-top: 100px;
 }
-.title_md {
-	line-height: 1.2em;
-	font-size: 24px;
-	font-weight: 500;
-	color: #444;
-}
-.title_lg {
-	line-height: 1.2em;
-	font-size: 36px;
-	font-weight: 500;
-	color: #444;
-}
+
 .main_wrap *[class^="title_"]+.search_bar {
 	margin-top: 10px;
 }
@@ -130,16 +97,10 @@ footer p {
   	background-color: #4ea37a;
 }
 .sub_item {
-	/* margin-top: 2rem; */
 	padding: 24px 30px;
 	border-radius: 10px;
 	background-color: #fff;
-	/* transition: box-shadow .5s; */
 }
-/* .sub_item:hover {
-	box-shadow: 5px 5px 5px 5px rgba(173, 230, 189, 0.);
-	transition: box-shadow .5s;
-} */
 .item_info {
 	position: relative;
 	padding-left: 60px;
@@ -239,9 +200,6 @@ footer p {
 	color: #f2f8f1;
 	background-color: #4ea37a;
 }
-/* .detail_info_wrap {
-	margin-top: 35px;
-} */
 .detail_item {
 	display: flex;
 	flex-direction: column;
@@ -275,7 +233,27 @@ footer p {
 	min-height: 460px;
 	padding: 24px 30px;
 	border-radius: 10px;
-	background-color: #4ea37a;
+	background-color: #fff;
+}
+#chart {
+	width: 100%;
+	height: 100%;
+	min-height: 384px;
+	color: #4ea37a;
+}
+.axis line {
+	stroke: #ccc;
+}
+  
+.axis path {
+	stroke: #ccc;
+}
+  
+.axis text {
+	font-size: 14px;
+	font-weight: 00;
+	color: #ccc;
+	/* font-family: verdana; */
 }
 
 @media screen and (max-width: 768px) {
@@ -322,5 +300,4 @@ footer p {
 	.detail_source {
 		margin-top: 30px;
 	}
-
 }

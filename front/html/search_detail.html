@@ -44,9 +44,8 @@
 			</div>
 			<div class="flex-item col-p-8 col-m-12">
 				<div class="detail_graph">
-					<h3 class="title_md txt_white">지난 깐마늘 가격을 확인해보세요.</h3>
-					<!-- <canvas id="myChart" width="400" height="200"></canvas> -->
-					<div id="canvas"></div>
+					<h3 class="title_md">지난 깐마늘 가격을 확인해보세요.</h3>
+					<div id="chart"></div>
 				</div>
 			</div>
 		</div>
@@ -86,108 +85,115 @@
 	// });
 	//------------------------1. PREPARATION------------------------//
 //-----------------------------SVG------------------------------// 
-const width = 960;
-const height = 500;
-const margin = 5;
-const padding = 5;
-const adj = 30;
-// we are appending SVG first
-const svg = d3.select("div#canvas").append("svg")
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "-"
-          + adj + " -"
-          + adj + " "
-          + (width + adj *3) + " "
-          + (height + adj*3))
-    .style("padding", padding)
-    .style("margin", margin)
-    .classed("svg-content", true);
+const div = d3.select('#chart'),
+margin = { top: 40, right: 10, bottom: 30, left: 30 },
+width = parseInt(d3.select("#chart").style("width")) - margin.right - margin.left,
+height = parseInt(d3.select("#chart").style("height")) - margin.top - margin.bottom
+  
+const maxY = 100  
+const data = Array(3).fill().map(() => d3.randomUniform(maxY)())
 
-//-----------------------------DATA-----------------------------//
-const timeConv = d3.timeParse("%d-%b-%Y");
-const dataset = d3.csv("data.csv");
-dataset.then(function(data) {
-    var slices = data.columns.slice(1).map(function(id) {
-        return {
-            id: id,
-            values: data.map(function(d){
-                return {
-                    date: timeConv(d.date),
-                    measurement: +d[id]
-                };
-            })
-        };
-    });
-   
-//----------------------------SCALES----------------------------//
-const xScale = d3.scaleTime().range([0,width]);
-const yScale = d3.scaleLinear().rangeRound([height, 0]);
-xScale.domain(d3.extent(data, function(d){
-    return timeConv(d.date)}));
-yScale.domain([(0), d3.max(slices, function(c) {
-    return d3.max(c.values, function(d) {
-        return d.measurement + 4; });
-        })
-    ]);
-   
-//-----------------------------AXES-----------------------------//
-const yaxis = d3.axisLeft()
-    .ticks((slices[0].values).length)
-    .scale(yScale);
-   
-const xaxis = d3.axisBottom()
-    .ticks(d3.timeDay.every(1))
-    .tickFormat(d3.timeFormat('%b %d'))
-    .scale(xScale);
-   
-//----------------------------LINES-----------------------------//
+const curves = [
+	'curveLinear',
+  'curveBasis',
+  'curveBundle',
+  'curveCardinal',
+  'curveCatmullRom',
+  'curveMonotoneX',
+  'curveMonotoneY',
+  'curveNatural',
+  'curveStep',
+  'curveStepAfter',
+  'curveStepBefore',
+  'curveBasisClosed'
+]
+
+const svg = div.append('svg')
+	.attr('width', width + margin.left + margin.right)
+  .attr('height', height + margin.top + margin.bottom)
+  .append('g')
+  .attr('transform', `translate(${margin.left}, ${margin.top})`)
+//   .style('background-color', '#4ea37a')
+  
+
+/*
+ * X and Y scales.
+ */
+const xScale = d3.scaleLinear()
+	.domain([0, data.length - 1])
+  .range([0, width])
+
+const yScale = d3.scaleLinear()
+		.domain([0, maxY])
+    .range([height, 0])
+
+/*
+ * The function that describes how the line is drawn.
+ * Notice that we apply the xScale and yScale to the
+ * data in order to keep the data in bounds to our scale.
+ */
 const line = d3.line()
-    .x(function(d) { return xScale(d.date); })
-    .y(function(d) { return yScale(d.measurement); }); 
+	.x((d, i) => xScale(i))
+  .y(d => yScale(d))
+  .curve(d3[curves[5]])
 
-let id = 0;
-const ids = function () {
-    return "line-"+id++;
-}  
-//-------------------------2. DRAWING---------------------------//
-//-----------------------------AXES-----------------------------//
-svg.append("g")
-    .attr("class", "axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xaxis);
-   
-svg.append("g")
-    .attr("class", "axis")
-    .call(yaxis)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("dy", ".75em")
-    .attr("y", 6)
-    .style("text-anchor", "end")
-    .text("Frequency");
-   
-//----------------------------LINES-----------------------------//
-const lines = svg.selectAll("lines")
-    .data(slices)
-    .enter()
-    .append("g");
-   
-    lines.append("path")
-    .attr("class", ids)
-    .attr("d", function(d) { return line(d.values); });
-   
-    lines.append("text")
-    .attr("class","serie_label")
-    .datum(function(d) {
-        return {
-            id: d.id,
-            value: d.values[d.values.length - 1]}; })
-    .attr("transform", function(d) {
-            return "translate(" + (xScale(d.value.date) + 10)  
-            + "," + (yScale(d.value.measurement) + 5 ) + ")"; })
-    .attr("x", 5)
-    .text(function(d) { return ("Serie ") + d.id; });
+/*
+ * X and Y axis
+ */
+const xAxis = svg.append('g')
+	.attr('class', 'x axis')
+  .attr('transform', `translate(0, ${height})`)
+  .call(d3.axisBottom(xScale))
 
-});
+const yAxis = svg.append('g')
+	.attr('class', 'y axis')
+  .call(d3.axisLeft(yScale))
+
+/*
+ * Appending the line to the SVG.
+ */
+svg.append('path')
+	.datum(data)
+  .attr('class', 'data-line glowed')
+  .style('stroke','#4ea37a')
+  .style('stroke-width', 3)
+  .style('fill', 'none')
+  .attr('d', line)
+
+/*
+ * Add little circles at data points.
+ */
+const circles = svg.selectAll('circle')
+	.data(data)
+  .enter()
+  .append('circle')
+  .attr('class', 'circle')
+  .attr('cx', (d, i) => xScale(i))
+  .attr('cy', d => yScale(d))
+	.attr('r',7)
+  .style('fill', '#fff')
+  .style('stroke', '#4ea37a')
+  .style('stroke-width', 3)
+
+
+/*
+ * Glow effects (Optional)
+ */
+// const defs = svg.append('defs')
+// const glowDeviation = '4.5'
+
+// Filter for the outside glow
+// const filter = defs.append('filter').attr('id', 'glow')
+// filter.append('feGaussianBlur')
+//     .attr('stdDeviation', glowDeviation)
+//     .attr('result', 'coloredBlur')
+    
+// const feMerge = filter.append('feMerge')
+// feMerge.append('feMergeNode').attr('in', 'coloredBlur')
+// feMerge.append('feMergeNode').attr('in', 'SourceGraphic')
+
+// Add the glow!!
+// d3.selectAll('.glowed').style('filter', 'url(#glow)')
+
 </script>
 </html>
