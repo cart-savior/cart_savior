@@ -29,6 +29,19 @@ def search_form():
 	return render_template("main.html")
 
 
+# 차액 표시 필터
+@app.template_filter()
+def diff_format(value):
+	if value > 0:
+		return f"{value:,d}"
+	elif value < 0:
+		value = value * -1
+		return f"{value:,d}"
+
+	
+	value = float(value)
+	return "${:,.2f}".format(value)
+
 # 날짜와 아이템을 넣어서 obj 까지 생성하여 반환해주는 함수
 def extract_from_url(date, item):
 	url = "http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList" +\
@@ -91,7 +104,8 @@ def get_info(item, date):
 	# 차액 계산하기
 	last_week = int(one_item['last_week'].replace(',', ''))
 	last_week = int(one_item['last_week'].replace(',', ''))
-	one_item['diff'] = f"{this_week - last_week:,d}"
+	# one_item['diff'] = f"{this_week - last_week:,d}"
+	one_item['diff'] = this_week - last_week
 	one_item['date'] = site_template.render(date=date)
 	one_item['kind_name'] = row.kind_name
 	one_item['rank'] = item['rank']

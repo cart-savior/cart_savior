@@ -1,81 +1,52 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-ul,
-ol {
-  padding: 0;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-ul,
-ol,
-li,
-figure,
-figcaption,
-blockquote,
-dl,
-dd,
-a {
-  margin: 0;
-  color: #444;
-}
-
-body {
-  min-height: 100vh;
-  scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-}
-
-/* ul[class],
-ol[class] {
-  list-style: none;
-} */
-li{
-  list-style: none;
-}
-
-a {
-  /* color: #444; */
-  text-decoration: none;
-}
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-article > * + * {
-  margin-top: 1em;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-em {
-  font-style: normal;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+/* reset */
+* {margin:0;padding:0;box-sizing:border-box;}
+html , body{position: relative; width: 100%; overflow-x: hidden;}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong,
+sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
+figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video {margin:0;padding:0;border:0; font-family: "Noto Sans KR", "맑은 고딕", sans-serif; background: transparent;-webkit-text-size-adjust:none;letter-spacing: -0.025em;word-break: keep-all;color:#222;}
+body {margin:0;padding:0;height: 100%;font-size:16px;font-weight: 400;color: #222;line-height: 1.25;}
+input, select, textarea,label,fieldset{vertical-align: middle;}
+label {vertical-align: top; line-height: 1;}
+address, em {font-style:normal;}
+i, em, u, cite {font-style:normal; color: #222;} 
+strong, b, th {font-weight:bold;}
+fieldset, img {border:0;}
+img {max-width: 100%;width: auto;vertical-align:middle;}
+caption{text-indent:-100000px; font-size:0;}
+legend, figcaption {position:absolute;overflow:hidden;clip:rect(0,0,0,0);margin:-1px;width:1px;height:1px;font-size:1px;line-height:0;}
+ul, ol, dl, dt, dd, li {list-style: none}
+h1, h2, h3, h4, h5, h6 {font-weight: bold;font-size: 100%;}
+input, textarea, select { border:0;color: #222;vertical-align: top;}
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {display: block;}
+a{color: #222;}
+a, a:hover{text-decoration: none;}
+button {cursor: pointer;outline: none;*overflow: visible;margin:0;padding:0;border: none;background-color: transparent;vertical-align: middle;}
+button::-moz-focus-inner {margin:0;padding:0;border:0}
+button, input[type="submit"], input[type="button"], input[type="reset"] {cursor: pointer;border:0}
+table {width: 100%;table-layout: fixed}
+th,td {vertical-align: middle;}
+table, th, td {border-spacing:0;border-collapse: collapse;*border-collapse: collapse;word-wrap: break-word;}
+select {-moz-appearance:none;-webkit-appearance:none;appearance:none;}
+select::-ms-expand {display: none;}
+textarea {width: 100%;overflow-y: auto;resize: none;}
+input {padding:0;margin:0;border: 1px soli d #ccc;color: #222;border: none;-webkit-border-radius:0;}
+input[disabled] {background: #fff}
+input,textarea {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+input[type="number"], input[type="file"] {-webkit-appearance: none;}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {margin:0;-webkit-appearance: none;}
+input[type="text"]::-ms-clear {display: none;}
+input[type="radio"] {width:auto;}
+input[type="checkbox"] {width:auto;}
+input[type="radio"]:disabled + label {color:#222;}
+/* input[readonly='readonly'] {background-color: #eee} */
+/* placeholder Default color  */
+*::placeholder {color: #b5b5b5;}
+*::-webkit-input-placeholder {color: #b5b5b5 !important}
+*:-moz-placeholder {color: #b5b5b5 !important}/* FF 4-18 */
+*::-moz-placeholder {color: #b5b5b5 !important}/* FF 19+ */
+*:-ms-input-placeholder {color: #b5b5b5 !important}/* IE 10+ */
+.ir, .blind {position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;}
+/* .ir {display:block; width:1px; height:1px; overflow:hidden; margin:-1px 0 0 -1px; font-size:1px; line-height:0; white-space: nowrap} */
+.skip {position:absolute; z-index:1000; left:0; top:0; width:100%;}
+.skip a {display:block; width:1px; height:1px; margin-bottom:-1px; overflow:hidden; text-align:center; color:#FFFFFF;}
+.skip a:focus, .skip a:active {width:100%; height:auto; padding:10px 0; background-color:#222}

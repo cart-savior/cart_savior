@@ -10,8 +10,8 @@
 	<header class="header">
 		<h1 class="logo">
 			<a href="#">
-				<img class="hidden-m" src="../images/logo_pc.svg" alt="cart savior">
-				<img class="hidden-p visible-m" src="../images/logo_m.svg" alt="cart savior">
+				<img class="hidden-m" src="../static/images/logo_pc.svg" alt="cart savior">
+				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
 			</a>
 		</h1>
 		<div class="search_bar">
@@ -25,7 +25,7 @@
 		<h2 class="flex-item title_md"><span class="txt_green">{{ search_key }}</span>키워드로 검색한 <span class="txt_green">10개</span>의 결과입니다.</h2>
 		<ul class="sub_list flex-layout">
 			{% for info in list %}
-			<li class="flex-item col-p-4 col-m-12">
+			<li class="flex-item col-p-4 col-m-12 col-m-12">
 				<div class="sub_item">
 					<div class="item_info type_100">
 						<h3 class="title">{{ info.item_name }} ({{ info.rank }})</h3>
@@ -33,7 +33,14 @@
 					</div>
 					<div class="item_price">
 						<strong class="price txt_green">{{ info.item_price }}원</strong>
-						<span class="status">어제보다 <em class="txt_up">{{ info.diff }}원</em></span>
+						<span class="status"> 
+							{% if info.diff > 0 -%}
+							일주일 전보다 <em class="txt_up"> {{ info.diff }}원</em></span>
+							{% elif info.diff <0 -%}
+							일주일 전보다 <em class="txt_down">{{ info.diff }}원</em></span>
+							{% else %}
+							<em>가격이 똑같아요 ^3^</em>
+							{% endif %}
 					</div>
 					<div class="item_bottom">
 						<span class="date">{{ info.date }} 기준</span>

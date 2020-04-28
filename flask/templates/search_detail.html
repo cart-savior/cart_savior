@@ -11,8 +11,8 @@
 	<header class="header">
 		<h1 class="logo">
 			<a href="#">
-				<img class="hidden-m" src="../images/logo_pc.svg" alt="cart savior">
-				<img class="hidden-p visible-m" src="../images/logo_m.svg" alt="cart savior">
+				<img class="hidden-m" src="../static/images/logo_pc.svg" alt="cart savior">
+				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
 			</a>
 		</h1>
 		<div class="search_bar">
@@ -31,14 +31,22 @@
 		</div>
 		<div class="detail_info_wrap flex-layout">
 			<div class="flex-item col-p-4 col-m-12">
-				<div class="detail_item">
+				<div class="detail_info">
 					<span class="date">{{ date }} 기준</span>
 					<strong class="price">평균가는<br/><span class="txt_green">{{ item_price }}원</span>입니다.</strong>
-					<strong class="price">전주 대비<br/><span class="txt_up">{{ diff }}원 더 비싸요.</span></strong>
+					<strong class="price">전주 대비<br/>
+						{% if diff > 0 -%}
+						<span class="txt_up">{{ diff | diff_format}}원 더 비싸요.</span></strong>
+						{% elif diff <0 -%}
+						<span class="txt_down">{{ diff | diff_format}}원 더 싸요.</span></strong>
+						{% else %}
+						<span >가격이 똑같아요 ^3^</span></strong>
+						{% endif %}
+						
 					<span class="date">지난 주 평균가 : {{ last_week }}원</span>
-					<!-- <span class="source">자료 : 한국농수산식품유통공사</span> -->
 				</div>
-			</div>
+			<span class="source">자료 : 한국농수산식품유통공사</span>
+		</div>
 			<div class="flex-item col-p-8 col-m-12">
 				<div class="detail_graph">
 					<h3 class="title_md txt_white">지난 {{ item_name }}의 가격을 확인해보세요.</h3>
@@ -48,7 +56,7 @@
 		</div>
 	</section>
 	<footer class="footer">
-		Copyright (C) 2020. CART SAVIOR all rights reserved.
+		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
 </body>
 <script>
