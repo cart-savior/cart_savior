@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "common.css";
 @import "breakpoints.css";
 
 button, input {
