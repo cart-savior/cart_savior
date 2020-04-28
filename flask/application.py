@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import re
 import os
 import jinja2
+import random
 
 # ==================================== global variable ====================================
 # =========================================================================================
@@ -24,9 +25,23 @@ app.secret_key = "cart_savior"
 # =========================================================================================
 # =========================================================================================
 
+def get_random_keywords():
+	keys = []
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "category_code.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		keys.append(item['item_name'])
+	return random.sample(keys, 3)
+
+
 @app.route('/')
 def search_form():
-	return render_template("main.html")
+	random_keys = get_random_keywords()
+	context = {'random_keys': random_keys}
+	return render_template("main.html", **context)
 
 
 # 차액 표시 필터
@@ -168,6 +183,23 @@ def search(item_name="오류", item_price=0, date=None):
 	# 검색 키워드 받아오기
 	search_key =request.args.get("search_text")
 	# 해당 키워드가 포함된 모든 item_name 리스트로 받아오기.
+	items = get_all_items(search_key)
+	# 검색 결과가 없으면
+	if len(items) == 0:
+		return render_template("search_no_result.html")
+	# rank 정보를 추가한 item 리스트를 새로이 생성
+	items = get_items_with_rank(items)
+	# 필요 정보를 추출한 infos 리스트 생성
+	infos = append_info(items)
+	# import pdb; pdb.set_trace()
+	# infos 리스트를 세션에 저장한다
+	session['list'] = infos
+	# 받아온 item 마다 검색하여 get_info를 하고 해당 딕셔너리를 모아 리스트로 만든다. 
+	return render_template("search_list.html", list=infos)
+
+
+@app.route('/search/<search_key>')
+def search_hash(item_name="오류", item_price=0, date=None, search_key="오류"):
 	items = get_all_items(search_key)
 	# 검색 결과가 없으면
 	if len(items) == 0:
