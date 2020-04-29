@@ -1,0 +1,427 @@
+[
+  {
+    "category_code": 100,
+    "item_code": 111,
+    "item_name": "쌀"
+  },
+  {
+    "category_code": 100,
+    "item_code": 112,
+    "item_name": "찹쌀"
+  },
+  {
+    "category_code": 100,
+    "item_code": 141,
+    "item_name": "콩"
+  },
+  {
+    "category_code": 100,
+    "item_code": 142,
+    "item_name": "팥"
+  },
+  {
+    "category_code": 100,
+    "item_code": 143,
+    "item_name": "녹두"
+  },
+  {
+    "category_code": 100,
+    "item_code": 144,
+    "item_name": "메밀"
+  },
+  {
+    "category_code": 100,
+    "item_code": 151,
+    "item_name": "고구마"
+  },
+  {
+    "category_code": 100,
+    "item_code": 152,
+    "item_name": "감자"
+  },
+  {
+    "category_code": 200,
+    "item_code": 211,
+    "item_name": "배추"
+  },
+  {
+    "category_code": 200,
+    "item_code": 212,
+    "item_name": "양배추"
+  },
+  {
+    "category_code": 200,
+    "item_code": 213,
+    "item_name": "시금치"
+  },
+  {
+    "category_code": 200,
+    "item_code": 214,
+    "item_name": "상추"
+  },
+  {
+    "category_code": 200,
+    "item_code": 215,
+    "item_name": "얼갈이배추"
+  },
+  {
+    "category_code": 200,
+    "item_code": 216,
+    "item_name": "갓"
+  },
+  {
+    "category_code": 200,
+    "item_code": 221,
+    "item_name": "수박"
+  },
+  {
+    "category_code": 200,
+    "item_code": 222,
+    "item_name": "참외"
+  },
+  {
+    "category_code": 200,
+    "item_code": 223,
+    "item_name": "오이"
+  },
+  {
+    "category_code": 200,
+    "item_code": 224,
+    "item_name": "호박"
+  },
+  {
+    "category_code": 200,
+    "item_code": 225,
+    "item_name": "토마토"
+  },
+  {
+    "category_code": 200,
+    "item_code": 226,
+    "item_name": "딸기"
+  },
+  {
+    "category_code": 200,
+    "item_code": 231,
+    "item_name": "무"
+  },
+  {
+    "category_code": 200,
+    "item_code": 232,
+    "item_name": "당근"
+  },
+  {
+    "category_code": 200,
+    "item_code": 233,
+    "item_name": "열무"
+  },
+  {
+    "category_code": 200,
+    "item_code": 241,
+    "item_name": "건고추"
+  },
+  {
+    "category_code": 200,
+    "item_code": 242,
+    "item_name": "풋고추"
+  },
+  {
+    "category_code": 200,
+    "item_code": 243,
+    "item_name": "붉은고추"
+  },
+  {
+    "category_code": 200,
+    "item_code": 244,
+    "item_name": "피마늘"
+  },
+  {
+    "category_code": 200,
+    "item_code": 245,
+    "item_name": "양파"
+  },
+  {
+    "category_code": 200,
+    "item_code": 246,
+    "item_name": "파"
+  },
+  {
+    "category_code": 200,
+    "item_code": 247,
+    "item_name": "생강"
+  },
+  {
+    "category_code": 200,
+    "item_code": 248,
+    "item_name": "고춧가루"
+  },
+  {
+    "category_code": 200,
+    "item_code": 252,
+    "item_name": "미나리"
+  },
+  {
+    "category_code": 200,
+    "item_code": 253,
+    "item_name": "깻잎"
+  },
+  {
+    "category_code": 200,
+    "item_code": 255,
+    "item_name": "피망"
+  },
+  {
+    "category_code": 200,
+    "item_code": 256,
+    "item_name": "파프리카"
+  },
+  {
+    "category_code": 200,
+    "item_code": 257,
+    "item_name": "멜론"
+  },
+  {
+    "category_code": 200,
+    "item_code": 258,
+    "item_name": "깐마늘(국산)"
+  },
+  {
+    "category_code": 200,
+    "item_code": 259,
+    "item_name": "깐마늘(수입)"
+  },
+  {
+    "category_code": 300,
+    "item_code": 312,
+    "item_name": "참깨"
+  },
+  {
+    "category_code": 300,
+    "item_code": 313,
+    "item_name": "들깨"
+  },
+  {
+    "category_code": 300,
+    "item_code": 314,
+    "item_name": "땅콩"
+  },
+  {
+    "category_code": 300,
+    "item_code": 315,
+    "item_name": "느타리버섯"
+  },
+  {
+    "category_code": 300,
+    "item_code": 316,
+    "item_name": "팽이버섯"
+  },
+  {
+    "category_code": 300,
+    "item_code": 317,
+    "item_name": "새송이버섯"
+  },
+  {
+    "category_code": 300,
+    "item_code": 318,
+    "item_name": "호두"
+  },
+  {
+    "category_code": 300,
+    "item_code": 319,
+    "item_name": "아몬드"
+  },
+  {
+    "category_code": 400,
+    "item_code": 411,
+    "item_name": "사과"
+  },
+  {
+    "category_code": 400,
+    "item_code": 412,
+    "item_name": "배"
+  },
+  {
+    "category_code": 400,
+    "item_code": 413,
+    "item_name": "복숭아"
+  },
+  {
+    "category_code": 400,
+    "item_code": 414,
+    "item_name": "포도"
+  },
+  {
+    "category_code": 400,
+    "item_code": 415,
+    "item_name": "감귤"
+  },
+  {
+    "category_code": 400,
+    "item_code": 416,
+    "item_name": "단감"
+  },
+  {
+    "category_code": 400,
+    "item_code": 418,
+    "item_name": "바나나"
+  },
+  {
+    "category_code": 400,
+    "item_code": 419,
+    "item_name": "참다래"
+  },
+  {
+    "category_code": 400,
+    "item_code": 420,
+    "item_name": "파인애플"
+  },
+  {
+    "category_code": 400,
+    "item_code": 421,
+    "item_name": "오렌지"
+  },
+  {
+    "category_code": 200,
+    "item_code": 422,
+    "item_name": "방울토마토"
+  },
+  {
+    "category_code": 400,
+    "item_code": 423,
+    "item_name": "자몽"
+  },
+  {
+    "category_code": 400,
+    "item_code": 424,
+    "item_name": "레몬"
+  },
+  {
+    "category_code": 400,
+    "item_code": 425,
+    "item_name": "체리"
+  },
+  {
+    "category_code": 400,
+    "item_code": 426,
+    "item_name": "건포도"
+  },
+  {
+    "category_code": 400,
+    "item_code": 427,
+    "item_name": "건블루베리"
+  },
+  {
+    "category_code": 400,
+    "item_code": 428,
+    "item_name": "망고"
+  },
+  {
+    "category_code": 500,
+    "item_code": 512,
+    "item_name": "쇠고기"
+  },
+  {
+    "category_code": 500,
+    "item_code": 514,
+    "item_name": "돼지고기"
+  },
+  {
+    "category_code": 500,
+    "item_code": 515,
+    "item_name": "닭고기"
+  },
+  {
+    "category_code": 500,
+    "item_code": 516,
+    "item_name": "계란"
+  },
+  {
+    "category_code": 500,
+    "item_code": 535,
+    "item_name": "우유"
+  },
+  {
+    "category_code": 600,
+    "item_code": 611,
+    "item_name": "고등어"
+  },
+  {
+    "category_code": 600,
+    "item_code": 612,
+    "item_name": "꽁치"
+  },
+  {
+    "category_code": 600,
+    "item_code": 613,
+    "item_name": "갈치"
+  },
+  {
+    "category_code": 600,
+    "item_code": 615,
+    "item_name": "명태"
+  },
+  {
+    "category_code": 600,
+    "item_code": 619,
+    "item_name": "물오징어"
+  },
+  {
+    "category_code": 600,
+    "item_code": 638,
+    "item_name": "건멸치"
+  },
+  {
+    "category_code": 600,
+    "item_code": 639,
+    "item_name": "북어"
+  },
+  {
+    "category_code": 600,
+    "item_code": 640,
+    "item_name": "건오징어"
+  },
+  {
+    "category_code": 600,
+    "item_code": 641,
+    "item_name": "김"
+  },
+  {
+    "category_code": 600,
+    "item_code": 642,
+    "item_name": "건미역"
+  },
+  {
+    "category_code": 600,
+    "item_code": 644,
+    "item_name": "굴"
+  },
+  {
+    "category_code": 600,
+    "item_code": 649,
+    "item_name": "수입조기"
+  },
+  {
+    "category_code": 600,
+    "item_code": 650,
+    "item_name": "새우젓"
+  },
+  {
+    "category_code": 600,
+    "item_code": 651,
+    "item_name": "멸치액젓"
+  },
+  {
+    "category_code": 600,
+    "item_code": 652,
+    "item_name": "굵은소금"
+  },
+  {
+    "category_code": 600,
+    "item_code": 653,
+    "item_name": "전복"
+  },
+  {
+    "category_code": 600,
+    "item_code": 654,
+    "item_name": "새우"
+  }
+]
