@@ -54,7 +54,7 @@ def index():
 
 # 차액 표시 필터
 @app.template_filter()
-def diff_format(value):
+def num_format(value):
 	if value > 0:
 		return f"{value:,d}"
 	elif value < 0:
@@ -122,20 +122,18 @@ def get_info(item, date):
 			break
 	one_item = {'item_name': None, 'item_price': None, 'date': None, 'kind_name': None, 'rank': None, 'last_week': None, 'diff': None}
 	one_item['item_name'] = row.item_name
-	one_item['item_price'] = row.dpr1
-	this_week = int(one_item['item_price'].replace(',', ''))	
+	one_item['item_price'] = int(row.dpr1.replace(',', ''))
 	if (row.dpr3 == "-"):
 		one_item['last_week'] = get_dpr1(item, date + timedelta(days=7))
 	else:
-		one_item['last_week'] = row.dpr3
-	# 차액 계산하기
-	last_week = int(one_item['last_week'].replace(',', ''))
-	last_week = int(one_item['last_week'].replace(',', ''))
-	# one_item['diff'] = f"{this_week - last_week:,d}"
-	one_item['diff'] = this_week - last_week
-	one_item['date'] = site_template.render(date=date)
+		one_item['last_week'] = int(row.dpr3.replace(',', ''))
+	one_item['diff'] = one_item['item_price'] - one_item['last_week']
+	# one_item['date'] = site_template.render(date=date)
+	one_item['date'] = date
 	one_item['kind_name'] = row.kind_name
 	one_item['rank'] = item['rank']
+	one_item['last_month'] = row.dpr5
+	one_item['last_year'] = row.dpr6
 	return one_item
 
 
@@ -237,7 +235,9 @@ def search_hash(item_name="오류", item_price=0, date=None, search_key="오류"
 def detail(index):
 	if "list" in session:
 		context = session['list'][index - 1]
-		return render_template("search_detail.html", **context)
+		# context['last_month'] = get_dpr1(context, context['date'] - timedelta(days=30))
+		# import pdb; pdb.set_trace()
+		return render_template("search_detail.html", item=context)
 	else:
 		return redirect(url_for("search"))
 

@@ -22,7 +22,7 @@
 		</div>
 	</header>
 	<section class="container sub_wrap">
-		<h2 class="flex-item title_md"><span class="txt_green">{{ search_key }}</span>키워드로 검색한 <span class="txt_green">10개</span>의 결과입니다.</h2>
+		<h2 class="flex-item title_md"><span class="txt_green">{{ search_key }}</span>키워드로 검색한 <span class="txt_green">{{ list | length }}개</span>의 결과입니다.</h2>
 		<ul class="sub_list flex-layout">
 			{% for info in list %}
 			<li class="flex-item col-p-4 col-m-12 col-m-12">
@@ -32,18 +32,18 @@
 						<span class="sub_title">{{ info.kind_name }}</span>
 					</div>
 					<div class="item_price">
-						<strong class="price txt_green">{{ info.item_price }}원</strong>
+						<strong class="price txt_green">{{ info.item_price | num_format}}원</strong>
 						<span class="status"> 
 							{% if info.diff > 0 -%}
-							일주일 전보다 <em class="txt_up"> {{ info.diff }}원</em></span>
+							일주일 전보다 <em class="txt_up"> {{ info.diff | num_format}}원</em></span>
 							{% elif info.diff <0 -%}
-							일주일 전보다 <em class="txt_down">{{ info.diff }}원</em></span>
+							일주일 전보다 <em class="txt_down">{{ info.diff | num_format}}원</em></span>
 							{% else %}
 							<em>가격이 똑같아요 ^3^</em>
 							{% endif %}
 					</div>
 					<div class="item_bottom">
-						<span class="date">{{ info.date }} 기준</span>
+						<span class="date">{{ info.date.strftime('%-m월 %d일') }} 기준</span>
 						<a href="{{ url_for('detail', index=loop.index) }}" class="btn_more">자세히 보기</a>
 					</div>
 				</div>
