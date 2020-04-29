@@ -102,7 +102,9 @@ def get_info(item, date):
 			date = date - timedelta(days=1)
 			continue
 		# rank가 일치하는 행 뽑아내기
-		row = df[df['rank']==item['rank']].iloc[0]
+		# row = df[df['rank']==item['rank']].iloc[0]
+		df = df[df['rank']==item['rank']]
+		row = df[df['kind_name']==item['kind_name']].iloc[0]
 		if ("-" in row.dpr1):
 			date = date - timedelta(days=1)
 			continue
@@ -153,7 +155,7 @@ def get_all_items(search_key):
 def get_items_with_rank(items):
 	today = datetime.today()
 	# 일요일 테스트
-	# today = datetime.today() - timedelta(days=1)
+	# today = datetime.today() - timedelta(days=3)
 	df = None
 	result = []
 	for item in items:
@@ -169,10 +171,11 @@ def get_items_with_rank(items):
 			except TypeError:
 				today = today - timedelta(days=1)
 		for row in df.itertuples():
-			temp = {"category_code": None, "item_name": None, 'rank': None}
+			temp = {"category_code": None, "item_name": None, 'rank': None, 'kind_name': None}
 			temp['category_code'] = item['category_code']
 			temp['item_name'] = item['item_name']
 			temp['rank'] = row.rank
+			temp['kind_name'] = row.kind_name
 			result.append(temp)
 	# 오늘 날짜를 저장. 일요일인 경우 하루 전의 날짜를 세션에 저장해둔다. 
 	session['today'] = today
