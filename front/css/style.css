@@ -255,6 +255,17 @@ footer p {
 	color: #ccc;
 	/* font-family: verdana; */
 }
+.bar {
+	fill: steelblue;
+  }
+  
+  .bar:hover {
+	fill: brown;
+  }
+  
+  .axis--x path {
+	display: none;
+  }
 
 @media screen and (max-width: 768px) {
 	.title_lg {

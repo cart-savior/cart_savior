@@ -46,6 +46,7 @@
 				<div class="detail_graph">
 					<h3 class="title_md">지난 깐마늘 가격을 확인해보세요.</h3>
 					<div id="chart"></div>
+					<svg width="960" height="500"></svg>
 				</div>
 			</div>
 		</div>
@@ -85,115 +86,62 @@
 	// });
 	//------------------------1. PREPARATION------------------------//
 //-----------------------------SVG------------------------------// 
-const div = d3.select('#chart'),
-margin = { top: 40, right: 10, bottom: 30, left: 30 },
-width = parseInt(d3.select("#chart").style("width")) - margin.right - margin.left,
-height = parseInt(d3.select("#chart").style("height")) - margin.top - margin.bottom
+// const svg = d3.select('#chart'),
+// margin = { top: 40, right: 10, bottom: 30, left: 30 },
+// width = parseInt(d3.select("#chart").style("width")) - margin.right - margin.left,
+// height = parseInt(d3.select("#chart").style("height")) - margin.top - margin.bottom
   
-const maxY = 100  
-const data = Array(3).fill().map(() => d3.randomUniform(maxY)())
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
 
-const curves = [
-	'curveLinear',
-  'curveBasis',
-  'curveBundle',
-  'curveCardinal',
-  'curveCatmullRom',
-  'curveMonotoneX',
-  'curveMonotoneY',
-  'curveNatural',
-  'curveStep',
-  'curveStepAfter',
-  'curveStepBefore',
-  'curveBasisClosed'
-]
+var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
 
-const svg = div.append('svg')
-	.attr('width', width + margin.left + margin.right)
-  .attr('height', height + margin.top + margin.bottom)
-  .append('g')
-  .attr('transform', `translate(${margin.left}, ${margin.top})`)
-//   .style('background-color', '#4ea37a')
-  
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-/*
- * X and Y scales.
- */
-const xScale = d3.scaleLinear()
-	.domain([0, data.length - 1])
-  .range([0, width])
+d3.tsv("data.tsv")
+  	.then((data) => {
+        return data.map((d) => {
+          d.frequency = +d.frequency;
 
-const yScale = d3.scaleLinear()
-		.domain([0, maxY])
-    .range([height, 0])
+          return d;  
+        });
+		})
+  	.then((data) => {
+        x.domain(data.map(function(d) { return d.letter; }));
+        y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
-/*
- * The function that describes how the line is drawn.
- * Notice that we apply the xScale and yScale to the
- * data in order to keep the data in bounds to our scale.
- */
-const line = d3.line()
-	.x((d, i) => xScale(i))
-  .y(d => yScale(d))
-  .curve(d3[curves[5]])
+        g.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
 
-/*
- * X and Y axis
- */
-const xAxis = svg.append('g')
-	.attr('class', 'x axis')
-  .attr('transform', `translate(0, ${height})`)
-  .call(d3.axisBottom(xScale))
+        g.append("g")
+            .attr("class", "axis axis--y")
+            .call(d3.axisLeft(y).ticks(10, "%"))
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("Frequency");
 
-const yAxis = svg.append('g')
-	.attr('class', 'y axis')
-  .call(d3.axisLeft(yScale))
+        g.selectAll(".bar")
+          .data(data)
+          .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d.letter); })
+            .attr("y", function(d) { return y(d.frequency); })
+            .attr("width", x.bandwidth())
+            .attr("height", function(d) { return height - y(d.frequency); });
+    })
+    .catch((error) => {
+    		throw error;
+    });
 
-/*
- * Appending the line to the SVG.
- */
-svg.append('path')
-	.datum(data)
-  .attr('class', 'data-line glowed')
-  .style('stroke','#4ea37a')
-  .style('stroke-width', 3)
-  .style('fill', 'none')
-  .attr('d', line)
-
-/*
- * Add little circles at data points.
- */
-const circles = svg.selectAll('circle')
-	.data(data)
-  .enter()
-  .append('circle')
-  .attr('class', 'circle')
-  .attr('cx', (d, i) => xScale(i))
-  .attr('cy', d => yScale(d))
-	.attr('r',7)
-  .style('fill', '#fff')
-  .style('stroke', '#4ea37a')
-  .style('stroke-width', 3)
-
-
-/*
- * Glow effects (Optional)
- */
-// const defs = svg.append('defs')
-// const glowDeviation = '4.5'
-
-// Filter for the outside glow
-// const filter = defs.append('filter').attr('id', 'glow')
-// filter.append('feGaussianBlur')
-//     .attr('stdDeviation', glowDeviation)
-//     .attr('result', 'coloredBlur')
-    
-// const feMerge = filter.append('feMerge')
-// feMerge.append('feMergeNode').attr('in', 'coloredBlur')
-// feMerge.append('feMergeNode').attr('in', 'SourceGraphic')
-
-// Add the glow!!
-// d3.selectAll('.glowed').style('filter', 'url(#glow)')
 
 </script>
 </html>

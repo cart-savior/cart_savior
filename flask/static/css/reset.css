@@ -3,7 +3,7 @@
 html , body{position: relative; width: 100%; overflow-x: hidden;}
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong,
 sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
-figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video {margin:0;padding:0;border:0; font-family: "Noto Sans KR", "맑은 고딕", sans-serif; background: transparent;-webkit-text-size-adjust:none;letter-spacing: -0.025em;word-break: keep-all;color:#222;}
+figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video {margin:0;padding:0;border:0; font-family: "Noto Sans KR", "맑은 고딕", sans-serif; background: transparent;-webkit-text-size-adjust:none;letter-spacing: 0;word-break: keep-all;color:#222;}
 body {margin:0;padding:0;height: 100%;font-size:16px;font-weight: 400;color: #222;line-height: 1.25;}
 input, select, textarea,label,fieldset{vertical-align: middle;}
 label {vertical-align: top; line-height: 1;}

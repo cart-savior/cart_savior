@@ -31,6 +31,7 @@
 		</div>
 		<div class="detail_info_wrap flex-layout">
 			<div class="flex-item col-p-4 col-m-12">
+				<div class="detail_item">
 				<div class="detail_info">
 					<span class="date">{{ date }} 기준</span>
 					<strong class="price">평균가는<br/><span class="txt_green">{{ item_price }}원</span>입니다.</strong>
@@ -44,7 +45,8 @@
 						{% endif %}
 					<span class="date">지난 주 평균가 : {{ last_week }}원</span>
 				</div>
-			<span class="source">자료 : 한국농수산식품유통공사</span>
+				<span class="detail_source">자료 : 한국농수산식품유통공사</span>
+			</div>
 		</div>
 			<div class="flex-item col-p-8 col-m-12">
 				<div class="detail_graph">
