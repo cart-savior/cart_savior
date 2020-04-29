@@ -26,19 +26,27 @@ app.secret_key = "cart_savior"
 # =========================================================================================
 
 def get_random_keywords():
-	keys = []
-	path_to_current_file = os.path.realpath(__file__)
-	current_directory = os.path.split(path_to_current_file)[0]
-	path_to_file = os.path.join(current_directory, "category_code.json")
-	with open(path_to_file) as mydata:
-		my_json_data = json.load(mydata)
-	for item in my_json_data:
-		keys.append(item['item_name'])
+	# random_index = random.randint(0, 2)
+	keys = ['쌀', '찹쌀', '콩', '팥', '녹두', '고구마', '감자', '배추', '양배추', '시금치', '상추',
+       '얼갈이배추', '수박', '참외', '오이', '호박', '토마토', '딸기', '무', '당근', '열무',
+       '건고추', '풋고추', '붉은고추', '양파', '파', '생강', '고춧가루', '미나리', '깻잎', '피망',
+       '파프리카', '멜론', '깐마늘(국산)', '방울토마토', '참깨', '땅콩', '느타리버섯', '팽이버섯',
+       '새송이버섯', '호두', '아몬드', '사과', '배', '포도', '바나나', '참다래', '파인애플', '오렌지',
+       '레몬', '건포도', '건블루베리', '망고', '쇠고기', '돼지고기', '닭고기', '계란', '우유',
+       '고등어', '꽁치', '갈치', '명태', '물오징어', '건멸치', '건오징어', '김', '건미역', '수입조기',
+       '새우젓', '멸치액젓', '굵은소금', '전복', '새우']
+	# path_to_current_file = os.path.realpath(__file__)
+	# current_directory = os.path.split(path_to_current_file)[0]
+	# path_to_file = os.path.join(current_directory, "category_code.json")
+	# with open(path_to_file) as mydata:
+	# 	my_json_data = json.load(mydata)
+	# for item in my_json_data:
+	# 	keys.append(item['item_name'])
 	return random.sample(keys, 3)
 
 
 @app.route('/')
-def search_form():
+def index():
 	random_keys = get_random_keywords()
 	context = {'random_keys': random_keys}
 	return render_template("main.html", **context)
@@ -102,7 +110,9 @@ def get_info(item, date):
 			date = date - timedelta(days=1)
 			continue
 		# rank가 일치하는 행 뽑아내기
-		# row = df[df['rank']==item['rank']].iloc[0]
+		if df.empty:
+			date = date - timedelta(days=1)
+			continue
 		df = df[df['rank']==item['rank']]
 		row = df[df['kind_name']==item['kind_name']].iloc[0]
 		if ("-" in row.dpr1):
@@ -170,6 +180,9 @@ def get_items_with_rank(items):
 				break
 			except TypeError:
 				today = today - timedelta(days=1)
+		if df.empty:
+			# today = today - timedelta(days=1)
+			continue
 		for row in df.itertuples():
 			temp = {"category_code": None, "item_name": None, 'rank': None, 'kind_name': None}
 			temp['category_code'] = item['category_code']
@@ -194,9 +207,10 @@ def search(item_name="오류", item_price=0, date=None):
 	items = get_items_with_rank(items)
 	# 필요 정보를 추출한 infos 리스트 생성
 	infos = append_info(items)
-	# import pdb; pdb.set_trace()
 	# infos 리스트를 세션에 저장한다
 	session['list'] = infos
+	if len(session['list']) == 0:
+		return render_template("search_no_result.html")
 	# 받아온 item 마다 검색하여 get_info를 하고 해당 딕셔너리를 모아 리스트로 만든다. 
 	return render_template("search_list.html", list=infos)
 
@@ -211,9 +225,10 @@ def search_hash(item_name="오류", item_price=0, date=None, search_key="오류"
 	items = get_items_with_rank(items)
 	# 필요 정보를 추출한 infos 리스트 생성
 	infos = append_info(items)
-	# import pdb; pdb.set_trace()
 	# infos 리스트를 세션에 저장한다
 	session['list'] = infos
+	if len(session['list']) == 0:
+		return render_template("search_no_result.html")
 	# 받아온 item 마다 검색하여 get_info를 하고 해당 딕셔너리를 모아 리스트로 만든다. 
 	return render_template("search_list.html", list=infos)
 

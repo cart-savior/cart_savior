@@ -10,7 +10,7 @@
 <body>
 	<header class="header">
 		<h1 class="logo">
-			<a href="#">
+			<a href="{{ url_for('index', search_key=key) }}">
 				<img class="hidden-m" src="../static/images/logo_pc.svg" alt="cart savior">
 				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
 			</a>
