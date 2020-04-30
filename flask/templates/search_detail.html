@@ -65,10 +65,10 @@
 		let chartData = {{ item | tojson | safe }};
 
 		// 받은 전체 데이터 중 필요한 데이터만 새로운 Object로 생성한다.
-		var dataset = [{"date":"오늘", "value": chartData.item_price},
-						{"date":"지난 주", "value": chartData.last_week},
-						{"date":"지난 달", "value": chartData.last_month},
-						{"date":"지난 해", "value": chartData.last_year}];
+		var dataset = [{"name":"오늘", "value": chartData.item_price},
+						{"name":"지난 주", "value": chartData.last_week},
+						{"name":"지난 달", "value": chartData.last_month},
+						{"name":"지난 해", "value": chartData.last_year}];
 		
 		// data 중 콤마가 붙어 제대로 그래프가 나오지 않는 경우를 확인하고 콤마를 제거한다.
 		for (d of dataset){
@@ -77,12 +77,12 @@
 		}
 
 		// D3 사전 스타일 설정. width와 height에 parseInt를 쓴 이유는 반응형이라 정적으로 크기를 할당할 수 없었기 때문.
-		var margin = {top: 40, right: 30, bottom: 30, left: 50},
+		var margin = {top: 40, right: 0, bottom: 30, left: 55},
 			width = parseInt(d3.select("#graph").style("width")) - margin.right - margin.left,
 			height = parseInt(d3.select("#graph").style("height")) - margin.top - margin.bottom
-		var greyColor = "#898989";
-		var barColor = "#61b6a1";
-		var highlightColor = "#2c7966";
+		var greyColor = "#ccc";
+		var barColor = "#E9F0EB";
+		var highlightColor = "#4ea37a";
 		// var highlightColor = d3.schemeBuGn(0.3);
 	
 		// svg 태그를 추가할 위치를 지정하고, 크기 할당 및 g 태그를 추가했다.
@@ -100,12 +100,12 @@
 			.rangeRound([height, 0]);
 	
 		var xAxis = d3.axisBottom(x).tickSize([]).tickPadding(10);
-		var yAxis = d3.axisLeft(y);
+		var yAxis = d3.axisLeft(y).ticks(5);
 	
 		// y축의 도메인을 0이 아닌 최저 값의 자리수로 설정
 		var y_min = d3.min(dataset, d => d.value);
 		y_min = y_min.toString().length -1;
-		x.domain(dataset.map( d => { return d.date; }));
+		x.domain(dataset.map( d => { return d.name; }));
 		y.domain([Math.pow(10,y_min), d3.max(dataset, d => d.value)]).nice();
 	
 		// 본격적으로 그래프 그리기.
@@ -116,7 +116,8 @@
 		svg.append("g")
 			.attr("class","y axis")
 			.call(yAxis);
-	
+		const rx = 12;
+		const ry = 12;		
 		svg.selectAll(".bar")
 			.data(dataset)
 			.enter().append("rect")
@@ -126,7 +127,7 @@
 				return d.value === d3.max(dataset,  d => { return d.value; }) 
 				? highlightColor : barColor
 				})
-			.attr("x",  d => { return x(d.date); })
+			.attr("x",  d => { return x(d.name); })
 			.attr("width", x.bandwidth())
 				.attr("y",  d => { return height; })
 				.attr("height", 0)
@@ -136,7 +137,15 @@
 						return i * 150;
 					})
 			.attr("y",  d => { return y(d.value); })
-			.attr("height",  d => { return height - y(d.value); });
+			.attr("height",  d => { return height - y(d.value); })
+			.attr("d", item => `
+				M${x(item.name)},${y(item.value) + ry}
+				a${rx},${ry} 0 0 1 ${rx},${-ry}
+				h${x.bandwidth() - 2 * rx}
+				a${rx},${ry} 0 0 1 ${rx},${ry}
+				v${height - y(item.value) - ry}
+				h${-(x.bandwidth())}Z
+			`);
 	
 		svg.selectAll(".label")        
 			.data(dataset)
@@ -144,7 +153,7 @@
 			.append("text")
 			.attr("class", "label")
 			.style("display",  d => { return d.value === null ? "none" : null; })
-			.attr("x", ( (d, i) => { return x(d.date) + (x.bandwidth() / 2) }))
+			.attr("x", ( (d, i) => { return x(d.name) + (x.bandwidth() / 2) }))
 				.style("fill",  d => { 
 					return d.value === d3.max(dataset,  d => { return d.value; }) 
 					? highlightColor : greyColor

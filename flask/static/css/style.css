@@ -241,20 +241,12 @@ footer p {
 	min-height: 384px;
 	color: #999;
 }
-/* :root { --var-color-grey: #898989; } */
-/* body { 
-	margin:0; 
-	position:fixed; 
-	top:0; 
-	right:0; 
-	bottom:0; 
-	left:0; 
-	font-family: Helvetica; ; 
-	} */
-
-text {
-	font-family: Helvetica;
+.graph_wrap text {
+	font-size: 14px;
 	color: #999;
+}
+.graph_wrap .label {
+	font-size: 18px;
 }
 .axis path,
 .axis line {
@@ -309,5 +301,8 @@ text {
 	}
 	.detail_source {
 		margin-top: 30px;
+	}
+	.graph_wrap .label {
+		font-size: 14px;
 	}
 }
