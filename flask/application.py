@@ -87,6 +87,7 @@ def get_dpr1(item, start_date):
 			continue
 		else:
 			break
+	session['temp_date'] = start_date
 	return row.dpr1
 
 def get_info(item, date):
@@ -118,15 +119,19 @@ def get_info(item, date):
 	one_item['item_name'] = row.item_name
 	one_item['item_price'] = int(row.dpr1.replace(',', ''))
 	if (row.dpr3 == "-"):
-		one_item['last_week'] = get_dpr1(item, date + timedelta(days=7))
+		one_item['last_week'] = get_dpr1(item, date - timedelta(days=7))
+		one_item['last_week_date'] = session['last_week_date']
 	else:
 		one_item['last_week'] = int(row.dpr3.replace(',', ''))
+		one_item['last_week_date'] = date - timedelta(days=7)
 	one_item['diff'] = one_item['item_price'] - one_item['last_week']
 	one_item['date'] = date
 	one_item['kind_name'] = row.kind_name
 	one_item['rank'] = item['rank']
 	one_item['last_month'] = row.dpr5
+	one_item['last_month_date'] = date - timedelta(days=30)
 	one_item['last_year'] = row.dpr6
+	one_item['last_year_date'] = date - timedelta(days=365)
 	return one_item
 
 
@@ -254,6 +259,20 @@ def detail(index):
 	index는 몇번째 상품을 클릭했는지 알려주는 변수"""
 	if "list" in session:
 		context = session['list'][index - 1]
+
+		# 작년, 저번 달 데이터 가공
+		if (context['last_month'] == "-"):
+			context['last_month'] = get_dpr1(context, context['date'] - timedelta(days=30))
+			context['last_month_date'] = session['temp_date']
+		else:
+			context['last_month'] = int(context['last_month'].replace(',', ''))
+		if (context['last_year'] == "-"):
+			context['last_year'] = get_dpr1(context, context['date'] - timedelta(days=365))
+			context['last_year_date'] = session['temp_date']
+		else:
+			context['last_year'] = int(context['last_year'].replace(',', ''))
+
+		# import pdb; pdb.set_trace()
 		return render_template("search_detail.html", item=context)
 	else:
 		return redirect(url_for("search"))
