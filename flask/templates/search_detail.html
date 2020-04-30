@@ -52,6 +52,7 @@
 				<div class="detail_graph">
 					<h3 class="title_md txt_white">지난 {{ item_name }}의 가격을 확인해보세요.</h3>
 					<canvas id="myChart" width="400" height="200"></canvas>
+					<!-- <svg width="960" height="500"></svg> -->
 				</div>
 			</div>
 		</div>
@@ -61,33 +62,36 @@
 	</footer>
 </body>
 <script>
-	var ctx = document.getElementById('myChart').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: ['오늘', '하루 전', '한달 전', '일년 전'],
-			datasets: [{
-				label: '# of Votes',
-				data: [23000, 19000, 10000, 30000],
-				// backgroundColor: [
-				// 	'rgba(255, 255, 255)',
-				// ],
-				borderColor: [
-					'rgba(255, 255, 255)',
-				],
-				borderWidth: 2
-			}]
-		},
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						// stacked: true
-						beginAtZero: true
-					}
-				}]
-			}
-		}
-	});
+	var chartData = {{ context | safe }};
+	console.log(chartData);
+	// console.log(item_name);
+	// var ctx = document.getElementById('myChart').getContext('2d');
+	// var myChart = new Chart(ctx, {
+	// 	type: 'line',
+	// 	data: {
+	// 		labels: ['오늘', '하루 전', '한달 전', '일년 전'],
+	// 		datasets: [{
+	// 			label: '# of Votes',
+	// 			data: [23000, 19000, 10000, 30000],
+	// 			// backgroundColor: [
+	// 			// 	'rgba(255, 255, 255)',
+	// 			// ],
+	// 			borderColor: [
+	// 				'rgba(255, 255, 255)',
+	// 			],
+	// 			borderWidth: 2
+	// 		}]
+	// 	},
+	// 	options: {
+	// 		scales: {
+	// 			yAxes: [{
+	// 				ticks: {
+	// 					// stacked: true
+	// 					beginAtZero: true
+	// 				}
+	// 			}]
+	// 		}
+	// 	}
+	// });
 </script>
 </html>
