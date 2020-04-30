@@ -26,9 +26,9 @@
 					</form>
 				</div>
 				<ul class="hash_list">
-					<li class="hash_item"><a href="#"># 계란</a></li>
-					<li class="hash_item"><a href="#"># 만드라고라</a></li>
-					<li class="hash_item"><a href="#"># 고구마</a></li>
+					{% for key in random_keys %}
+					<li class="hash_item"><a href="{{ url_for('search_hash', search_key=key) }}"># {{ key }}</a></li>
+					{% endfor %}
 				</ul>
 			</div>
 		</div>
