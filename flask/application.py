@@ -13,11 +13,7 @@ import random
 # =========================================================================================
 
 
-site_template = jinja2.Template("{{ date.strftime('%-m월 %d일') }}")
 api_template = jinja2.Template("{{ date.strftime('%Y-%m-%d') }}")
-# formated_date = site_template.render(date=today)
-
-infos = []
 
 application = app = Flask(__name__)
 app.secret_key = "cart_savior"
@@ -26,19 +22,21 @@ app.secret_key = "cart_savior"
 # =========================================================================================
 
 def get_random_keywords():
-	keys = []
-	path_to_current_file = os.path.realpath(__file__)
-	current_directory = os.path.split(path_to_current_file)[0]
-	path_to_file = os.path.join(current_directory, "category_code.json")
-	with open(path_to_file) as mydata:
-		my_json_data = json.load(mydata)
-	for item in my_json_data:
-		keys.append(item['item_name'])
+	"""빈 데이터가 없는 상품들 중 3가지를 랜덤으로 뽑아서 리스트로 반환하는 함수"""
+	keys = ['쌀', '찹쌀', '콩', '팥', '녹두', '고구마', '감자', '배추', '양배추', '시금치', '상추',
+       '얼갈이배추', '수박', '참외', '오이', '호박', '토마토', '딸기', '무', '당근', '열무',
+       '건고추', '풋고추', '붉은고추', '양파', '파', '생강', '고춧가루', '미나리', '깻잎', '피망',
+       '파프리카', '멜론', '깐마늘', '방울토마토', '참깨', '땅콩', '느타리버섯', '팽이버섯',
+       '새송이버섯', '호두', '아몬드', '사과', '배', '포도', '바나나', '참다래', '파인애플', '오렌지',
+       '레몬', '건포도', '건블루베리', '망고', '쇠고기', '돼지고기', '닭고기', '계란', '우유',
+       '고등어', '꽁치', '갈치', '명태', '물오징어', '건멸치', '건오징어', '김', '건미역', '수입조기',
+       '새우젓', '멸치액젓', '굵은소금', '전복', '새우']
 	return random.sample(keys, 3)
 
 
 @app.route('/')
-def search_form():
+def index():
+	"""메인 페이지 구현 함수"""
 	random_keys = get_random_keywords()
 	context = {'random_keys': random_keys}
 	return render_template("main.html", **context)
@@ -46,7 +44,8 @@ def search_form():
 
 # 차액 표시 필터
 @app.template_filter()
-def diff_format(value):
+def num_format(value):
+	"""숫자를 int로 받으면 쉼표를 포함하여 표기해주는 함수"""
 	if value > 0:
 		return f"{value:,d}"
 	elif value < 0:
@@ -59,6 +58,7 @@ def diff_format(value):
 
 # 날짜와 아이템을 넣어서 obj 까지 생성하여 반환해주는 함수
 def extract_from_url(date, item):
+	"""날짜와 아이템을 api url에넣어서 딕셔너리로 반환해주는 함수"""
 	url = "http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList" +\
 	"&p_cert_key=bceaf385-9d34-4a75-9c6f-0607eb325485&p_cert_id=pje1740&p_returntype=json" +\
 	"&p_product_cls_code=01" +\
@@ -70,6 +70,7 @@ def extract_from_url(date, item):
 	return obj
 
 def get_dpr1(item, start_date):
+	"""전달 받은 날짜를 기점으로 dpr1이 있는 날짜의 dpr1을 반환하는 함수"""
 	df = None
 	while (1):
 		obj = extract_from_url(start_date, item)
@@ -88,8 +89,9 @@ def get_dpr1(item, start_date):
 			break
 	return row.dpr1
 
-# 랭크까지 구분된 item의 리스트가 들어온다. 
 def get_info(item, date):
+	"""rank, kind_name으로 구분된 상품에 대하여 상품명, 금일 가격, kind_name, rank, 
+	일주일 전 가격, 한 달 전 가격, 일년 전 가격, 차액을 구하여 딕셔너리로 반환하는 함수"""
 	one_item = None
 	df = None
 	# 여기서부터 값이 없으면 다시 거슬러 올라가야함
@@ -102,7 +104,9 @@ def get_info(item, date):
 			date = date - timedelta(days=1)
 			continue
 		# rank가 일치하는 행 뽑아내기
-		# row = df[df['rank']==item['rank']].iloc[0]
+		if df.empty:
+			date = date - timedelta(days=1)
+			continue
 		df = df[df['rank']==item['rank']]
 		row = df[df['kind_name']==item['kind_name']].iloc[0]
 		if ("-" in row.dpr1):
@@ -112,34 +116,30 @@ def get_info(item, date):
 			break
 	one_item = {'item_name': None, 'item_price': None, 'date': None, 'kind_name': None, 'rank': None, 'last_week': None, 'diff': None}
 	one_item['item_name'] = row.item_name
-	one_item['item_price'] = row.dpr1
-	this_week = int(one_item['item_price'].replace(',', ''))	
+	one_item['item_price'] = int(row.dpr1.replace(',', ''))
 	if (row.dpr3 == "-"):
 		one_item['last_week'] = get_dpr1(item, date + timedelta(days=7))
 	else:
-		one_item['last_week'] = row.dpr3
-	# 차액 계산하기
-	last_week = int(one_item['last_week'].replace(',', ''))
-	last_week = int(one_item['last_week'].replace(',', ''))
-	# one_item['diff'] = f"{this_week - last_week:,d}"
-	one_item['diff'] = this_week - last_week
-	one_item['date'] = site_template.render(date=date)
+		one_item['last_week'] = int(row.dpr3.replace(',', ''))
+	one_item['diff'] = one_item['item_price'] - one_item['last_week']
+	one_item['date'] = date
 	one_item['kind_name'] = row.kind_name
 	one_item['rank'] = item['rank']
+	one_item['last_month'] = row.dpr5
+	one_item['last_year'] = row.dpr6
 	return one_item
 
 
-# 검색어를 포함하는 상품명을 모두 받아와 반복문을 돌면서 정보를 뽑는다. 
-# item은 해당 상품에 대한 정보를 가지고 있는 딕셔너리.
-# 여기서 rank 까지 구분한 리스트를 한번 정리할 필요가 있어보임. 
 def append_info(items):
+	"""검색어를 포함하는 상품을 rank, kind_name으로 모두 나누어 각각에 대한 데이터를 딕셔너리로 정리하고,
+	생성된 딕셔너리를 리스트에 추가하여 반환하는 함수"""
 	list = []
 	for item in items:
 		list.append(get_info(item, session['today']))
 	return list
 
-# 부류번호, 상품명, 상품코드를 포함한 딕셔너리를 items 리스트에 넣어 반환한다. 
 def get_all_items(search_key):
+	"""검색어를 기반으로 category_code.json의 정보를 딕셔너리로 가져와 리스트에 축적하여 반환하는 함수"""
 	path_to_current_file = os.path.realpath(__file__)
 	current_directory = os.path.split(path_to_current_file)[0]
 	path_to_file = os.path.join(current_directory, "category_code.json")
@@ -153,8 +153,9 @@ def get_all_items(search_key):
 
 
 def get_items_with_rank(items):
+	"""키워드로 받아온 상품을 rank, kind_name을 구분하여 리스트에 축적하는 함수"""
 	today = datetime.today()
-	# 일요일 테스트
+	# 일요일로 테스트를 진행하려면 오늘로부터 일요일이 되기 위한 일수를 빼고 진행하면 된다. 
 	# today = datetime.today() - timedelta(days=3)
 	df = None
 	result = []
@@ -162,8 +163,6 @@ def get_items_with_rank(items):
 		# 일요일이면 되돌아가기 위한 반복문
 		while (1):
 			obj = extract_from_url(today, item)
-			# 모든 타입에 대한 (중품, 상품 등) 구분이 있는 가격의 딕셔너리 리스트
-			# 해당 품목의 df 행 불러오기
 			try:
 				df = pd.DataFrame(obj['data']['item'])
 				df = df[df.item_name == item['item_name']]
@@ -181,48 +180,81 @@ def get_items_with_rank(items):
 	session['today'] = today
 	return result
 
+
+def key_replace(search_key):
+	"""입력된 검색어를 가지고 있는 데이터와 일치하게 변경해주는 함수"""
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "search_replace.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		if search_key == item['input']:
+			return item['output']
+	return search_key
+
+
+# ==========================================
+
+# 검색 로직
+# 검색 키워드 받아오기 -> category_code.json에서 해당 키워드를 포함하는 상품명 모두 받아와 리스트에 저장하기(get_all_items)
+# -> rank 정보를 추가한 리스트 생성(get_items_with_rank) 
+# -> 해당 리스트로 나머지 필요한 정보를 모두 추출하여 새로운 리스트 생성 (append_info)
+# -> 해당 리스트(infos) 세션에 저장 -> search_list.html에 정보 뿌리기
+
+# ==========================================
+
 @app.route('/search', methods=['GET'])
 def search(item_name="오류", item_price=0, date=None):
-	# 검색 키워드 받아오기
+	"""입력된 키워드를 기반으로 상품 리스트를 만들고 정보를 모아 리스트로 만드는 함수.
+	이 함수는 검색창을 통해 키워드가 들어올 경우 실행된다."""
 	search_key =request.args.get("search_text")
-	# 해당 키워드가 포함된 모든 item_name 리스트로 받아오기.
+	search_key = key_replace(search_key)
 	items = get_all_items(search_key)
 	# 검색 결과가 없으면
 	if len(items) == 0:
-		return render_template("search_no_result.html")
-	# rank 정보를 추가한 item 리스트를 새로이 생성
+		random_keys = get_random_keywords()
+		context = {'random_keys': random_keys}
+		return render_template("search_no_result.html", **context)
 	items = get_items_with_rank(items)
-	# 필요 정보를 추출한 infos 리스트 생성
 	infos = append_info(items)
-	# import pdb; pdb.set_trace()
-	# infos 리스트를 세션에 저장한다
 	session['list'] = infos
-	# 받아온 item 마다 검색하여 get_info를 하고 해당 딕셔너리를 모아 리스트로 만든다. 
+	# 금일자 dataframe에 해당 상품이 없으면
+	if len(session['list']) == 0:
+		random_keys = get_random_keywords()
+		context = {'random_keys': random_keys}
+		return render_template("search_no_result.html", **context)
 	return render_template("search_list.html", list=infos)
 
 
 @app.route('/search/<search_key>')
 def search_hash(item_name="오류", item_price=0, date=None, search_key="오류"):
+	"""입력된 키워드를 기반으로 상품 리스트를 만들고 정보를 모아 리스트로 만드는 함수.
+	이 함수는 해시태그 클릭을 통해 키워드가 들어올 경우 실행된다."""
 	items = get_all_items(search_key)
 	# 검색 결과가 없으면
 	if len(items) == 0:
-		return render_template("search_no_result.html")
-	# rank 정보를 추가한 item 리스트를 새로이 생성
+		random_keys = get_random_keywords()
+		context = {'random_keys': random_keys}
+		return render_template("search_no_result.html", **context)
 	items = get_items_with_rank(items)
-	# 필요 정보를 추출한 infos 리스트 생성
 	infos = append_info(items)
-	# import pdb; pdb.set_trace()
-	# infos 리스트를 세션에 저장한다
 	session['list'] = infos
-	# 받아온 item 마다 검색하여 get_info를 하고 해당 딕셔너리를 모아 리스트로 만든다. 
+	# 금일자 dataframe에 해당 상품이 없으면
+	if len(session['list']) == 0:
+		random_keys = get_random_keywords()
+		context = {'random_keys': random_keys}
+		return render_template("search_no_result.html", **context)
 	return render_template("search_list.html", list=infos)
 
 
 @app.route('/search/<int:index>')
 def detail(index):
+	"""search_list에서 클릭한 상품을 기반으로 search_detail.html로 정보를 뿌리는 함수.
+	index는 몇번째 상품을 클릭했는지 알려주는 변수"""
 	if "list" in session:
 		context = session['list'][index - 1]
-		return render_template("search_detail.html", **context)
+		return render_template("search_detail.html", item=context)
 	else:
 		return redirect(url_for("search"))
 
