@@ -192,10 +192,24 @@ def get_items_with_rank(items):
 	session['today'] = today
 	return result
 
+
+def key_replace(search_key):
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "search_replace.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		if search_key == item['input']:
+			return item['output']
+	return search_key
+
+
 @app.route('/search', methods=['GET'])
 def search(item_name="오류", item_price=0, date=None):
 	# 검색 키워드 받아오기
 	search_key =request.args.get("search_text")
+	search_key = key_replace(search_key)
 	# 해당 키워드가 포함된 모든 item_name 리스트로 받아오기.
 	items = get_all_items(search_key)
 	# 검색 결과가 없으면
