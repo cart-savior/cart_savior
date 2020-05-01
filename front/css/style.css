@@ -100,6 +100,8 @@ header .logo img {
 }
 /* container */
 .container {
+	display: flex;
+	align-items: center;
 	max-width: 1200px;
 	min-height: calc(100vh - 190px);
 	margin: 0 auto;
@@ -116,25 +118,17 @@ footer p {
 	font-size: 14px;
 	color: #999;
 }
-/* main */
-.main_wrap {
-	padding-top: 200px;
+.main_wrap, .no_result_wrap, .sub_wrap, .detail_wrap {
+	flex: 1;
 }
 .no_result_wrap {
-	padding-top: 200px;
 	text-align: center;
-}
-.sub_wrap {
-	padding-top: 100px;
 }
 .no_result_wrap .search_bar {
 	margin: 18px auto 0;
 }
 .no_result_wrap .hash_list {
 	justify-content: center;
-}
-.detail_wrap {
-	padding-top: 100px;
 }
 
 .main_wrap *[class^="title_"]+.search_bar {

@@ -28,36 +28,38 @@
 			</form>
 		</div>
 	</header>
-	<section class="container detail_wrap">
-		<div class="flex-item">
-			<div class="item_info type_100">
-				<h3 class="title">{{ item.item_name }} ({{ item.rank }})</h3>
-				<span class="sub_title">{{ item.kind_name }}</span>
-			</div>
-		</div>
-		<div class="detail_info_wrap flex-layout">
-			<div class="flex-item col-p-4 col-m-12">
-				<div class="detail_item">
-				<div class="detail_info">
-					<span class="date">{{ item.date.strftime('%-m월 %d일') }} 기준</span>
-					<strong class="price">평균가는<br/><span class="txt_green">{{ item.item_price | num_format}}원</span>입니다.</strong>
-					<strong class="price">전주 대비<br/>
-						{% if item.diff > 0 -%}
-						<span class="txt_up">{{ item.diff | num_format}}원 더 비싸요.</span></strong>
-						{% elif item.diff <0 -%}
-						<span class="txt_down">{{ item.diff | num_format}}원 더 싸요.</span></strong>
-						{% else %}
-						<span >가격이 똑같아요 ^3^</span></strong>
-						{% endif %}
-					<span class="date">지난 주 평균가 : {{ item.last_week | num_format}}원</span>
+	<section class="container">
+		<div class="detail_wrap">
+			<div class="flex-item">
+				<div class="item_info type_100">
+					<h3 class="title">{{ item.item_name }} ({{ item.rank }})</h3>
+					<span class="sub_title">{{ item.kind_name }}</span>
 				</div>
-				<span class="detail_source">자료 : 한국농수산식품유통공사</span>
 			</div>
-		</div>
-			<div class="flex-item col-p-8 col-m-12">
-				<div class="detail_graph">
-					<h3 class="title_md">지난 {{ item.item_name }}의 가격을 확인해보세요.</h3>
-					<div id="graph" class="graph_wrap"></div>
+			<div class="detail_info_wrap flex-layout">
+				<div class="flex-item col-p-4 col-m-12">
+					<div class="detail_item">
+					<div class="detail_info">
+						<span class="date">{{ item.date.strftime('%-m월 %d일') }} 기준</span>
+						<strong class="price">평균가는<br/><span class="txt_green">{{ item.item_price | num_format}}원</span>입니다.</strong>
+						<strong class="price">전주 대비<br/>
+							{% if item.diff > 0 -%}
+							<span class="txt_up">{{ item.diff | num_format}}원 더 비싸요.</span></strong>
+							{% elif item.diff <0 -%}
+							<span class="txt_down">{{ item.diff | num_format}}원 더 싸요.</span></strong>
+							{% else %}
+							<span >가격이 똑같아요 ^3^</span></strong>
+							{% endif %}
+						<span class="date">지난 주 평균가 : {{ item.last_week | num_format}}원</span>
+					</div>
+					<span class="detail_source">자료 : 한국농수산식품유통공사</span>
+				</div>
+			</div>
+				<div class="flex-item col-p-8 col-m-12">
+					<div class="detail_graph">
+						<h3 class="title_md">지난 {{ item.item_name }}의 가격을 확인해보세요.</h3>
+						<div id="graph" class="graph_wrap"></div>
+					</div>
 				</div>
 			</div>
 		</div>
