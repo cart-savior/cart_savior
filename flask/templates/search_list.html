@@ -22,8 +22,8 @@
 		</h1>
 		<div class="search_bar">
 			<form action="{{url_for('search')}}">
-				<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?"/>
-				<button class="btn_search" type="submit" onclick="loading();">검색하기</button>
+				<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
+				<button class="btn_search" type="submit">검색하기</button>
 			</form>
 		</div>
 	</header>
