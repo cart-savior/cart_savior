@@ -34,6 +34,19 @@ def get_random_keywords():
 	return random.sample(keys, 3)
 
 
+def key_replace(search_key):
+	"""입력된 검색어를 가지고 있는 데이터와 일치하게 변경해주는 함수"""
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "search_replace.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		if search_key == item['input']:
+			return item['output']
+	return search_key
+
+
 @app.route('/')
 def index():
 	"""메인 페이지 구현 함수"""
@@ -113,7 +126,11 @@ def get_info(item, date):
 			date = date - timedelta(days=1)
 			continue
 		df = df[df['rank']==item['rank']]
-		row = df[df['kind_name']==item['kind_name']].iloc[0]
+		# kind_name도 있는 날, 없는 날이 달라서 오류가 발생함. 찾을 수 없을 경우 -1 에러코드 반환
+		try:
+			row = df[df['kind_name']==item['kind_name']].iloc[0]
+		except IndexError:
+			return -1
 		if ("-" in row.dpr1):
 			date = date - timedelta(days=1)
 			continue
@@ -145,7 +162,9 @@ def append_info(items):
 	생성된 딕셔너리를 리스트에 추가하여 반환하는 함수"""
 	list = []
 	for item in items:
-		list.append(get_info(item, session['today']))
+		temp = get_info(item, session['today'])
+		if temp != -1:
+			list.append(temp)
 	return list
 
 def get_all_items(search_key):
@@ -189,19 +208,6 @@ def get_items_with_rank(items):
 	# 오늘 날짜를 저장. 일요일인 경우 하루 전의 날짜를 세션에 저장해둔다. 
 	session['today'] = today
 	return result
-
-
-def key_replace(search_key):
-	"""입력된 검색어를 가지고 있는 데이터와 일치하게 변경해주는 함수"""
-	path_to_current_file = os.path.realpath(__file__)
-	current_directory = os.path.split(path_to_current_file)[0]
-	path_to_file = os.path.join(current_directory, "search_replace.json")
-	with open(path_to_file) as mydata:
-		my_json_data = json.load(mydata)
-	for item in my_json_data:
-		if search_key == item['input']:
-			return item['output']
-	return search_key
 
 
 # ==========================================
