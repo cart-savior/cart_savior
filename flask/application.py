@@ -81,7 +81,11 @@ def get_dpr1(item, start_date):
 			start_date = start_date - timedelta(days=1)
 			continue
 		# rank가 일치하는 행 뽑아내기
-		row = df[df['rank']==item['rank']].iloc[0]
+		try: 
+			row = df[df['rank']==item['rank']].iloc[0]
+		except IndexError:
+			session['temp_date'] = start_date
+			return 0
 		if ("-" in row.dpr1):
 			start_date = start_date - timedelta(days=1)
 			continue
@@ -115,8 +119,9 @@ def get_info(item, date):
 			continue
 		else:
 			break
-	one_item = {'item_name': None, 'item_price': None, 'date': None, 'kind_name': None, 'rank': None, 'last_week': None, 'diff': None}
+	one_item = {'item_name': None, 'category_code': None, 'item_price': None, 'date': None, 'kind_name': None, 'rank': None, 'last_week': None, 'diff': None}
 	one_item['item_name'] = row.item_name
+	one_item['category_code'] = item['category_code']
 	one_item['item_price'] = int(row.dpr1.replace(',', ''))
 	if (row.dpr3 == "-"):
 		one_item['last_week'] = get_dpr1(item, date - timedelta(days=7))
@@ -259,7 +264,6 @@ def detail(index):
 	index는 몇번째 상품을 클릭했는지 알려주는 변수"""
 	if "list" in session:
 		context = session['list'][index - 1]
-
 		# 작년, 저번 달 데이터 가공
 		if (context['last_month'] == "-"):
 			context['last_month'] = get_dpr1(context, context['date'] - timedelta(days=30))
@@ -271,8 +275,7 @@ def detail(index):
 			context['last_year_date'] = session['temp_date']
 		else:
 			context['last_year'] = int(context['last_year'].replace(',', ''))
-
-		# import pdb; pdb.set_trace()
+		import pdb; pdb.set_trace()
 		return render_template("search_detail.html", item=context)
 	else:
 		return redirect(url_for("search"))
