@@ -7,6 +7,12 @@
 	<link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
+	<div id="loader" class="loader">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
 	<header class="header">
 		<h1 class="logo">
 			<a href="{{ url_for('index', search_key=key) }}">
@@ -22,7 +28,7 @@
 				<div class="search_bar">
 					<form action="{{url_for('search')}}">
 						<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?"/>
-						<button class="btn_search" type="submit">검색하기</button>
+						<button class="btn_search" type="submit" onclick="loading();">검색하기</button>
 					</form>
 				</div>
 				<ul class="hash_list">
@@ -36,5 +42,7 @@
 	<footer class="footer">
 		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
+	<div id="bg" class="bg"></div>
+	<script type="text/javascript" src="../static/js/common.js"></script>
 </body>
 </html>

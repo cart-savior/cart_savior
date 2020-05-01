@@ -7,6 +7,12 @@
 	<link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
+	<div id="loader" class="loader">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
 	<header class="header">
 		<h1 class="logo">
 			<a href="{{ url_for('index', search_key=key) }}">
@@ -17,12 +23,12 @@
 	</header>
 	<section class="container">
 		<div class="main_wrap flex-layout">
-			<div class="flex-item col-p-6 col-m-12">
+			<div class="flex-item col-p-4 col-m-12">
 				<h2 class="title_lg">장보기 전,</br>이제는 <span class="txt_green">시세</span>먼저 보자.</h2>
 				<div class="search_bar">
 					<form action="{{url_for('search')}}">
 						<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?"/>
-						<button class="btn_search" type="submit">검색하기</button>
+						<button class="btn_search" type="submit" onclick="loading();">검색하기</button>
 					</form>
 				</div>
 				<ul class="hash_list">
@@ -31,13 +37,15 @@
 					{% endfor %}
 				</ul>
 			</div> 
-			<div class="flex-item col-p-6 col-m-12">
-				<img src="" alt="임시">
+			<div class="flex-item col-p-8 col-m-12">
+				<img src="../static/images/img_main.png" alt="">
 			</div>
 		</div>
 	</section>
 	<footer class="footer">
 		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
+	<div id="bg" class="bg"></div>
+	<script type="text/javascript" src="../static/js/common.js"></script>
 </body>
 </html>
