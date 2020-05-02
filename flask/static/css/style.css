@@ -1,6 +1,7 @@
 @import "reset.css";
 @import "common.css";
 @import "breakpoints.css";
+@import "icons.css";
 
 /* loader */
 .loader {

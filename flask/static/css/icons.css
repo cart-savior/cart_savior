@@ -32,7 +32,7 @@
 }
 
 /* 100번대 */
-.item_info.type_141:after {
+.item_info.type_141:after, .item_info.type_142:after, .item_info.type_143:after {
 	background-color: #E3FFCC;
-	background-image: url(../images/itemcode_141.png);
+	background-image: url(../images/item_141.png);
 }
