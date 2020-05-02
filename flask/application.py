@@ -136,11 +136,9 @@ def get_info(item, date):
 			continue
 		else:
 			break
-	one_item = {'item_name': None, 'category_code': None, 'item_code': None, 'item_price': None, 'date': None, \
-		'kind_name': None, 'rank': None, 'last_week': None, 'diff': None}
+	one_item = {'item_name': None, 'category_code': None, 'item_price': None, 'date': None, 'kind_name': None, 'rank': None, 'last_week': None, 'diff': None}
 	one_item['item_name'] = row.item_name
 	one_item['category_code'] = item['category_code']
-	one_item['item_code'] = item['item_code']
 	one_item['item_price'] = int(row.dpr1.replace(',', ''))
 	if (row.dpr3 == "-"):
 		one_item['last_week'] = get_dpr1(item, date - timedelta(days=7))
@@ -201,9 +199,8 @@ def get_items_with_rank(items):
 			except TypeError:
 				today = today - timedelta(days=1)
 		for row in df.itertuples():
-			temp = {"category_code": None, "item_code": None, "item_name": None, 'rank': None, 'kind_name': None}
+			temp = {"category_code": None, "item_name": None, 'rank': None, 'kind_name': None}
 			temp['category_code'] = item['category_code']
-			temp['item_code'] = item['item_code']
 			temp['item_name'] = item['item_name']
 			temp['rank'] = row.rank
 			temp['kind_name'] = row.kind_name
@@ -284,7 +281,6 @@ def detail(index):
 			context['last_year_date'] = session['temp_date']
 		else:
 			context['last_year'] = int(context['last_year'].replace(',', ''))
-		# import pdb; pdb.set_trace()
 		return render_template("search_detail.html", item=context)
 	else:
 		return redirect(url_for("search"))

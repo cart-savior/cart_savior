@@ -178,6 +178,7 @@ footer p {
 	background-color: #fff;
 	-webkit-animation: fade_in_down .8s ease-out both;
 			animation: fade_in_down .8s ease-out both;
+	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
 @keyframes fade_in_down {
 	0% {
@@ -284,6 +285,7 @@ footer p {
 	background-color: #fff;
 	-webkit-animation: fade_in_down .8s ease-out both;
 			animation: fade_in_down .8s ease-out both;
+	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
 .detail_info .date {
 	display: block;
@@ -312,6 +314,7 @@ footer p {
 	background-color: #fff;
 	-webkit-animation: fade_in_down .8s ease-out both;
 			animation: fade_in_down .8s ease-out both;
+	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
 .graph_wrap {
 	width: 100%;
