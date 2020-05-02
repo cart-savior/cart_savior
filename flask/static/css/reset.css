@@ -29,7 +29,7 @@ table, th, td {border-spacing:0;border-collapse: collapse;*border-collapse: coll
 select {-moz-appearance:none;-webkit-appearance:none;appearance:none;}
 select::-ms-expand {display: none;}
 textarea {width: 100%;overflow-y: auto;resize: none;}
-input {padding:0;margin:0;border: 1px soli d #ccc;color: #222;border: none;-webkit-border-radius:0;}
+input {padding:0;margin:0;border: 1px solid #ccc;color: #222;border: none;-webkit-border-radius:0;}
 input[disabled] {background: #fff}
 input,textarea {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
 input[type="number"], input[type="file"] {-webkit-appearance: none;}
