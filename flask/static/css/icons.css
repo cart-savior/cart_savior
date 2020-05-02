@@ -1,5 +1,6 @@
 /*
  노란색 : FFFAE4
+ 주황색 : ffe7c2
  녹색 : E3FFCC
  붉은색 : FFE4E4
  파란색 : E0F7FF
@@ -32,7 +33,253 @@
 }
 
 /* 100번대 */
+.item_info.type_111::after, .item_info.type_112:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/itemcode_100.png);
+}
+
 .item_info.type_141:after, .item_info.type_142:after, .item_info.type_143:after {
 	background-color: #E3FFCC;
 	background-image: url(../images/item_141.png);
+}
+
+.item_info.type_151:after, .item_info.type_312:after, .item_info.type_314:after, .item_info.type_319:after {
+	background-color: #ffe7c2;
+	background-image: url(../images/item_151.png);
+}
+
+.item_info.type_152:after {
+	background-color: #ffe7c2;
+	background-image: url(../images/item_152.png);
+}
+
+/* 200번대 */
+
+.item_info.type_211:after, .item_info.type_214:after, .item_info.type_215:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_211.png);
+}
+
+.item_info.type_212:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_2122.png);
+}
+
+.item_info.type_213:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_213.png);
+}
+
+.item_info.type_221:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_221.png);
+}
+
+.item_info.type_222:after, .item_info.type_412:after, .item_info.type_421:after, .item_info.type_424:after, .item_info.type_428:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_222.png);
+}
+
+.item_info.type_223:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_223.png);
+}
+
+.item_info.type_224:after {
+	background-color: #ffe7c2;
+	background-image: url(../images/item_224.png);
+}
+
+.item_info.type_225:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_225.png);
+}
+
+.item_info.type_226:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_226.png);
+}
+
+.item_info.type_231:after, .item_info.type_233:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_231.png);
+}
+
+.item_info.type_232:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_232.png);
+}
+
+.item_info.type_241:after, .item_info.type_242:after, .item_info.type_243:after, .item_info.type_248:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_241.png);
+}
+
+.item_info.type_245:after, .item_info.type_247:after, .item_info.type_258:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_245.png);
+}
+
+.item_info.type_246:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_246.png);
+}
+
+.item_info.type_252:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_252.png);
+}
+
+.item_info.type_253:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_253.png);
+}
+
+.item_info.type_255:after, .item_info.type_256:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_256.png);
+}
+
+.item_info.type_257:after {
+	background-color: #ffe1ef;
+	background-image: url(../images/item_257.png);
+}
+
+/* 3,400번대 */
+
+.item_info.type_422:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_422.png);
+}
+
+.item_info.type_315:after {
+	background-color: #ffe7c2;
+	background-image: url(../images/item_315.png);
+}
+
+.item_info.type_316:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/itemcode_300.png);
+}
+
+.item_info.type_317:after {
+	background-color: #ece4ff;
+	background-image: url(../images/item_317.png);
+}
+
+.item_info.type_318:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_318.png);
+}
+
+.item_info.type_411:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_411.png);
+}
+
+.item_info.type_418:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_418.png);
+}
+
+.item_info.type_419:after, .item_info.type_420:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_420.png);
+}
+
+.item_info.type_426:after {
+	background-color: #ece4ff;
+	background-image: url(../images/item_426.png);
+}
+
+.item_info.type_427:after {
+	background-color: #E0F7FF;
+	background-image: url(../images/item_427.png);
+}
+
+/* 500, 600번대 */
+
+.item_info.type_512:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/itemcode_500.png);
+}
+
+.item_info.type_514:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_514.png);
+}
+
+.item_info.type_515:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_515.png);
+}
+
+.item_info.type_516:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_516.png);
+}
+
+.item_info.type_535:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_535.png);
+}
+
+.item_info.type_611:after {
+	background-color: #E0F7FF;
+	background-image: url(../images/item_611.png);
+}
+
+.item_info.type_612:after {
+	background-color: #E0F7FF;
+	background-image: url(../images/item_612.png);
+}
+
+.item_info.type_613:after {
+	background-color: #eee;
+	background-image: url(../images/item_613.png);
+}
+
+.item_info.type_615:after {
+	background-color: #E0F7FF;
+	background-image: url(../images/item_615.png);
+}
+
+.item_info.type_619:after, .item_info.type_640:after {
+	background-color: #E0F7FF;
+	background-image: url(../images/item_619.png);
+}
+
+.item_info.type_641:after, .item_info.type_642:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_642.png);
+}
+
+.item_info.type_644:after {
+	background-color: #eee;
+	background-image: url(../images/item_644.png);
+}
+
+.item_info.type_649:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_649.png);
+}
+
+.item_info.type_650:after, .item_info.type_651:after, .item_info.type_638:after {
+	background-color: #eee;
+	background-image: url(../images/item_650.png);
+}
+
+.item_info.type_652:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/item_652.png);
+}
+
+.item_info.type_653:after {
+	background-color: #eee;
+	background-image: url(../images/item_653.png);
+}
+
+.item_info.type_654:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/item_654.png);
 }
