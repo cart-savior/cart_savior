@@ -1,0 +1,38 @@
+/*
+ 노란색 : FFFAE4
+ 녹색 : E3FFCC
+ 붉은색 : FFE4E4
+ 파란색 : E0F7FF
+ 보라색 : ece4ff
+ 회색 : eee
+*/
+.item_info.type_100:after {
+	background-color: #FFFAE4;
+	background-image: url(../images/itemcode_100.png);
+}
+.item_info.type_200:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/item_211.png);
+}
+.item_info.type_300:after {
+	background-color: #FFCAC4;
+	background-image: url(../images/itemcode_300.png);
+}
+.item_info.type_400:after {
+	background-color: #FFE4E4;
+	background-image: url(../images/itemcode_400.png);
+}
+.item_info.type_500:after {
+	background-color: #FFF7E7;
+	background-image: url(../images/itemcode_500.png);
+}
+.item_info.type_600:after {
+	background-color: #E0F7FF;
+	background-image: url(../images/item_611.png);
+}
+
+/* 100번대 */
+.item_info.type_141:after {
+	background-color: #E3FFCC;
+	background-image: url(../images/itemcode_141.png);
+}

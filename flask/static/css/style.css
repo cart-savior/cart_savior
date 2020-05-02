@@ -143,7 +143,7 @@ footer p {
 	display: flex;
 	justify-content: space-between;
 	height: 60px;
-	border-radius: 17px;
+	border-radius: 30px;
 	background-color: #fff;
 }
 .inp_search {
@@ -168,12 +168,12 @@ footer p {
 	padding: 5px 10px;
 	font-size: 14px;
 	color: #fff;
-	border-radius: 8px;
+	border-radius: 15px;
   	background-color: #4ea38e;
 }
 .sub_item {
 	padding: 24px 30px;
-	border-radius: 10px;
+	border-radius: 30px;
 	background-color: #fff;
 }
 .item_info {
@@ -191,30 +191,6 @@ footer p {
 	border-radius: 50%;
 	background: #FFFAE4 url(../images/itemcode_100.png) center no-repeat;
 	background-size: 25px auto;
-}
-.item_info.type_100:after {
-	background-color: #FFFAE4;
-	background-image: url(../images/itemcode_100.png);
-}
-.item_info.type_200:after {
-	background-color: #E3FFCC;
-	background-image: url(../images/item_211.png);
-}
-.item_info.type_300:after {
-	background-color: #FFCAC4;
-	background-image: url(../images/itemcode_300.png);
-}
-.item_info.type_400:after {
-	background-color: #FFE4E4;
-	background-image: url(../images/itemcode_400.png);
-}
-.item_info.type_500:after {
-	background-color: #FFF7E7;
-	background-image: url(../images/itemcode_500.png);
-}
-.item_info.type_600:after {
-	background-color: #E0F7FF;
-	background-image: url(../images/item_611.png);
 }
 .item_info .title {
 	font-size: 20px;
@@ -267,7 +243,7 @@ footer p {
 	font-weight: bold;
 	color: #4ea37a;
 	transition: all .5s;
-	border-radius: 8px;
+	border-radius: 30px;
   	background-color: #f2f8f1;
 }
 .btn_more:hover {
@@ -281,7 +257,7 @@ footer p {
 	justify-content: space-between;
 	min-height: 460px;
 	padding: 24px 30px;
-	border-radius: 10px;
+	border-radius: 30px;
 	background-color: #fff;
 }
 .detail_info .date {
@@ -307,7 +283,7 @@ footer p {
 .detail_graph {
 	min-height: 460px;
 	padding: 24px 30px;
-	border-radius: 10px;
+	border-radius: 30px;
 	background-color: #fff;
 }
 .graph_wrap {
@@ -377,7 +353,7 @@ footer p {
 	.detail_source {
 		margin-top: 30px;
 	}
-	.graph_wrap .label {
-		font-size: 14px;
+	.graph_wrap .label, .graph_wrap text {
+		font-size: 12px;
 	}
 }
