@@ -48,7 +48,7 @@
 							{% elif item.diff <0 -%}
 							<span class="txt_down">{{ item.diff | num_format}}원 더 싸요.</span></strong>
 							{% else %}
-							<span >가격이 똑같아요 ^3^</span></strong>
+							<span >가격이 동일합니다.</span></strong>
 							{% endif %}
 						<span class="date">지난 주 평균가 : {{ item.last_week | num_format}}원</span>
 					</div>
@@ -79,6 +79,21 @@
 						{"name":"지난 주", "value": chartData.last_week},
 						{"name":"지난 달", "value": chartData.last_month},
 						{"name":"지난 해", "value": chartData.last_year}];
+		// 
+		var y_min = d3.max(dataset, d => d.value).toString().length -1;
+		y_min = Math.pow(10,y_min);
+		console.log(y_min);
+		
+
+		dataset.forEach(item => {
+			if (item.value == 0) {
+				item.label = "자료없읍";
+				item.value = y_min;
+			}
+			else {
+				item.label = item.value.toLocaleString() + "원";
+			}
+		})
 		
 		// data 중 콤마가 붙거나 문자열이어서 제대로 그래프가 나오지 않는 경우를 확인하고 콤마를 제거한다.
 		for (d of dataset){
@@ -178,7 +193,9 @@
 					.transition()
 					.duration(750)
 					.delay((d, i) => { return i * 150; })
-			.text( d => { return (d.value.toLocaleString() + "원"); })
+			.text( d => { 
+				return (d.value == y_min) ? "자료 없음" : d.label;
+			})
 			.attr("y",  d => { return y(d.value) + .1; })
 			.attr("dy", "-.7em")
 	</script>

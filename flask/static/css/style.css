@@ -115,8 +115,8 @@ footer {
 	text-align: center;
 }
 footer p {
-	font-size: 14px;
-	color: #999;
+	font-size: 12px;
+	color: #bed0cc;
 }
 .main_wrap, .no_result_wrap, .sub_wrap, .detail_wrap {
 	flex: 1;

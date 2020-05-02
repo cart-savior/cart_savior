@@ -42,12 +42,13 @@
 							<strong class="price txt_green">{{ info.item_price | num_format}}원</strong>
 							<span class="status"> 
 								{% if info.diff > 0 -%}
-								일주일 전보다 <em class="txt_up"> {{ info.diff | num_format}}원</em></span>
+								일주일 전보다 <em class="txt_up"> {{ info.diff | num_format}}원</em>
 								{% elif info.diff <0 -%}
-								일주일 전보다 <em class="txt_down">{{ info.diff | num_format}}원</em></span>
+								일주일 전보다 <em class="txt_down">{{ info.diff | num_format}}원</em>
 								{% else %}
-								<em>가격이 똑같아요 ^3^</em>
+								일주일 전과 가격이 동일합니다.
 								{% endif %}
+							</span>
 						</div>
 						<div class="item_bottom">
 							<span class="date">{{ info.date.strftime('%-m월 %d일') }} 기준</span>
