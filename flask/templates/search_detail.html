@@ -72,6 +72,7 @@
 	<script type="text/javascript">
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
 		let chartData = {{ item | tojson | safe }};
+		console.log(chartData);
 		
 		// 받은 전체 데이터 중 필요한 데이터만 새로운 Object로 생성한다.
 		var dataset = [{"name":"오늘", "value": chartData.item_price},
@@ -80,7 +81,7 @@
 						{"name":"지난 해", "value": chartData.last_year}];
 
 		// 세로축(y)의 자리수를 반환한다. (ex. 5600 -> 1000)
-		var y_min = d3.max(dataset, d => d.value).toString().length -1;
+		var y_min = d3.min(dataset, d => d.value || Infinity).toString().length -1;
 		y_min = Math.pow(10,y_min);
 
 		// 데이터 중 0인 경우 label을 자료없음으로 추가하고 가격을 자리수로 변경한다.
