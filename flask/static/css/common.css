@@ -18,6 +18,12 @@ button {
 .txt_orange {
 	color: #fa6400 !important;
 }
+.txt_blue {
+	color: #0091ff !important;
+}
+.txt_yellow {
+	color: #f0c000 !important;
+}
 
 .title_md {
 	line-height: 1.2em;
@@ -26,7 +32,7 @@ button {
 	color: #444;
 }
 .title_lg {
-	line-height: 1.2em;
+	line-height: 1.5em;
 	font-size: 36px;
 	font-weight: 500;
 	color: #444;

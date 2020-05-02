@@ -26,3 +26,15 @@ function loading(){
 	});
 };
 loading();
+
+// 화면 사이즈를 확인하고 크기에 맞는 값을 리턴하는 함수
+function change_value_by_media(pc, mobile) {
+	var mql = window.matchMedia("screen and (max-width: 768px)");
+	if (mql.matches) {
+		return mobile;
+	} else {
+		return pc;
+	}
+	// mql.addListener(e => {
+	// });
+}

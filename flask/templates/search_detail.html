@@ -48,7 +48,7 @@
 							{% elif item.diff <0 -%}
 							<span class="txt_down">{{ item.diff | num_format}}원 더 싸요.</span></strong>
 							{% else %}
-							<span >가격이 동일합니다.</span></strong>
+							<span class="txt_yellow">가격이 동일합니다.</span></strong>
 							{% endif %}
 						<span class="date">지난 주 평균가 : {{ item.last_week | num_format}}원</span>
 					</div>
@@ -70,32 +70,23 @@
 	<div id="bg" class="bg"></div>
 	<script type="text/javascript" src="../static/js/common.js"></script>
 	<script type="text/javascript">
-		var mql = window.matchMedia("screen and (max-width: 769px)");
-		mql.addEventListener(e => {
-			if (e.matches) {
-				console.log("모바일")
-			} else {
-				console.log("데스크탑")
-			}
-		})
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
 		let chartData = {{ item | tojson | safe }};
-		console.log(chartData);
 		
 		// 받은 전체 데이터 중 필요한 데이터만 새로운 Object로 생성한다.
 		var dataset = [{"name":"오늘", "value": chartData.item_price},
 						{"name":"지난 주", "value": chartData.last_week},
 						{"name":"지난 달", "value": chartData.last_month},
 						{"name":"지난 해", "value": chartData.last_year}];
-		// 
+
+		// 세로축(y)의 자리수를 반환한다. (ex. 5600 -> 1000)
 		var y_min = d3.max(dataset, d => d.value).toString().length -1;
 		y_min = Math.pow(10,y_min);
-		console.log(y_min);
-		
 
+		// 데이터 중 0인 경우 label을 자료없음으로 추가하고 가격을 자리수로 변경한다.
 		dataset.forEach(item => {
 			if (item.value == 0) {
-				item.label = "자료없읍";
+				item.label = "자료없음";
 				item.value = y_min;
 			}
 			else {
@@ -111,9 +102,9 @@
 				d.value = Number(d.value);
 			}
 		}
-		console.log(dataset);
+
 		// D3 사전 스타일 설정. width와 height에 parseInt를 쓴 이유는 반응형이라 정적으로 크기를 할당할 수 없었기 때문.
-		var margin = {top: 40, right: 0, bottom: 30, left: 55},
+		var margin = {top: 40, right: 0, bottom: 30, left: change_value_by_media(55, 45)},
 			width = parseInt(d3.select("#graph").style("width")) - margin.right - margin.left,
 			height = parseInt(d3.select("#graph").style("height")) - margin.top - margin.bottom
 		var greyColor = "#ccc";
@@ -131,7 +122,7 @@
 		// x축과 y축 설정.
 		var x = d3.scaleBand()
 			.range([0, width])
-			.padding(0.6);
+			.padding(change_value_by_media(0.6, 0.4));
 		var y = d3.scaleLinear()
 			.rangeRound([height, 0]);
 	
@@ -139,11 +130,8 @@
 		var yAxis = d3.axisLeft(y).ticks(5);
 	
 		// y축의 도메인을 0이 아닌 최저 값의 자리수로 설정
-		var y_min = d3.min(dataset, d => d.value);
-		y_min = y_min.toString().length -1;
-		// var t = "<tspan>";
 		x.domain(dataset.map( d => { return d.name }));
-		y.domain([Math.pow(10,y_min), d3.max(dataset, d => d.value)]).nice();
+		y.domain([y_min, d3.max(dataset, d => d.value)]).nice();
 	
 		// 본격적으로 그래프 그리기.
 		svg.append("g")
