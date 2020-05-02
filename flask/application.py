@@ -9,6 +9,8 @@ import os
 import jinja2
 import random
 
+import kurly_api
+
 # ==================================== global variable ====================================
 # =========================================================================================
 
@@ -284,9 +286,9 @@ def detail(index):
 			context['last_year_date'] = session['temp_date']
 		else:
 			context['last_year'] = int(context['last_year'].replace(',', ''))
+		kurly_test = kurly_api.get_kurly(context['item_name'])
 		# import pdb; pdb.set_trace()
-		test_list = ["jilim", "sohpark", "dachung"]
-		return render_template("search_detail.html", item=context, test=test_list)
+		return render_template("search_detail.html", item=context, kurly=kurly_test)
 	else:
 		return redirect(url_for("search"))
 
