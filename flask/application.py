@@ -284,6 +284,7 @@ def detail(index):
 			context['last_year_date'] = session['temp_date']
 		else:
 			context['last_year'] = int(context['last_year'].replace(',', ''))
+		# import pdb; pdb.set_trace()
 		return render_template("search_detail.html", item=context)
 	else:
 		return redirect(url_for("search"))
