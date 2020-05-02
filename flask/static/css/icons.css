@@ -174,7 +174,7 @@
 
 .item_info.type_411:after {
 	background-color: #FFE4E4;
-	background-image: url(../images/item_411.png);
+	background-image: url(../images/itemcode_400.png);
 }
 
 .item_info.type_418:after {
@@ -187,7 +187,7 @@
 	background-image: url(../images/item_420.png);
 }
 
-.item_info.type_426:after {
+.item_info.type_426:after, .item_info.type_414:after {
 	background-color: #ece4ff;
 	background-image: url(../images/item_426.png);
 }
