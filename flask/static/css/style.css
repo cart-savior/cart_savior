@@ -192,6 +192,7 @@ footer p {
 	}
 }
 .item_info {
+	display: block;
 	position: relative;
 	padding-left: 60px;
 	-webkit-animation: fade_in_down .8s ease-out both;
@@ -212,6 +213,11 @@ footer p {
 .item_info .title {
 	font-size: 20px;
 	font-weight: 500;
+	transition: all .5s;
+}
+.item_info:hover .title {
+	transition: all .5s;
+	opacity: .5;
 }
 .item_info .sub_title {
 	font-size: 14px;
