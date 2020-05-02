@@ -70,6 +70,14 @@
 	<div id="bg" class="bg"></div>
 	<script type="text/javascript" src="../static/js/common.js"></script>
 	<script type="text/javascript">
+		var mql = window.matchMedia("screen and (max-width: 769px)");
+		mql.addEventListener(e => {
+			if (e.matches) {
+				console.log("모바일")
+			} else {
+				console.log("데스크탑")
+			}
+		})
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
 		let chartData = {{ item | tojson | safe }};
 		console.log(chartData);

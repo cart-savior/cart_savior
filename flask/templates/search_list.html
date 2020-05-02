@@ -65,5 +65,16 @@
 	</footer>
 	<div id="bg" class="bg"></div>
 	<script type="text/javascript" src="../static/js/common.js"></script>
+	<script type="text/javascript">
+		console.log("여기요");
+		var mql = window.matchMedia("screen and (max-width: 768px)");
+		mql.addListener(e => {
+			if (e.matches) {
+				console.log("모바일")
+			} else {
+				console.log("데스크탑")
+			}
+		});
+	</script>
 </body>
 </html>
