@@ -23,7 +23,7 @@
 		<div class="search_bar">
 			<form action="{{url_for('search')}}">
 				<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
-				<button class="btn_search" type="submit">검색하기</button>
+				<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
 			</form>
 		</div>
 	</header>
@@ -52,7 +52,7 @@
 						</div>
 						<div class="item_bottom">
 							<span class="date">{{ info.date.strftime('%-m월 %d일') }} 기준</span>
-							<a href="{{ url_for('detail', index=loop.index) }}" class="btn_more">자세히 보기</a>
+							<a id="btn_more" href="{{ url_for('detail', index=loop.index) }}" class="btn_more">자세히 보기</a>
 						</div>
 					</div>
 				</li>

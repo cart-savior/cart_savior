@@ -1,13 +1,14 @@
 // 검색 버튼 및 키워드를 클릭했을 때 로딩하는 함수.
 function loading(){
-	var btns = document.querySelectorAll(".btn_search"),
-		hash = document.querySelectorAll(".hash_item"),
+	var btn_search = document.querySelectorAll(".btn_search"),
+		btn_other = document.querySelectorAll(".hash_item, #btn_more"),
 		input = document.querySelectorAll(".inp_search");
-	btns.forEach(item => {
+	btn_search.forEach(item => {
 		item.addEventListener("click", e => {
 			input.forEach(item => {
 				if (item.value.length != 0)
 				{
+					document.body.style.height = '100vh';
 					document.body.style.position = 'fixed';
 					document.body.style.overflow = 'hidden';
 					document.getElementById("bg").style.display = "block";
@@ -16,8 +17,9 @@ function loading(){
 			})
 		})
 	});
-	hash.forEach(item => {
+	btn_other.forEach(item => {
 		item.addEventListener("click", e => {
+			document.body.style.height = '100vh';
 			document.body.style.position = 'fixed';
 			document.body.style.overflow = 'hidden';
 			document.getElementById("bg").style.display = "block";

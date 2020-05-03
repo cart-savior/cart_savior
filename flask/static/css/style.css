@@ -45,10 +45,8 @@
 	-webkit-animation-delay: 0.1s;
 			animation-delay: 0.1s;
 }
-@keyframes loading {
+@-webkit-keyframes loading {
 	0%, 80%, 100% {
-	  -webkit-transform: scale(0);
-			  transform: scale(0);
 	  -webkit-transform: scale(0);
 			  transform: scale(0);
 	  opacity: 0;
@@ -56,12 +54,10 @@
 	40% {
 	  -webkit-transform: scale(1);
 			  transform: scale(1);
-	  -webkit-transform: scale(1);
-			  transform: scale(1);
 	  opacity: 1;
 	}
 }
-@-webkit-keyframes loading {
+@keyframes loading {
 	0%, 80%, 100% {
 	  -webkit-transform: scale(0);
 			  transform: scale(0);
@@ -78,7 +74,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 100;
+	z-index: 900;
 	width: 100vw;
 	height: 100vh;
 	background: rgba(255, 255, 255, 0.8);
@@ -148,13 +144,12 @@ footer p {
 	background-color: #fff;
 }
 .inp_search {
-	flex: 1;
+	width: calc(100% - 60px);
 	padding-left: 20px;
 	font-size: 16px;
 }
 .btn_search {
 	width: 60px;
-	text-indent: -9999px;
 	background: url(../images/search.svg) no-repeat center;
 }
 .hash_list {
@@ -179,6 +174,18 @@ footer p {
 	-webkit-animation: fade_in_down .8s ease-out both;
 			animation: fade_in_down .8s ease-out both;
 	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
+}
+@-webkit-keyframes fade_in_down {
+	0% {
+	  -webkit-transform: translateY(-20%);
+			  transform: translateY(-20%);
+	  opacity: 0;
+	}
+	100% {
+	  -webkit-transform: translateY(0%);
+			  transform: translateY(0%);
+	  opacity: 1;
+	}
 }
 @keyframes fade_in_down {
 	0% {
