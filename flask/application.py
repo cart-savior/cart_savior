@@ -49,6 +49,19 @@ def key_replace(search_key):
 	return search_key
 
 
+def market_search_replace(search_key):
+	"""입력된 검색어를 가지고 있는 데이터와 일치하게 변경해주는 함수"""
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "market_replace.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		if search_key == item['input']:
+			return item['output']
+	return search_key
+
+
 @app.route('/')
 def index():
 	"""메인 페이지 구현 함수"""
@@ -286,8 +299,8 @@ def detail(index):
 			context['last_year_date'] = session['temp_date']
 		else:
 			context['last_year'] = int(context['last_year'].replace(',', ''))
-		market = market_api.add_all_market(context['item_name'])
-		# import pdb; pdb.set_trace()
+		market_key = market_search_replace(context['item_name'])
+		market = market_api.add_all_market(market_key)
 		return render_template("search_detail.html", item=context, market=market)
 	else:
 		return redirect(url_for("search"))
