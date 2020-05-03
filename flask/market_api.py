@@ -10,7 +10,7 @@ def get_kurly(item_name):
 	result = [{
 		'site' : "kurly",
 		'name' : product['name'],
-		'price': product['price'],
+		'price': format(product['price'], ",d"),
 		'image' : product['thumbnail_image_url'],
 		'link' : "https://www.kurly.com/shop/goods/goods_view.php?&goodsno=" + product['no']
 		} for product in products][:2]
@@ -21,9 +21,9 @@ def get_ssg(item_name):
 	html = req.text
 	soup = BeautifulSoup(html, 'html.parser')
 	name = [name.text for name in soup.select('div > a > em.tx_ko')[:2]]
-	price = [price.text + "원" for price in soup.select('div > em')[:2]]
+	price = [price.text for price in soup.select('div > em')[:2]]
 	image = [ "http:"+ image.get('src') for image in soup.select('div > a > img.i1')[:2]]
-	link = ["ssg.com" + link.get('href') for link in soup.select('div.thmb > a')[:2]]
+	link = ["http://ssg.com" + link.get('href') for link in soup.select('div.thmb > a')[:2]]
 	result = [{
 		'site' : "ssg",
 		'name' : name[i],
@@ -38,8 +38,8 @@ def get_hanaro(item_name):
 	html = req.text
 	soup = BeautifulSoup(html, 'html.parser')
 	name = [name.text for name in soup.select('div > a > p')][:2]
-	price = [price.text[62:-52] for price in soup.select('div > p')][2:4]
-	image = ['www.nonghyupmall.com/' + image.get('src') for image in soup.select('div.product-thumb > img')][:2]
+	price = [price.text[62:-53] for price in soup.select('div > p')][2:4]
+	image = ['http://www.nonghyupmall.com/' + image.get('src') for image in soup.select('div.product-thumb > img')][:2]
 	link = ['http://www.nonghyupmall.com/BC14010R/viewDetail.nh?wrsC=' + code.get('data-wrs-c') +'&basketCnt=0' for code in soup.select('div.product-info-area > a')][:2]
 	result = [{
 	    'site' : "hanaro",
