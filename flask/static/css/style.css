@@ -173,11 +173,12 @@ footer p {
   	background-color: #4ea38e;
 }
 .sub_item {
-	padding: 24px 30px;
+	padding: 34px 30px 24px;
 	border-radius: 30px;
 	background-color: #fff;
 	-webkit-animation: fade_in_down .8s ease-out both;
 			animation: fade_in_down .8s ease-out both;
+	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
 @keyframes fade_in_down {
 	0% {
@@ -192,6 +193,7 @@ footer p {
 	}
 }
 .item_info {
+	display: block;
 	position: relative;
 	padding-left: 60px;
 	-webkit-animation: fade_in_down .8s ease-out both;
@@ -212,6 +214,11 @@ footer p {
 .item_info .title {
 	font-size: 20px;
 	font-weight: 500;
+	transition: all .5s;
+}
+.item_info:hover .title {
+	transition: all .5s;
+	opacity: .5;
 }
 .item_info .sub_title {
 	font-size: 14px;
@@ -268,16 +275,31 @@ footer p {
 	color: #f2f8f1;
 	background-color: #4ea37a;
 }
+.btn_more.type2 {
+	padding: 10px 27px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #f2f8f1;
+	background-color: #4ea37a;
+	transition: all .5s;
+	border-radius: 30px;
+}
+.btn_more.type2:hover {
+	transition: all .5s;
+	color: #4ea37a;
+	background-color: #f2f8f1;
+}
 .detail_item {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	min-height: 460px;
-	padding: 24px 30px;
+	padding: 34px 30px 24px;
 	border-radius: 30px;
 	background-color: #fff;
 	-webkit-animation: fade_in_down .8s ease-out both;
 			animation: fade_in_down .8s ease-out both;
+	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
 .detail_info .date {
 	display: block;
@@ -301,11 +323,12 @@ footer p {
 }
 .detail_graph {
 	min-height: 460px;
-	padding: 24px 30px;
+	padding: 34px 30px 24px;
 	border-radius: 30px;
 	background-color: #fff;
 	-webkit-animation: fade_in_down .8s ease-out both;
 			animation: fade_in_down .8s ease-out both;
+	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
 .graph_wrap {
 	width: 100%;
@@ -328,6 +351,74 @@ footer p {
 }
 .x.axis {font-size: 15px;  }
 .y.axis {font-size: 12px; }
+
+.detail_table {
+	margin-top: 22px;
+}
+.detail_table .item a{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 13px 20px;
+}
+.detail_table li {
+	border-top: 1px solid #eee;
+}
+.detail_table li:last-child {
+	border-bottom: 1px solid #eee;
+}
+.table_site {
+	flex: 0 0 15%;
+}
+.table_site:after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+}
+.table_site.icon_kurly:after {
+	width: 52px;
+  	height: 40px;
+	background: url(../images/icon_kurly.png) no-repeat center;
+	background-size: 100% auto;
+}
+.table_site.icon_ssg:after {
+	width: 92px;
+  	height: 15px;
+	background: url(../images/icon_ssg.png) no-repeat center;
+	background-size: 100% auto;
+}
+.table_site.icon_hanaro:after {
+	width: 95px;
+  	height: 25px;
+	background: url(../images/icon_hanaro.png) no-repeat center;
+	background-size: 100% auto;
+}
+.table_img {
+	/* flex: 1; */
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	overflow: hidden;
+	vertical-align: middle;
+	border: 1px solid #eee;
+}
+.table_img img {
+	width: 100%;
+}
+.table_txt {
+	display: flex;
+	flex: 0 0 70%;
+	justify-content: space-between;
+	align-items: center;
+}
+.table_txt .title_sm {
+	flex: 0 0 50%;
+	max-width: 70%;
+}
+.table_txt .title_sm+.title_sm {
+	flex: 0 0 20%;
+	text-align: right;
+}
   
 
 @media screen and (max-width: 768px) {
@@ -367,6 +458,7 @@ footer p {
 	}
 	.detail_item, .detail_graph {
 		min-height: auto;
+		padding: 34px 20px 24px;
 	}
 	.detail_item .price {
 		font-size: 20px;
@@ -380,5 +472,42 @@ footer p {
 	} */
 	.graph_wrap .label, .graph_wrap text {
 		font-size: 11px;
+	}
+	.detail_table .item a {
+		padding: 14px 0;
+	}
+	.table_img {
+		width: 50px;
+		height: 50px;
+	}
+	.table_site + .title_sm {
+		margin-top: 10px;
+	}
+	.table_site.icon_ssg:after {
+		width: 61px;
+  		height: 10px;
+	}
+	.table_site.icon_kurly:after {
+		width: 44px;
+  		height: 34px;
+	}
+	.table_site.icon_hanaro:after {
+		width: 65px;
+  		height: 17px;
+	}
+	.table_txt {
+		flex: 0 0 80%;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.table_txt .title_sm {
+		max-width: 100%;
+	}
+	.table_txt .title_sm+.title_sm {
+		margin-top: 5px;
+		text-align: left;
+	}
+	.detail_table .btn_more {
+		display: none;
 	}
 }

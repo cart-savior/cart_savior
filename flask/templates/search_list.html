@@ -34,10 +34,10 @@
 				{% for info in list %}
 				<li class="flex-item col-p-4 col-m-12 col-m-12">
 					<div class="sub_item">
-						<div class="item_info type_{{ info.item_code }}">
+						<a href="{{ url_for('detail', index=loop.index) }}" class="item_info type_{{ info.item_code }}">
 							<h3 class="title">{{ info.item_name }} ({{ info.rank }})</h3>
 							<span class="sub_title">{{ info.kind_name }}</span>
-						</div>
+						</a>
 						<div class="item_price">
 							<strong class="price txt_green">{{ info.item_price | num_format}}원</strong>
 							<span class="status"> 
