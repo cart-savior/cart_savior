@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import random
 #item_name = '쌀'
 
 def get_kurly(item_name):
@@ -55,5 +54,4 @@ def add_all_market(item_name):
 	ssg = get_ssg(item_name)
 	hanaro = get_hanaro(item_name)
 	result = kurly + ssg + hanaro
-	random.shuffle(result)
 	return result
