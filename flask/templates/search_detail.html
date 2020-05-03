@@ -39,28 +39,55 @@
 			<div class="detail_info_wrap flex-layout">
 				<div class="flex-item col-p-4 col-m-12">
 					<div class="detail_item">
-					<div class="detail_info">
-						<span class="date">{{ item.date.strftime('%-m월 %d일') }} 기준</span>
-						<strong class="price">평균가는<br/><span class="txt_green">{{ item.item_price | num_format}}원</span>입니다.</strong>
-						<strong class="price">전주 대비<br/>
-							{% if item.diff > 0 -%}
-							<span class="txt_up">{{ item.diff | num_format}}원 더 비싸요.</span></strong>
-							{% elif item.diff <0 -%}
-							<span class="txt_down">{{ item.diff | num_format}}원 더 싸요.</span></strong>
-							{% else %}
-							<span class="txt_yellow">가격이 동일합니다.</span></strong>
-							{% endif %}
-						<span class="date">지난 주 평균가 : {{ item.last_week | num_format}}원</span>
+						<div class="detail_info">
+							<span class="date">{{ item.date.strftime('%-m월 %d일') }} 기준</span>
+							<strong class="price">평균가는<br/><span class="txt_green">{{ item.item_price | num_format}}원</span>입니다.</strong>
+							<strong class="price">전주 대비<br/>
+								{% if item.diff > 0 -%}
+								<span class="txt_up">{{ item.diff | num_format}}원 더 비싸요.</span></strong>
+								{% elif item.diff <0 -%}
+								<span class="txt_down">{{ item.diff | num_format}}원 더 싸요.</span></strong>
+								{% else %}
+								<span class="txt_yellow">가격이 동일합니다.</span></strong>
+								{% endif %}
+							<span class="date">지난 주 평균가 : {{ item.last_week | num_format}}원</span>
+						</div>
+						<span class="detail_source">자료 : 한국농수산식품유통공사</span>
 					</div>
-					<span class="detail_source">자료 : 한국농수산식품유통공사</span>
 				</div>
-			</div>
 				<div class="flex-item col-p-8 col-m-12">
 					<div class="detail_graph">
 						<h3 class="title_md">지난 <span class="txt_green">{{ item.item_name }}</span>의 가격을 확인해보세요.</h3>
 						<div id="graph" class="graph_wrap"></div>
 					</div>
 				</div>
+				{% if kurly|length %}
+				<div class="flex-item col-p-12 col-m-12">
+					<div class="detail_graph">
+						<h3 class="title_md">온라인에서는 이렇게 판매중이에요.</h3>
+						<ul class="detail_table">
+							<!-- <li class="table_header">
+								<div class="table_img">아이템 사진</div>
+								<strong class="table_name">{{ item.name }}</strong>
+								<span class="table_price">{{ item.price }} 원</span>
+							</li> -->
+							{% for item in kurly %}
+							<li class="item">
+								<!-- <a href="{{ item.link }}" target="_blank" alt="관련 사이트 새창열림"> -->
+									<div class="table_img"><img src="{{ item.image }}" alt=""></div>
+									<span class="table_site icon_ssg"><em class="ir">마켓컬리</em></span>
+									<div class="table_txt">
+										<strong class="title_sm">{{ item.name }}</strong>
+										<span class="title_sm txt_green">{{ item.price }} 원</span>
+									</div>
+									<a href="{{ item.link }}" target="_blank" class="btn_more type2">보러가기</a>
+								<!-- </a> -->
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				{% endif %}
 			</div>
 		</div>
 	</section>
@@ -73,6 +100,8 @@
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
 		let chartData = {{ item | tojson | safe }};
 		console.log(chartData);
+		let kurlyData = {{ kurly | tojson | safe }};
+		console.log(kurlyData);
 		
 		// 받은 전체 데이터 중 필요한 데이터만 새로운 Object로 생성한다.
 		var dataset = [{"name":"오늘", "value": chartData.item_price},
