@@ -355,7 +355,7 @@ footer p {
 .detail_table {
 	margin-top: 22px;
 }
-.detail_table .item{
+.detail_table .item a{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -385,6 +385,12 @@ footer p {
 	width: 92px;
   	height: 15px;
 	background: url(../images/icon_ssg.png) no-repeat center;
+	background-size: 100% auto;
+}
+.table_site.icon_hanaro:after {
+	width: 95px;
+  	height: 22px;
+	background: url(../images/icon_hanaro.png) no-repeat center;
 	background-size: 100% auto;
 }
 .table_img {
@@ -457,7 +463,7 @@ footer p {
 	.graph_wrap .label, .graph_wrap text {
 		font-size: 11px;
 	}
-	.detail_table .item {
+	.detail_table .item a {
 		padding: 14px 0;
 	}
 	.table_site.icon_ssg:after {
@@ -467,6 +473,10 @@ footer p {
 	.table_site.icon_kurly:after {
 		width: 44px;
   		height: 34px;
+	}
+	.table_site.icon_hanaro:after {
+		width: 61px;
+  		height: 65px;
 	}
 	.table_txt {
 		flex: 0 0 60%;

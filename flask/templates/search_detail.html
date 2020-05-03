@@ -61,27 +61,22 @@
 						<div id="graph" class="graph_wrap"></div>
 					</div>
 				</div>
-				{% if kurly|length %}
+				{% if market|length %}
 				<div class="flex-item col-p-12 col-m-12">
 					<div class="detail_graph">
 						<h3 class="title_md">온라인에서는 이렇게 판매중이에요.</h3>
 						<ul class="detail_table">
-							<!-- <li class="table_header">
-								<div class="table_img">아이템 사진</div>
-								<strong class="table_name">{{ item.name }}</strong>
-								<span class="table_price">{{ item.price }} 원</span>
-							</li> -->
-							{% for item in kurly %}
+							{% for item in market %}
 							<li class="item">
-								<!-- <a href="{{ item.link }}" target="_blank" alt="관련 사이트 새창열림"> -->
+								<a href="{{ item.link }}" target="_blank" alt="관련 사이트 새창열림">
 									<div class="table_img"><img src="{{ item.image }}" alt=""></div>
-									<span class="table_site icon_ssg"><em class="ir">마켓컬리</em></span>
+									<span class="table_site icon_{{ item.site }}"><em class="ir">마켓컬리</em></span>
 									<div class="table_txt">
 										<strong class="title_sm">{{ item.name }}</strong>
 										<span class="title_sm txt_green">{{ item.price }} 원</span>
 									</div>
-									<a href="{{ item.link }}" target="_blank" class="btn_more type2">보러가기</a>
-								<!-- </a> -->
+									<button target="_blank" class="btn_more type2">보러가기</button>
+								</a>
 							</li>
 							{% endfor %}
 						</ul>
@@ -100,8 +95,8 @@
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
 		let chartData = {{ item | tojson | safe }};
 		console.log(chartData);
-		let kurlyData = {{ kurly | tojson | safe }};
-		console.log(kurlyData);
+		let marketData = {{ market | tojson | safe }};
+		console.log(marketData);
 		
 		// 받은 전체 데이터 중 필요한 데이터만 새로운 Object로 생성한다.
 		var dataset = [{"name":"오늘", "value": chartData.item_price},
