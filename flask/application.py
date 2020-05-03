@@ -283,9 +283,9 @@ def detail(index):
 			context['last_year_date'] = session['temp_date']
 		else:
 			context['last_year'] = int(context['last_year'].replace(',', ''))
-		market_test = market_api.add_all_market(context['item_name'])
+		market = market_api.add_all_market(context['item_name'])
 		# import pdb; pdb.set_trace()
-		return render_template("search_detail.html", item=context, market=market_test)
+		return render_template("search_detail.html", item=context, market=market)
 	else:
 		return redirect(url_for("search"))
 
