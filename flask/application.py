@@ -47,7 +47,7 @@ def key_replace(search_key):
 	for item in my_json_data:
 		if search_key == item['input']:
 			return item['output']
-	return search_key
+	return [search_key]
 
 
 def market_search_replace(search_key):

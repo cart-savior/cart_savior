@@ -1,4 +1,5 @@
-// 검색 버튼 및 키워드를 클릭했을 때 로딩하는 함수.
+
+// 모달창
 function modal(){
 	var btn_modal = document.querySelector("#btn_modal");
 	btn_modal.addEventListener("click", e => {
@@ -9,10 +10,10 @@ function modal(){
 		document.querySelector("#modal_content").classList.add("hide");
 	})
 }
-modal();
+// 검색 버튼 및 키워드를 클릭했을 때 로딩하는 함수.
 function loading(){
 	var btn_search = document.querySelectorAll(".btn_search"),
-		btn_other = document.querySelectorAll(".hash_item, #btn_more, .item_price"),
+		btn_other = document.querySelectorAll(".hash_item, #btn_more"),
 		input = document.querySelectorAll(".inp_search");
 	btn_search.forEach(item => {
 		item.addEventListener("click", e => {
@@ -23,7 +24,7 @@ function loading(){
 					document.body.style.position = 'fixed';
 					document.body.style.overflow = 'hidden';
 					document.getElementById("bg").style.display = "block";
-					document.getElementById("loader").style.display = "block";
+					document.getElementById("loader").style.display = "flex";
 				}
 			})
 		})
@@ -34,11 +35,12 @@ function loading(){
 			document.body.style.position = 'fixed';
 			document.body.style.overflow = 'hidden';
 			document.getElementById("bg").style.display = "block";
-			document.getElementById("loader").style.display = "block";
+			document.getElementById("loader").style.display = "flex";
 		})
 	});
 };
 loading();
+modal();
 
 // 화면 사이즈를 확인하고 크기에 맞는 값을 리턴하는 함수
 function change_value_by_media(pc, mobile) {

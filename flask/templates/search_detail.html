@@ -58,7 +58,7 @@
 				{% if market|length %}
 				<div class="flex-item col-p-12 col-m-12">
 					<div class="detail_graph">
-						<h3 class="title_md">현재 {{ item.item_name }} 가격은 <span class="txt_green">100g</span>에 <span class="txt_green">500원</span>입니다.</h3>
+						<h3 class="title_md">현재 {{ unit_info.item_name }} 가격은 <span class="txt_green">{{ unit_info.unit }}</span>에 <span class="txt_green">{{ unit_info.unit_price }}원</span>입니다.</h3>
 						<h3 class="title_sm txt_gray">온라인 가격과 비교해보세요.</h3>
 						<ul class="detail_table">
 							{% for item in market %}
@@ -97,6 +97,8 @@
 		console.log(chartData);
 		let marketData = {{ market | tojson | safe }};
 		console.log(marketData);
+		let unitData = {{ unit_info | tojson | safe }};
+		console.log(unitData);
 		
 		// 받은 전체 데이터 중 필요한 데이터만 새로운 Object로 생성한다.
 		var dataset = [{"name":"오늘", "value": chartData.item_price},
