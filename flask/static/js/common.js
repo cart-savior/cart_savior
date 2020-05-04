@@ -1,7 +1,7 @@
 // 검색 버튼 및 키워드를 클릭했을 때 로딩하는 함수.
 function loading(){
 	var btn_search = document.querySelectorAll(".btn_search"),
-		btn_other = document.querySelectorAll(".hash_item, #btn_more"),
+		btn_other = document.querySelectorAll(".hash_item, #btn_more, .item_price"),
 		input = document.querySelectorAll(".inp_search");
 	btn_search.forEach(item => {
 		item.addEventListener("click", e => {
@@ -40,3 +40,5 @@ function change_value_by_media(pc, mobile) {
 	// mql.addListener(e => {
 	// });
 }
+
+

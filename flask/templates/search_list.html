@@ -20,6 +20,7 @@
 				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
 			</a>
 		</h1>
+	<!-- 여기부터 본문 -->
 		<div class="search_bar">
 			<form action="{{url_for('search')}}">
 				<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
@@ -60,20 +61,11 @@
 			</ul>
 		</div>
 	</section>
+	<!-- // 여기까지 본문 -->
 	<footer class="footer">
 		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
 	<div id="bg" class="bg"></div>
 	<script type="text/javascript" src="../static/js/common.js"></script>
-	<script type="text/javascript">
-		var mql = window.matchMedia("screen and (max-width: 768px)");
-		mql.addListener(e => {
-			if (e.matches) {
-				console.log("모바일")
-			} else {
-				console.log("데스크탑")
-			}
-		});
-	</script>
 </body>
 </html>

@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cart Savior | 상세</title>
 	<link rel="stylesheet" href="../static/css/style.css">
-	<script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 <body>
 	<div id="loader" class="loader">
@@ -86,11 +85,14 @@
 			</div>
 		</div>
 	</section>
+	<!-- // 여기까지 본문 -->
 	<footer class="footer">
 		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
 	<div id="bg" class="bg"></div>
 	<script type="text/javascript" src="../static/js/common.js"></script>
+	<!-- D3영역 -->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script type="text/javascript">
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
 		let chartData = {{ item | tojson | safe }};
@@ -220,5 +222,6 @@
 			.attr("y",  d => { return y(d.value) + .1; })
 			.attr("dy", "-.7em")
 	</script>
+	<!-- // D3영역 -->
 </body>
 </html>
