@@ -460,6 +460,12 @@ footer p {
 	background: url(../images/icon_hanaro.png) no-repeat center;
 	background-size: 100% auto;
 }
+.table_site.icon_coupang:after {
+	width: 94px;
+  	height: 22px;
+	background: url(../images/icon_coupang.png) no-repeat center;
+	background-size: 100% auto;
+}
 .table_img {
 	/* flex: 1; */
 	width: 36px;
@@ -620,6 +626,10 @@ footer p {
 	.table_site.icon_hanaro:after {
 		width: 65px;
   		height: 17px;
+	}
+	.table_site.icon_coupang:after {
+		width: 64px;
+  		height: 15px;
 	}
 	.table_txt {
 		flex: 0 0 80%;
