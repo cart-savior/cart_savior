@@ -8,7 +8,7 @@
 	<meta property="og:description" content="내가 집어든 이 양파, 싼 걸까, 비싼걸까? 그 기준을 제시해 드립니다.">
 	<meta property="og:image" content="../static/imges/link_thumbnail.jpg">
 	<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
-	<title>Cart Savior</title>
+	<title>{% block title %}{% endblock %}</title>
 	<link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
@@ -23,42 +23,19 @@
 			<a href="{{ url_for('index', search_key=key) }}">
 				<img class="hidden-m" src="../static/images/logo_pc.svg" alt="cart savior">
 				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
+				{% block script_head %}{% endblock %}
 			</a>
 		</h1>
-	<!-- 여기부터 본문 -->
-		<div class="search_bar">
-			<form action="{{url_for('search')}}">
-				<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
-				<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
-			</form>
-		</div>
+		{% block search %}{% endblock %}
 	</header>
-	<section class="container">
-		<div class="main_wrap flex-layout">
-			<div class="flex-item col-p-4 col-m-12">
-				<h2 class="title_lg">장보기 전,</br>이제는 <span class="txt_green">시세</span>먼저 보자.</h2>
-				<div class="search_bar">
-					<form action="{{url_for('search')}}">
-						<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
-						<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
-					</form>
-				</div>
-				<ul class="hash_list">
-					{% for key in random_keys %}
-					<li class="hash_item"><a href="{{ url_for('search_hash', search_key=key) }}"># {{ key }}</a></li>
-					{% endfor %}
-				</ul>
-			</div> 
-			<div class="flex-item col-p-8 col-m-12">
-				<img src="../static/images/img_main.png" alt="">
-			</div>
-		</div>
-	</section>
+	<!-- 여기부터 본문 -->
+	{% block content %}{% endblock %}
 	<!-- // 여기까지 본문 -->
 	<footer class="footer">
 		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
 	<div id="bg" class="bg"></div>
 	<script type="text/javascript" src="../static/js/common.js"></script>
+	{% block graph %}{% endblock %}
 </body>
 </html>

@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cart Savior | 검색 결과</title>
-	<link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-	<div id="loader" class="loader">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
+{% extends "layout.html" %}
+{% block title %}Cart Savior | 검색 결과{% endblock %}
+{% block search %}
+	<div class="search_bar">
+		<form action="{{url_for('search')}}">
+			<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
+			<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
+		</form>
 	</div>
-	<header class="header">
-		<h1 class="logo">
-			<a href="{{ url_for('index', search_key=key) }}">
-				<img class="hidden-m" src="../static/images/logo_pc.svg" alt="cart savior">
-				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
-			</a>
-		</h1>
+{% endblock %}
+{% block content %}
 	<!-- 여기부터 본문 -->
-	</header>
 	<section class="container">
 		<div class="no_result_wrap flex-layout">
 			<div class="flex-item col-p-12">
@@ -41,10 +29,4 @@
 		</div>
 	</section>
 	<!-- // 여기까지 본문 -->
-	<footer class="footer">
-		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
-	</footer>
-	<div id="bg" class="bg"></div>
-	<script type="text/javascript" src="../static/js/common.js"></script>
-</body>
-</html>
+	{% endblock %}

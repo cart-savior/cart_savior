@@ -1,32 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cart Savior | 상세</title>
-	<link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-	<div id="loader" class="loader">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-	</div>
-	<header class="header">
-		<h1 class="logo">
-			<a href="{{ url_for('index', search_key=key) }}">
-				<img class="hidden-m" src="../static/images/logo_pc.svg" alt="cart savior">
-				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
-			</a>
-		</h1>
-		<div class="search_bar">
-			<form action="{{url_for('search')}}">
-				<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
-				<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
-			</form>
-		</div>
-	</header>
+{% extends "layout.html" %}
+{% block title %}Cart Savior | 상세{% endblock %}
+{% block search %}
+<div class="search_bar">
+	<form action="{{url_for('search')}}">
+		<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
+		<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
+	</form>
+</div>
+{% endblock %}
+{% block content %}
 	<section class="container">
 		<div class="detail_wrap">
 			<div class="flex-item">
@@ -86,6 +68,7 @@
 			</div>
 		</div>
 	</section>
+	{% endblock %}
 	<!-- // 여기까지 본문 -->
 	<footer class="footer">
 		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
@@ -93,6 +76,7 @@
 	<div id="bg" class="bg"></div>
 	<script type="text/javascript" src="../static/js/common.js"></script>
 	<!-- D3영역 -->
+	{% block graph %}
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script type="text/javascript">
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
@@ -232,5 +216,6 @@
 			.attr("dy", "-.7em")
 	</script>
 	<!-- // D3영역 -->
+	{% endblock %}
 </body>
 </html>
