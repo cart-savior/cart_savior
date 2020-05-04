@@ -13,6 +13,7 @@
 
 ### 배포 플랫폼
 AWS Beanstalk
+[AWS live url link](http://cartsavior-env.eba-8yqpfip2.ap-northeast-2.elasticbeanstalk.com/)
 
 ### 사용 데이터
 농산물유통정보:::KAMIS
