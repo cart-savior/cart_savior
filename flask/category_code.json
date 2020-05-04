@@ -2,252 +2,352 @@
   {
     "category_code": 100,
     "item_code": 111,
-    "item_name": "쌀"
+    "item_name": "쌀",
+    "unit" : "1kg",
+    "ratio" : 0.05
   },
   {
     "category_code": 100,
     "item_code": 112,
-    "item_name": "찹쌀"
+    "item_name": "찹쌀",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 100,
     "item_code": 141,
-    "item_name": "콩"
+    "item_name": "콩",
+    "unit" : "100g",
+    "ratio" : 0.2
   },
   {
     "category_code": 100,
     "item_code": 142,
-    "item_name": "팥"
+    "item_name": "팥",
+    "unit" : "100g",
+    "ratio" : 0.2
   },
   {
     "category_code": 100,
     "item_code": 143,
-    "item_name": "녹두"
+    "item_name": "녹두",
+    "unit" : "100g",
+    "ratio" : 0.2
   },
   {
     "category_code": 100,
     "item_code": 144,
-    "item_name": "메밀"
+    "item_name": "메밀",
+    "unit" : "이스터에그",
+    "ratio" : 1
   },
   {
     "category_code": 100,
     "item_code": 151,
-    "item_name": "고구마"
+    "item_name": "고구마",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 100,
     "item_code": 152,
-    "item_name": "감자"
+    "item_name": "감자",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 211,
-    "item_name": "배추"
+    "item_name": "배추",
+    "unit" : "1포기",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 212,
-    "item_name": "양배추"
+    "item_name": "양배추",
+    "unit" : "1포기",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 213,
-    "item_name": "시금치"
+    "item_name": "시금치",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 214,
-    "item_name": "상추"
+    "item_name": "상추",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 215,
-    "item_name": "얼갈이배추"
+    "item_name": "얼갈이배추",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 216,
-    "item_name": "갓"
+    "item_name": "갓",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 221,
-    "item_name": "수박"
+    "item_name": "수박",
+    "unit" : "1개",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 222,
-    "item_name": "참외"
+    "item_name": "참외",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 223,
-    "item_name": "오이"
+    "item_name": "오이",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 224,
-    "item_name": "호박"
+    "item_name": "호박",
+    "unit" : "1개",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 225,
-    "item_name": "토마토"
+    "item_name": "토마토",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 226,
-    "item_name": "딸기"
+    "item_name": "딸기",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 231,
-    "item_name": "무"
+    "item_name": "무",
+    "unit" : "1개",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 232,
-    "item_name": "당근"
+    "item_name": "당근",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 233,
-    "item_name": "열무"
+    "item_name": "열무",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 241,
-    "item_name": "건고추"
+    "item_name": "건고추",
+    "unit" : "100g",
+    "ratio" : 0.17
   },
   {
     "category_code": 200,
     "item_code": 242,
-    "item_name": "풋고추"
+    "item_name": "풋고추",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 243,
-    "item_name": "붉은고추"
+    "item_name": "붉은고추",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 244,
-    "item_name": "피마늘"
+    "item_name": "피마늘",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 245,
-    "item_name": "양파"
+    "item_name": "양파",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 246,
-    "item_name": "파"
+    "item_name": "파",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 247,
-    "item_name": "생강"
+    "item_name": "생강",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 248,
-    "item_name": "고춧가루"
+    "item_name": "고춧가루",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 252,
-    "item_name": "미나리"
+    "item_name": "미나리",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 253,
-    "item_name": "깻잎"
+    "item_name": "깻잎",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 255,
-    "item_name": "피망"
+    "item_name": "피망",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 256,
-    "item_name": "파프리카"
+    "item_name": "파프리카",
+    "unit" : "100g",
+    "ratio" : 0.5
   },
   {
     "category_code": 200,
     "item_code": 257,
-    "item_name": "멜론"
+    "item_name": "멜론",
+    "unit" : "1개",
+    "ratio" : 1
   },
   {
     "category_code": 200,
     "item_code": 258,
-    "item_name": "깐마늘(국산)"
+    "item_name": "깐마늘(국산)",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 259,
-    "item_name": "깐마늘(수입)"
+    "item_name": "깐마늘(수입)",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 300,
     "item_code": 312,
-    "item_name": "참깨"
+    "item_name": "참깨",
+    "unit" : "100g",
+    "ratio" : 0.2
   },
   {
     "category_code": 300,
     "item_code": 313,
-    "item_name": "들깨"
+    "item_name": "들깨",
+    "unit" : "100g",
+    "ratio" : 0.2
   },
   {
     "category_code": 300,
     "item_code": 314,
-    "item_name": "땅콩"
+    "item_name": "땅콩",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 300,
     "item_code": 315,
-    "item_name": "느타리버섯"
+    "item_name": "느타리버섯",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 300,
     "item_code": 316,
-    "item_name": "팽이버섯"
+    "item_name": "팽이버섯",
+    "unit" : "100g",
+    "ratio" : 0.67
   },
   {
     "category_code": 300,
     "item_code": 317,
-    "item_name": "새송이버섯"
+    "item_name": "새송이버섯",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 300,
     "item_code": 318,
-    "item_name": "호두"
+    "item_name": "호두",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 300,
     "item_code": 319,
-    "item_name": "아몬드"
+    "item_name": "아몬드",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 400,
     "item_code": 411,
-    "item_name": "사과"
+    "item_name": "사과",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 400,
     "item_code": 412,
-    "item_name": "배"
+    "item_name": "배",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 400,
     "item_code": 413,
-    "item_name": "복숭아"
+    "item_name": "복숭아",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 400,
     "item_code": 414,
-    "item_name": "포도"
+    "item_name": "포도",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 400,
@@ -262,27 +362,37 @@
   {
     "category_code": 400,
     "item_code": 418,
-    "item_name": "바나나"
+    "item_name": "바나나",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 400,
     "item_code": 419,
-    "item_name": "참다래"
+    "item_name": "참다래",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 400,
     "item_code": 420,
-    "item_name": "파인애플"
+    "item_name": "파인애플",
+    "unit" : "1개",
+    "ratio" : 1
   },
   {
     "category_code": 400,
     "item_code": 421,
-    "item_name": "오렌지"
+    "item_name": "오렌지",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 200,
     "item_code": 422,
-    "item_name": "방울토마토"
+    "item_name": "방울토마토",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 400,
@@ -292,7 +402,9 @@
   {
     "category_code": 400,
     "item_code": 424,
-    "item_name": "레몬"
+    "item_name": "레몬",
+    "unit" : "1개",
+    "ratio" : 0.1
   },
   {
     "category_code": 400,
@@ -302,72 +414,100 @@
   {
     "category_code": 400,
     "item_code": 426,
-    "item_name": "건포도"
+    "item_name": "건포도",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 400,
     "item_code": 427,
-    "item_name": "건블루베리"
+    "item_name": "건블루베리",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 400,
     "item_code": 428,
-    "item_name": "망고"
+    "item_name": "망고",
+    "unit" : "1개",
+    "ratio" : 1
   },
   {
     "category_code": 500,
     "item_code": 512,
-    "item_name": "쇠고기"
+    "item_name": "쇠고기",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 500,
     "item_code": 514,
-    "item_name": "돼지고기"
+    "item_name": "돼지고기",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 500,
     "item_code": 515,
-    "item_name": "닭고기"
+    "item_name": "닭고기",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 500,
     "item_code": 516,
-    "item_name": "계란"
+    "item_name": "계란",
+    "unit" : "30개",
+    "ratio" : 1
   },
   {
     "category_code": 500,
     "item_code": 535,
-    "item_name": "우유"
+    "item_name": "우유",
+    "unit" : "1리터",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 611,
-    "item_name": "고등어"
+    "item_name": "고등어",
+    "unit" : "1마리",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 612,
-    "item_name": "꽁치"
+    "item_name": "꽁치",
+    "unit" : "1마리",
+    "ratio" : 0.2
   },
   {
     "category_code": 600,
     "item_code": 613,
-    "item_name": "갈치"
+    "item_name": "갈치",
+    "unit" : "1마리",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 615,
-    "item_name": "명태"
+    "item_name": "명태",
+    "unit" : "1마리",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 619,
-    "item_name": "물오징어"
+    "item_name": "물오징어",
+    "unit" : "1마리",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 638,
-    "item_name": "건멸치"
+    "item_name": "건멸치",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 600,
@@ -377,51 +517,71 @@
   {
     "category_code": 600,
     "item_code": 640,
-    "item_name": "건오징어"
+    "item_name": "건오징어",
+    "unit" : "1마리",
+    "ratio" : 0.1
   },
   {
     "category_code": 600,
     "item_code": 641,
-    "item_name": "김"
+    "item_name": "김",
+    "unit" : "10장",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 642,
-    "item_name": "건미역"
+    "item_name": "건미역",
+    "unit" : "100g",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 644,
-    "item_name": "굴"
+    "item_name": "굴",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 600,
     "item_code": 649,
-    "item_name": "수입조기"
+    "item_name": "수입조기",
+    "unit" : "1마리",
+    "ratio" : 1
   },
   {
     "category_code": 600,
     "item_code": 650,
-    "item_name": "새우젓"
+    "item_name": "새우젓",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 600,
     "item_code": 651,
-    "item_name": "멸치액젓"
+    "item_name": "멸치액젓",
+    "unit" : "100g",
+    "ratio" : 0.1
   },
   {
     "category_code": 600,
     "item_code": 652,
-    "item_name": "굵은소금"
+    "item_name": "굵은소금",
+    "unit" : "1kg",
+    "ratio" : 0.2
   },
   {
     "category_code": 600,
     "item_code": 653,
-    "item_name": "전복"
+    "item_name": "전복",
+    "unit" : "1마리",
+    "ratio" : 0.2
   },
   {
     "category_code": 600,
     "item_code": 654,
-    "item_name": "새우"
+    "item_name": "새우",
+    "unit" : "흰다리 10마리(약 250g)",
+    "ratio" : 1
   }
 ]
