@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="내가 집어든 이 양파, 싼 걸까, 비싼걸까? 그 기준을 제시해 드립니다.">
-	<meta property="og:title" content="농수축산물 시세 보기 서비스 | 카트 세이버">
-	<meta property="og:description" content="내가 집어든 이 양파, 싼 걸까, 비싼걸까? 그 기준을 제시해 드립니다.">
-	<meta property="og:image" content="../static/imges/link_thumbnail.jpg">
-	<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
-	<title>Cart Savior</title>
-	<link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-	<div id="loader" class="loader">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-	</div>
-	<header class="header">
-		<h1 class="logo">
-			<a href="{{ url_for('index', search_key=key) }}">
-				<img class="hidden-m" src="../static/images/logo_pc.svg" alt="cart savior">
-				<img class="hidden-p visible-m" src="../static/images/logo_m.svg" alt="cart savior">
-			</a>
-		</h1>
+{% extends "layout.html" %}
+{% block title %}Cart Savior{% endblock %}
+{% block content %}
 	<!-- 여기부터 본문 -->
 	</header>
 	<section class="container">
@@ -48,11 +24,5 @@
 			</div>
 		</div>
 	</section>
+	{% endblock %}
 	<!-- // 여기까지 본문 -->
-	<footer class="footer">
-		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
-	</footer>
-	<div id="bg" class="bg"></div>
-	<script type="text/javascript" src="../static/js/common.js"></script>
-</body>
-</html>
