@@ -39,13 +39,26 @@
 				<div class="flex-item col-p-8 col-m-12">
 					<div class="detail_graph">
 						<h3 class="title_md">지난 <span class="txt_green">{{ item.item_name }}</span>의 가격을 확인해보세요.</h3>
+						<div class="modal_wrap">
+							<button class="btn_modal" id="btn_modal"><span class="ir">상세정보 열기</span></button>
+							<div class="modal_content hide" id="modal_content">
+								<h4 class="title_sm">데이터 기준 날짜</h4>
+								<ul class="txt">
+									<li><span class="title">오   늘 : </span>{{ item.date.strftime('%Y년 %-m월 %d일') }}</li>
+									<li><span class="title">지난 주 :  </span>{{ item.last_week_date.strftime('%Y년 %-m월 %d일') }}</li>
+									<li><span class="title">지난 달 :  </span>{{ item.last_month_date.strftime('%Y년 %-m월 %d일') }}</li>
+									<li><span class="title">지난 해 :  </span>{{ item.last_year_date.strftime('%Y년 %-m월 %d일') }}</li>
+								</ul>
+								<button class="btn_close" id="btn_close"><span class="ir">상세정보 닫기</span></button>
+							</div>
+						</div>
 						<div id="graph" class="graph_wrap"></div>
 					</div>
 				</div>
 				{% if market|length %}
 				<div class="flex-item col-p-12 col-m-12">
 					<div class="detail_graph">
-						<h3 class="title_md">현재 {{ item.item_name }} 가격은<br/><span class="txt_green">100g</span>에 <span class="txt_green">500원</span>입니다.</h3>
+						<h3 class="title_md">현재 {{ item.item_name }} 가격은 <span class="txt_green">100g</span>에 <span class="txt_green">500원</span>입니다.</h3>
 						<h3 class="title_sm txt_gray">온라인 가격과 비교해보세요.</h3>
 						<ul class="detail_table">
 							{% for item in market %}
