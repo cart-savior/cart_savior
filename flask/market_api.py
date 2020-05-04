@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 #item_name = '쌀'
 
 def get_kurly(item_name):
@@ -37,13 +38,13 @@ def get_hanaro(item_name):
 	html = req.text
 	soup = BeautifulSoup(html, 'html.parser')
 	name = [name.text for name in soup.select('div > a > p')][:2]
-	price = [price.text[62:-53] for price in soup.select('div > p')][2:4]
+	price = [re.search(r'\d*,\d+', price.text) for price in soup.select('div > p')][2:4]
 	image = ['http://www.nonghyupmall.com/' + image.get('src') for image in soup.select('div.product-thumb > img')][:2]
 	link = ['http://www.nonghyupmall.com/BC14010R/viewDetail.nh?wrsC=' + code.get('data-wrs-c') +'&basketCnt=0' for code in soup.select('div.product-info-area > a')][:2]
 	result = [{
 	    'site' : "hanaro",
 	    'name' : name[i],
-	    'price' : price[i],
+	    'price' : price[i].group(),
 	    'image' : image[i],
 	    'link' : link[i]
 	    } for i in range(2)]
