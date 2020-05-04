@@ -245,7 +245,10 @@ def search(item_name="오류", item_price=0, date=None):
 	이 함수는 검색창을 통해 키워드가 들어올 경우 실행된다."""
 	search_key =request.args.get("search_text")
 	search_key = key_replace(search_key)
-	items = get_all_items(search_key)
+	# items = get_all_items(search_key)
+	items = []
+	for key in search_key:
+		items.extend(get_all_items(key))
 	# 검색 결과가 없으면
 	if len(items) == 0:
 		random_keys = get_random_keywords()
@@ -303,7 +306,6 @@ def detail(index):
 		market_key = market_search_replace(context['item_name'])
 		market = market_api.add_all_market(market_key)
 		unit_info = add_unit.add_unit(context['item_name'], context['item_price'], context['kind_name'])
-		# import pdb; pdb.set_trace()
 		return render_template("search_detail.html", item=context, market=market, unit_info=unit_info)
 	else:
 		return redirect(url_for("search"))

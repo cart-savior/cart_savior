@@ -1,22 +1,38 @@
 [
   {
     "input": "소고기",
-    "output": "쇠고기"
+    "output": ["쇠고기"]
   },
   {
     "input": "키위",
-    "output": "참다래"
+    "output": ["참다래"]
   },
   {
-    "input": "고추가루",
-    "output": "고춧가루"
+    "input": "고추",
+    "output": ["고추", "고춧가루"]
   },
   {
     "input": "메론",
-    "output": "멜론"
+    "output": ["멜론"]
   },
   {
     "input": "달걀",
-    "output": "계란"
+    "output": ["계란"]
+  },
+  {
+    "input": "대파",
+    "output": ["파"]
+  },
+  {
+    "input": "쪽파",
+    "output": ["파"]
+  },
+  {
+    "input": "삽결살",
+    "output": ["돼지고기"]
+  },
+  {
+    "input": "목살",
+    "output": ["돼지고기"]
   }
 ]
