@@ -10,6 +10,7 @@ import jinja2
 import random
 
 import market_api
+import add_unit
 
 # ==================================== global variable ====================================
 # =========================================================================================
@@ -301,7 +302,9 @@ def detail(index):
 			context['last_year'] = int(context['last_year'].replace(',', ''))
 		market_key = market_search_replace(context['item_name'])
 		market = market_api.add_all_market(market_key)
-		return render_template("search_detail.html", item=context, market=market)
+		unit_info = add_unit.add_unit(context['item_name'], context['item_price'], context['kind_name'])
+		# import pdb; pdb.set_trace()
+		return render_template("search_detail.html", item=context, market=market, unit_info=unit_info)
 	else:
 		return redirect(url_for("search"))
 
