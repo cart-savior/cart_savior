@@ -63,7 +63,8 @@
 				{% if market|length %}
 				<div class="flex-item col-p-12 col-m-12">
 					<div class="detail_graph">
-						<h3 class="title_md">온라인에서는 이렇게 판매중이에요.</h3>
+						<h3 class="title_md">현재 {{ item.item_name }} 가격은<br/><span class="txt_green">100g</span>에 <span class="txt_green">500원</span>입니다.</h3>
+						<h3 class="title_sm txt_gray">온라인 가격과 비교해보세요.</h3>
 						<ul class="detail_table">
 							{% for item in market %}
 							<li class="item">
@@ -134,8 +135,8 @@
 		var margin = {top: 40, right: 0, bottom: 30, left: change_value_by_media(55, 45)},
 			width = parseInt(d3.select("#graph").style("width")) - margin.right - margin.left,
 			height = parseInt(d3.select("#graph").style("height")) - margin.top - margin.bottom
-		var greyColor = "#ccc";
-		var barColor = "#E9F0EB";
+		var greyColor = "#999";
+		var barColor = "#AEE4BD";
 		var highlightColor = "#4ea37a";
 		// var highlightColor = d3.schemeBuGn(0.3);
 	
@@ -176,9 +177,16 @@
 			.attr("class", "bar")
 			.style("display", d => { return d.value === null ? "none" : null; })
 			.style("fill",  d => { 
-				return d.value === d3.max(dataset,  d => { return d.value; }) 
-				? highlightColor : barColor
-				})
+				// return d.value === d3.max(dataset,  d => { return d.value; }) 
+				// ? highlightColor : barColor
+				// dataset.forEach(d => {
+				// 	console.log(d);
+				// })
+				return d.value === dataset[0].value ? highlightColor : barColor
+				// console.log(dataset[0].value)
+				// return d.value === d3.max(dataset,  d => { return d.value; }) 
+				// ? highlightColor : barColor
+			})
 			.attr("x",  d => { return x(d.name); })
 			.attr("width", x.bandwidth())
 				.attr("y",  d => { return height; })
@@ -207,8 +215,9 @@
 			.style("display",  d => { return d.value === null ? "none" : null; })
 			.attr("x", ( (d, i) => { return x(d.name) + (x.bandwidth() / 2) }))
 				.style("fill",  d => { 
-					return d.value === d3.max(dataset,  d => { return d.value; }) 
-					? highlightColor : greyColor
+					return d.value === dataset[0].value ? highlightColor : greyColor
+					// return d.value === d3.max(dataset,  d => { return d.value; }) 
+					// ? highlightColor : greyColor
 					})
 			.attr("text-anchor", "middle")
 			.attr("y",  d => { return height; })
