@@ -15,7 +15,7 @@ from pip._vendor.packaging.utils import canonicalize_name
 from pip._internal.exceptions import InvalidWheelFilename
 from pip._internal.models.link import Link
 from pip._internal.models.wheel import Wheel
-from pip._internal.utils.temp_dir import TempDirectory
+from pip._internal.utils.temp_dir import TempDirectory, tempdir_kinds
 from pip._internal.utils.typing import MYPY_CHECK_RUNNING
 from pip._internal.utils.urls import path_to_url
 
@@ -171,10 +171,6 @@ class Cache(object):
         """
         raise NotImplementedError()
 
-    def cleanup(self):
-        # type: () -> None
-        pass
-
 
 class SimpleWheelCache(Cache):
     """A cache of wheels for future installs.
@@ -264,15 +260,24 @@ class EphemWheelCache(SimpleWheelCache):
 
     def __init__(self, format_control):
         # type: (FormatControl) -> None
-        self._temp_dir = TempDirectory(kind="ephem-wheel-cache")
+        self._temp_dir = TempDirectory(
+            kind=tempdir_kinds.EPHEM_WHEEL_CACHE,
+            globally_managed=True,
+        )
 
         super(EphemWheelCache, self).__init__(
             self._temp_dir.path, format_control
         )
 
-    def cleanup(self):
-        # type: () -> None
-        self._temp_dir.cleanup()
+
+class CacheEntry(object):
+    def __init__(
+        self,
+        link,  # type: Link
+        persistent,  # type: bool
+    ):
+        self.link = link
+        self.persistent = persistent
 
 
 class WheelCache(Cache):
@@ -309,21 +314,36 @@ class WheelCache(Cache):
         supported_tags,  # type: List[Tag]
     ):
         # type: (...) -> Link
+        cache_entry = self.get_cache_entry(link, package_name, supported_tags)
+        if cache_entry is None:
+            return link
+        return cache_entry.link
+
+    def get_cache_entry(
+        self,
+        link,            # type: Link
+        package_name,    # type: Optional[str]
+        supported_tags,  # type: List[Tag]
+    ):
+        # type: (...) -> Optional[CacheEntry]
+        """Returns a CacheEntry with a link to a cached item if it exists or
+        None. The cache entry indicates if the item was found in the persistent
+        or ephemeral cache.
+        """
         retval = self._wheel_cache.get(
             link=link,
             package_name=package_name,
             supported_tags=supported_tags,
         )
         if retval is not link:
-            return retval
+            return CacheEntry(retval, persistent=True)
 
-        return self._ephem_cache.get(
+        retval = self._ephem_cache.get(
             link=link,
             package_name=package_name,
             supported_tags=supported_tags,
         )
+        if retval is not link:
+            return CacheEntry(retval, persistent=False)
 
-    def cleanup(self):
-        # type: () -> None
-        self._wheel_cache.cleanup()
-        self._ephem_cache.cleanup()
+        return None

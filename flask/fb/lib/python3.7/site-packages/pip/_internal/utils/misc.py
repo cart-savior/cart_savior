@@ -22,7 +22,7 @@ from pip._vendor import pkg_resources
 #       why we ignore the type on this import.
 from pip._vendor.retrying import retry  # type: ignore
 from pip._vendor.six import PY2, text_type
-from pip._vendor.six.moves import input
+from pip._vendor.six.moves import input, map, zip_longest
 from pip._vendor.six.moves.urllib import parse as urllib_parse
 from pip._vendor.six.moves.urllib.parse import unquote as urllib_unquote
 
@@ -52,7 +52,7 @@ else:
 
 if MYPY_CHECK_RUNNING:
     from typing import (
-        Any, AnyStr, Container, Iterable, List, Optional, Text,
+        Any, AnyStr, Container, Iterable, Iterator, List, Optional, Text,
         Tuple, Union,
     )
     from pip._vendor.pkg_resources import Distribution
@@ -120,7 +120,7 @@ def get_prog():
     try:
         prog = os.path.basename(sys.argv[0])
         if prog in ('__main__.py', '-c'):
-            return "%s -m pip" % sys.executable
+            return "{} -m pip".format(sys.executable)
         else:
             return prog
     except (AttributeError, TypeError, IndexError):
@@ -228,8 +228,8 @@ def _check_no_input(message):
     """Raise an error if no input is allowed."""
     if os.environ.get('PIP_NO_INPUT'):
         raise Exception(
-            'No input was expected ($PIP_NO_INPUT set); question: %s' %
-            message
+            'No input was expected ($PIP_NO_INPUT set); question: {}'.format(
+                message)
         )
 
 
@@ -242,8 +242,8 @@ def ask(message, options):
         response = response.strip().lower()
         if response not in options:
             print(
-                'Your response (%r) was not one of the expected responses: '
-                '%s' % (response, ', '.join(options))
+                'Your response ({!r}) was not one of the expected responses: '
+                '{}'.format(response, ', '.join(options))
             )
         else:
             return response
@@ -266,13 +266,28 @@ def ask_password(message):
 def format_size(bytes):
     # type: (float) -> str
     if bytes > 1000 * 1000:
-        return '%.1f MB' % (bytes / 1000.0 / 1000)
+        return '{:.1f} MB'.format(bytes / 1000.0 / 1000)
     elif bytes > 10 * 1000:
-        return '%i kB' % (bytes / 1000)
+        return '{} kB'.format(int(bytes / 1000))
     elif bytes > 1000:
-        return '%.1f kB' % (bytes / 1000.0)
+        return '{:.1f} kB'.format(bytes / 1000.0)
     else:
-        return '%i bytes' % bytes
+        return '{} bytes'.format(int(bytes))
+
+
+def tabulate(rows):
+    # type: (Iterable[Iterable[Any]]) -> Tuple[List[str], List[int]]
+    """Return a list of formatted rows and a list of column sizes.
+
+    For example::
+
+    >>> tabulate([['foobar', 2000], [0xdeadbeef]])
+    (['foobar     2000', '3735928559'], [10, 4])
+    """
+    rows = [tuple(map(str, row)) for row in rows]
+    sizes = [max(map(len, col)) for col in zip_longest(*rows, fillvalue='')]
+    table = [" ".join(map(str.ljust, row, sizes)).rstrip() for row in rows]
+    return table, sizes
 
 
 def is_installable_dir(path):
@@ -884,3 +899,15 @@ def is_wheel_installed():
         return False
 
     return True
+
+
+def pairwise(iterable):
+    # type: (Iterable[Any]) -> Iterator[Tuple[Any, Any]]
+    """
+    Return paired elements.
+
+    For example:
+        s -> (s0, s1), (s2, s3), (s4, s5), ...
+    """
+    iterable = iter(iterable)
+    return zip_longest(iterable, iterable)

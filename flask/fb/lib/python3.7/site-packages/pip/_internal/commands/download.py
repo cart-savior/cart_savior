@@ -8,8 +8,7 @@ import os
 
 from pip._internal.cli import cmdoptions
 from pip._internal.cli.cmdoptions import make_target_python
-from pip._internal.cli.req_command import RequirementCommand
-from pip._internal.req import RequirementSet
+from pip._internal.cli.req_command import RequirementCommand, with_cleanup
 from pip._internal.req.req_tracker import get_requirement_tracker
 from pip._internal.utils.misc import ensure_dir, normalize_path, write_output
 from pip._internal.utils.temp_dir import TempDirectory
@@ -52,7 +51,6 @@ class DownloadCommand(RequirementCommand):
         cmd_opts.add_option(cmdoptions.prefer_binary())
         cmd_opts.add_option(cmdoptions.src())
         cmd_opts.add_option(cmdoptions.pre())
-        cmd_opts.add_option(cmdoptions.no_clean())
         cmd_opts.add_option(cmdoptions.require_hashes())
         cmd_opts.add_option(cmdoptions.progress_bar())
         cmd_opts.add_option(cmdoptions.no_build_isolation())
@@ -77,6 +75,7 @@ class DownloadCommand(RequirementCommand):
         self.parser.insert_option_group(0, index_opts)
         self.parser.insert_option_group(0, cmd_opts)
 
+    @with_cleanup
     def run(self, options, args):
         options.ignore_installed = True
         # editable doesn't really make sense for `pip download`, but the bowels
@@ -99,49 +98,45 @@ class DownloadCommand(RequirementCommand):
         )
         build_delete = (not (options.no_clean or options.build_dir))
 
-        with get_requirement_tracker() as req_tracker, TempDirectory(
-            options.build_dir, delete=build_delete, kind="download"
-        ) as directory:
+        req_tracker = self.enter_context(get_requirement_tracker())
 
-            requirement_set = RequirementSet()
-            self.populate_requirement_set(
-                requirement_set,
-                args,
-                options,
-                finder,
-                session,
-                None
-            )
+        directory = TempDirectory(
+            options.build_dir,
+            delete=build_delete,
+            kind="download",
+            globally_managed=True,
+        )
 
-            preparer = self.make_requirement_preparer(
-                temp_build_dir=directory,
-                options=options,
-                req_tracker=req_tracker,
-                session=session,
-                finder=finder,
-                download_dir=options.download_dir,
-                use_user_site=False,
-            )
+        reqs = self.get_requirements(args, options, finder, session)
 
-            resolver = self.make_resolver(
-                preparer=preparer,
-                finder=finder,
-                options=options,
-                py_version_info=options.python_version,
-            )
+        preparer = self.make_requirement_preparer(
+            temp_build_dir=directory,
+            options=options,
+            req_tracker=req_tracker,
+            session=session,
+            finder=finder,
+            download_dir=options.download_dir,
+            use_user_site=False,
+        )
 
-            self.trace_basic_info(finder)
+        resolver = self.make_resolver(
+            preparer=preparer,
+            finder=finder,
+            options=options,
+            py_version_info=options.python_version,
+        )
 
-            resolver.resolve(requirement_set)
+        self.trace_basic_info(finder)
 
-            downloaded = ' '.join([
-                req.name for req in requirement_set.successfully_downloaded
-            ])
-            if downloaded:
-                write_output('Successfully downloaded %s', downloaded)
+        requirement_set = resolver.resolve(
+            reqs, check_supported_wheels=True
+        )
 
-            # Clean up
-            if not options.no_clean:
-                requirement_set.cleanup_files()
+        downloaded = ' '.join([
+            req.name for req in requirement_set.requirements.values()
+            if req.successfully_downloaded
+        ])
+        if downloaded:
+            write_output('Successfully downloaded %s', downloaded)
 
         return requirement_set

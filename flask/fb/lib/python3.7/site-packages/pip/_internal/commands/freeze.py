@@ -65,7 +65,7 @@ class FreezeCommand(Command):
             dest='freeze_all',
             action='store_true',
             help='Do not skip these packages in the output:'
-                 ' %s' % ', '.join(DEV_PKGS))
+                 ' {}'.format(', '.join(DEV_PKGS)))
         self.cmd_opts.add_option(
             '--exclude-editable',
             dest='exclude_editable',
@@ -89,15 +89,11 @@ class FreezeCommand(Command):
             local_only=options.local,
             user_only=options.user,
             paths=options.path,
-            skip_regex=options.skip_requirements_regex,
             isolated=options.isolated_mode,
             wheel_cache=wheel_cache,
             skip=skip,
             exclude_editable=options.exclude_editable,
         )
 
-        try:
-            for line in freeze(**freeze_kwargs):
-                sys.stdout.write(line + '\n')
-        finally:
-            wheel_cache.cleanup()
+        for line in freeze(**freeze_kwargs):
+            sys.stdout.write(line + '\n')

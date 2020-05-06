@@ -9,18 +9,17 @@ import subprocess
 
 from pip._vendor.six.moves import shlex_quote
 
+from pip._internal.cli.spinners import SpinnerInterface, open_spinner
 from pip._internal.exceptions import InstallationError
 from pip._internal.utils.compat import console_to_str, str_to_display
 from pip._internal.utils.logging import subprocess_logger
 from pip._internal.utils.misc import HiddenText, path_to_display
 from pip._internal.utils.typing import MYPY_CHECK_RUNNING
-from pip._internal.utils.ui import open_spinner
 
 if MYPY_CHECK_RUNNING:
     from typing import (
         Any, Callable, Iterable, List, Mapping, Optional, Text, Union,
     )
-    from pip._internal.utils.ui import SpinnerInterface
 
     CommandArgs = List[Union[str, HiddenText]]
 
@@ -242,14 +241,14 @@ def call_subprocess(
             raise InstallationError(exc_msg)
         elif on_returncode == 'warn':
             subprocess_logger.warning(
-                'Command "%s" had error code %s in %s',
-                command_desc, proc.returncode, cwd,
+                'Command "{}" had error code {} in {}'.format(
+                    command_desc, proc.returncode, cwd)
             )
         elif on_returncode == 'ignore':
             pass
         else:
-            raise ValueError('Invalid value: on_returncode=%s' %
-                             repr(on_returncode))
+            raise ValueError('Invalid value: on_returncode={!r}'.format(
+                             on_returncode))
     return ''.join(all_output)
 
 

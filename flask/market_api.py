@@ -52,7 +52,7 @@ def get_hanaro(item_name):
 
 def get_coupang(item_name):
 	headers = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Whale/2.7.98.18 Safari/537.36"
 	}
 	url = "https://www.coupang.com/np/search?component=&q="+ item_name + "&channel=user"
 	req = requests.get(url, headers=headers)
@@ -75,6 +75,7 @@ def add_all_market(item_name):
 	kurly = get_kurly(item_name)
 	ssg = get_ssg(item_name)
 	hanaro = get_hanaro(item_name)
-	coupang = get_coupang(item_name)
-	result = coupang + ssg + hanaro + kurly
+	# coupang = get_coupang(item_name)
+	# result = coupang + ssg + hanaro + kurly
+	result = ssg + hanaro + kurly
 	return result

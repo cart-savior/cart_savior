@@ -9,16 +9,25 @@ from contextlib import contextmanager
 
 from pip._vendor.contextlib2 import ExitStack
 
-from pip._internal.utils.misc import rmtree
+from pip._internal.utils.misc import enum, rmtree
 from pip._internal.utils.typing import MYPY_CHECK_RUNNING
 
 if MYPY_CHECK_RUNNING:
-    from typing import Any, Dict, Iterator, Optional, TypeVar
+    from typing import Any, Dict, Iterator, Optional, TypeVar, Union
 
     _T = TypeVar('_T', bound='TempDirectory')
 
 
 logger = logging.getLogger(__name__)
+
+
+# Kinds of temporary directories. Only needed for ones that are
+# globally-managed.
+tempdir_kinds = enum(
+    BUILD_ENV="build-env",
+    EPHEM_WHEEL_CACHE="ephem-wheel-cache",
+    REQ_BUILD="req-build",
+)
 
 
 _tempdir_manager = None  # type: Optional[ExitStack]
@@ -77,6 +86,13 @@ def tempdir_registry():
         _tempdir_registry = old_tempdir_registry
 
 
+class _Default(object):
+    pass
+
+
+_default = _Default()
+
+
 class TempDirectory(object):
     """Helper class that owns and cleans up a temporary directory.
 
@@ -101,16 +117,21 @@ class TempDirectory(object):
     def __init__(
         self,
         path=None,    # type: Optional[str]
-        delete=None,  # type: Optional[bool]
+        delete=_default,  # type: Union[bool, None, _Default]
         kind="temp",  # type: str
         globally_managed=False,  # type: bool
     ):
         super(TempDirectory, self).__init__()
 
-        # If we were given an explicit directory, resolve delete option now.
-        # Otherwise we wait until cleanup and see what tempdir_registry says.
-        if path is not None and delete is None:
-            delete = False
+        if delete is _default:
+            if path is not None:
+                # If we were given an explicit directory, resolve delete option
+                # now.
+                delete = False
+            else:
+                # Otherwise, we wait until cleanup and see what
+                # tempdir_registry says.
+                delete = None
 
         if path is None:
             path = self._create(kind)
