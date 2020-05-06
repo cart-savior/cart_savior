@@ -394,6 +394,9 @@ footer p {
 			animation: fade_in_down .8s ease-out both;
 	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
+.detail_graph .title_md {
+	width: calc(100% - 20px);
+}
 .detail_graph .title_md+.title_sm {
 	margin-top: 10px;
 }
