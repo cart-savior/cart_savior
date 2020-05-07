@@ -192,8 +192,8 @@
     "category_code": 200,
     "item_code": 245,
     "item_name": "양파",
-    "unit" : "100g",
-    "ratio" : 0.1
+    "unit" : "1kg",
+    "ratio" : 1
   },
   {
     "category_code": 200,

@@ -38,7 +38,7 @@ def get_hanaro(item_name):
 	html = req.text
 	soup = BeautifulSoup(html, 'html.parser')
 	name = [name.text for name in soup.select('div > a > p')][:2]
-	price = [re.search(r'\d*,*\d+', price.text) for price in soup.select('div > p')][2:4]
+	price = [re.search(r'\d*,*\d+', price.text) for price in soup.select('div > p.product-price-sale')][:2]
 	image = ['http://www.nonghyupmall.com/' + image.get('src') for image in soup.select('div.product-thumb > img')][:2]
 	link = ['http://www.nonghyupmall.com/BC14010R/viewDetail.nh?wrsC=' + code.get('data-wrs-c') +'&basketCnt=0' for code in soup.select('div.product-info-area > a')][:2]
 	result = [{
@@ -50,32 +50,49 @@ def get_hanaro(item_name):
 	    } for i in range(2)]
 	return result
 
-def get_coupang(item_name):
-	headers = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Whale/2.7.98.18 Safari/537.36"
-	}
-	url = "https://www.coupang.com/np/search?component=&q="+ item_name + "&channel=user"
-	req = requests.get(url, headers=headers)
+# def get_coupang(item_name):
+# 	headers = {
+#     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Whale/2.7.98.18 Safari/537.36"
+# 	}
+# 	url = "https://www.coupang.com/np/search?component=&q="+ item_name + "&channel=user"
+# 	req = requests.get(url, headers=headers)
+# 	html = req.text
+# 	soup = BeautifulSoup(html, 'html.parser')
+# 	name = [name.text for name in soup.select('div > div.name')][1:3]
+# 	price = [price.text for price in soup.select('div > div.price > em > strong')[1:3]]
+# 	image = ["http:"+ image.get('src') for image in soup.select('dt > img')[1:3]]
+# 	link = ["https://www.coupang.com" + link.get('href') for link in soup.select('form > div > div > ul > li > a')][1:3]
+# 	result = [{
+# 		'site' : "coupang",
+# 		'name' : name[i],
+# 		'price' : price[i],
+# 		'image' : image[i],
+# 		'link' : link[i]
+# 		} for i in range(2)]
+# 	return result
+
+def get_nonghyup(item_name):
+	req = requests.get('http://www.nonghyupmall.com/BC1F010M/srchTotalList.nh?searchTerm_main=' + item_name + '%40undefined&CHAN_C=1101&chanC=1101')
 	html = req.text
 	soup = BeautifulSoup(html, 'html.parser')
-	name = [name.text for name in soup.select('div > div.name')][1:3]
-	price = [price.text for price in soup.select('div > div.price > em > strong')[1:3]]
-	image = ["http:"+ image.get('src') for image in soup.select('dt > img')[1:3]]
-	link = ["https://www.coupang.com" + link.get('href') for link in soup.select('form > div > div > ul > li > a')][1:3]
+	name = [name.text for name in soup.select('div > a > p')][:2]
+	price = [re.search(r'\d*,*\d+', price.text) for price in soup.select('div > p.product-price-sale')][:2]
+	image = ['http://www.nonghyupmall.com/' + image.get('src') for image in soup.select('div.product-thumb > img')][:2]
+	link = ['http://www.nonghyupmall.com/BC14010R/viewDetail.nh?wrsC=' + code.get('data-wrs-c') +'&basketCnt=0' for code in soup.select('div.product-info-area > a')][:2]
 	result = [{
-		'site' : "coupang",
-		'name' : name[i],
-		'price' : price[i],
-		'image' : image[i],
-		'link' : link[i]
-		} for i in range(2)]
+	    'site' : "nonghyup",
+	    'name' : name[i],
+	    'price' : price[i].group(),
+	    'image' : image[i],
+	    'link' : link[i]
+	    } for i in range(2)]
 	return result
+
 
 def add_all_market(item_name):
 	kurly = get_kurly(item_name)
 	ssg = get_ssg(item_name)
 	hanaro = get_hanaro(item_name)
-	# coupang = get_coupang(item_name)
-	# result = coupang + ssg + hanaro + kurly
-	result = ssg + hanaro + kurly
+	nonghyup = get_nonghyup(item_name)
+	result = ssg + nonghyup + hanaro + kurly
 	return result
