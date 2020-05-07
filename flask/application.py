@@ -159,8 +159,8 @@ def get_info(item, date):
 	one_item['item_code'] = item['item_code']
 	one_item['item_price'] = int(row.dpr1.replace(',', ''))
 	if (row.dpr3 == "-"):
-		one_item['last_week'] = get_dpr1(item, date - timedelta(days=7))
-		one_item['last_week_date'] = session['last_week_date']
+		one_item['last_week'] = int(get_dpr1(item, date - timedelta(days=7)).replace(',', ''))
+		one_item['last_week_date'] = session['temp_date']
 	else:
 		one_item['last_week'] = int(row.dpr3.replace(',', ''))
 		one_item['last_week_date'] = date - timedelta(days=7)
