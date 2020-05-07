@@ -163,14 +163,23 @@ header .logo img {
 /* footer */
 footer {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 80px;
 	text-align: center;
 }
 footer p {
+	margin-top: 10px;
 	font-size: 12px;
 	color: #bed0cc;
+}
+.btn_github {
+	display: block;
+	width: 24px;
+	height: 24px;
+	background: url(../images/icon_github.png) no-repeat center;
+	background-size: 100% auto;
 }
 .main_wrap, .no_result_wrap, .sub_wrap, .detail_wrap {
 	flex: 1;
