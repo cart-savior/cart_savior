@@ -1,12 +1,5 @@
-.flex-layout {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	flex-wrap: wrap;
-}
-.flex-item {
-	padding: 10px 20px;
-}
+.flex-layout { display: flex; justify-content: start; align-items: center; flex-wrap: wrap; }
+.flex-item { padding: 10px 20px; }
 
 .col-p-1 { max-width:  8.333333%; flex: 0 0 8.333333%; }
 .col-p-2 { max-width: 16.666667%; flex: 0 0 16.666667%; }

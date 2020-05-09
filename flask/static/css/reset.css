@@ -38,15 +38,12 @@ input[type="text"]::-ms-clear {display: none;}
 input[type="radio"] {width:auto;}
 input[type="checkbox"] {width:auto;}
 input[type="radio"]:disabled + label {color:#222;}
-/* input[readonly='readonly'] {background-color: #eee} */
-/* placeholder Default color  */
 *::placeholder {color: #b5b5b5;}
 *::-webkit-input-placeholder {color: #b5b5b5 !important}
 *:-moz-placeholder {color: #b5b5b5 !important}/* FF 4-18 */
 *::-moz-placeholder {color: #b5b5b5 !important}/* FF 19+ */
 *:-ms-input-placeholder {color: #b5b5b5 !important}/* IE 10+ */
 .ir, .blind {position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;}
-/* .ir {display:block; width:1px; height:1px; overflow:hidden; margin:-1px 0 0 -1px; font-size:1px; line-height:0; white-space: nowrap} */
 .skip {position:absolute; z-index:1000; left:0; top:0; width:100%;}
 .skip a {display:block; width:1px; height:1px; margin-bottom:-1px; overflow:hidden; text-align:center; color:#FFFFFF;}
 .skip a:focus, .skip a:active {width:100%; height:auto; padding:10px 0; background-color:#222}

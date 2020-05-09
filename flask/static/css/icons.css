@@ -1,12 +1,3 @@
-/*
- 노란색 : FFFAE4
- 주황색 : ffe7c2
- 녹색 : E3FFCC
- 붉은색 : FFE4E4
- 파란색 : E0F7FF
- 보라색 : ece4ff
- 회색 : eee
-*/
 .item_info.type_100:after {
 	background-color: #FFFAE4;
 	background-image: url(../images/itemcode_100.png);
