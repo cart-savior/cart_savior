@@ -47,7 +47,7 @@ def get_hanaro(item_name):
 	    'price' : price[i].group(),
 	    'image' : image[i],
 	    'link' : link[i]
-	    } for i in range(2)]
+	    } for i in range(len(name))]
 	return result
 
 # def get_coupang(item_name):
