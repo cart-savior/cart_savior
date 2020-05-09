@@ -3,7 +3,7 @@
 
 >서비스 개요 및 기획의도  
 >참조 https://github.com/pje1740/cart_savior/wiki
-
+![](https://github.com/pje1740/cart_savior/blob/master/sources/usage.gif?raw=true)  
 ---
 ### 협업 도구
 - Messaging: Slack, Kakaotalk
