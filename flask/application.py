@@ -203,7 +203,7 @@ def get_items_with_rank(items):
 	"""키워드로 받아온 상품을 rank, kind_name을 구분하여 리스트에 축적하는 함수"""
 	today = datetime.today()
 	# 일요일로 테스트를 진행하려면 오늘로부터 일요일이 되기 위한 일수를 빼고 진행하면 된다. 
-	# today = datetime.today() - timedelta(days=3)
+	# today = datetime.today() - timedelta(days=1)
 	df = None
 	result = []
 	for item in items:
