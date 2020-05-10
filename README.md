@@ -27,5 +27,5 @@ https://www.kamis.or.kr/customer/reference/openapi_list.do
 ### 시연 영상
 https://youtu.be/22gcU-g5Z0Q
 
-### 실제 앱 사용
+### 실제 서비스 사용
 ![](https://github.com/pje1740/cart_savior/blob/master/sources/usage.gif?raw=true)  
