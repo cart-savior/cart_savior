@@ -1,14 +1,17 @@
-
 // 모달창
 function modal(){
 	var btn_modal = document.querySelector("#btn_modal");
-	btn_modal.addEventListener("click", e => {
-		document.querySelector("#modal_content").classList.remove("hide");
-	})
+	if (btn_modal) {
+		btn_modal.addEventListener("click", e => {
+			document.querySelector("#modal_content").classList.remove("hide");
+		})
+	}
 	var btn_close = document.querySelector("#btn_close");
-	btn_close.addEventListener("click", e => {
-		document.querySelector("#modal_content").classList.add("hide");
-	})
+	if (btn_close) {
+		btn_close.addEventListener("click", e => {
+			document.querySelector("#modal_content").classList.add("hide");
+		})
+	}
 }
 // 검색 버튼 및 키워드를 클릭했을 때 로딩하는 함수.
 function loading(){
