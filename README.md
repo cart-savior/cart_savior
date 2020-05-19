@@ -1,7 +1,7 @@
 ![](https://github.com/pje1740/cart_savior/blob/master/flask/static/images/team_banner.jpg?raw=true)  
 내가 집어든 이 양파, 싼 걸까, 비싼걸까? 그 기준을 제시해 드립니다.
 
-[http://www.cartsavior.ga/](http://www.cartsavior.ga/}
+[http://www.cartsavior.ga/](http://www.cartsavior.ga/)
 
 >서비스 개요 및 기획의도  
 >참조 https://github.com/pje1740/cart_savior/wiki
