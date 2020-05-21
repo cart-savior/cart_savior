@@ -14,9 +14,9 @@ def add_unit(name, price, kind_name):
 		'unit_price' : format(int(item['ratio'] * price), ",d")
 		}for item in my_json_data if name == item['item_name']][0]
 	else :
-		result = [{
+		result = {
 			'item_name' : name,
 			'unit' : kind_name,
 			'unit_price' : price
-		}]
+		}
 	return result

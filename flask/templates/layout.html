@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165995188-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-165995188-1');
+	</script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="내가 집어든 이 양파, 싼 걸까, 비싼걸까? 그 기준을 제시해 드립니다.">
@@ -34,7 +43,8 @@
 		<p>Copyright (C) 2020. CART SAVIOR all rights reserved.</p>
 	</footer>
 	<div id="bg" class="bg"></div>
-	<script type="text/javascript" src="../static/js/common.js"></script>
-	{% block graph %}{% endblock %}
+	
 </body>
+<script type="text/javascript" src="../static/js/common.js"></script>
+{% block graph %}{% endblock %}
 </html>
