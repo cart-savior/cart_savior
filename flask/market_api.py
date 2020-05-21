@@ -30,7 +30,7 @@ def get_ssg(item_name):
 		'price' : price[i],
 		'image' : image[i],
 		'link' : link[i]
-		} for i in range(2)]
+		} for i in range(len(name))]
 	return result
 
 def get_hanaro(item_name):
@@ -39,7 +39,7 @@ def get_hanaro(item_name):
 	soup = BeautifulSoup(html, 'html.parser')
 	name = [name.text for name in soup.select('div > a > p')][:2]
 	price = [re.search(r'\d*,*\d+', price.text) for price in soup.select('div > p.product-price-sale')][:2]
-	image = ['http://www.nonghyupmall.com/' + image.get('src') for image in soup.select('div.product-thumb > img')][:2]
+	image = [image.get('src') for image in soup.select('div.product-thumb > img')][:2]
 	link = ['http://www.nonghyupmall.com/BC14010R/viewDetail.nh?wrsC=' + code.get('data-wrs-c') +'&basketCnt=0' for code in soup.select('div.product-info-area > a')][:2]
 	result = [{
 	    'site' : "hanaro",
@@ -77,7 +77,7 @@ def get_nonghyup(item_name):
 	soup = BeautifulSoup(html, 'html.parser')
 	name = [name.text for name in soup.select('div > a > p')][:2]
 	price = [re.search(r'\d*,*\d+', price.text) for price in soup.select('div > p.product-price-sale')][:2]
-	image = ['http://www.nonghyupmall.com/' + image.get('src') for image in soup.select('div.product-thumb > img')][:2]
+	image = [image.get('src') for image in soup.select('div.product-thumb > img')][:2]
 	link = ['http://www.nonghyupmall.com/BC14010R/viewDetail.nh?wrsC=' + code.get('data-wrs-c') +'&basketCnt=0' for code in soup.select('div.product-info-area > a')][:2]
 	result = [{
 	    'site' : "nonghyup",
@@ -85,7 +85,7 @@ def get_nonghyup(item_name):
 	    'price' : price[i].group(),
 	    'image' : image[i],
 	    'link' : link[i]
-	    } for i in range(2)]
+	    } for i in range(len(name))]
 	return result
 
 
