@@ -81,6 +81,9 @@
 .main_wrap *[class^="title_"]+.search_bar {
 	margin-top: 20px;
 }
+.main_wrap .search_bar+.title_sm {
+	margin-top: 40px;
+}
 /* search bar */
 .search_bar {
 	width: 100%;
@@ -91,6 +94,7 @@
 	justify-content: space-between;
 	height: 60px;
 	border-radius: 30px;
+	border: 2px solid #4ea38e;
 	background-color: #fff;
 }
 .inp_search {
@@ -259,11 +263,57 @@
 			animation: fade_in_down .8s ease-out both;
 	box-shadow: 0px 0px 15px rgba(176, 193, 185, .2);
 }
+.detail_graph.graph_wiki {
+	display: flex;
+	/* justify-content: space-around; */
+	justify-content: center;
+	align-items: center;
+	min-height: 160px;
+	background: #fff;
+}
+.detail_graph.graph_wiki img {
+	width: 100px;
+}
+.detail_graph.graph_wiki .title_sm {
+	position: relative;
+	margin-left: 50px;
+	line-height: 1.5em;
+}
+.detail_graph.graph_wiki .title_sm:before {
+	content: '';
+	display: block;
+	width: 17px;
+	height: 14px;
+	position: absolute;
+	top: -40px;
+	left: 0;
+	background: url(../images/icon_colon_left.png) no-repeat;
+	background-size: 100% auto;
+}
+.detail_graph.graph_wiki .title_sm:after {
+	content: '';
+	display: block;
+	width: 17px;
+	height: 14px;
+	position: absolute;
+	bottom: -40px;
+	right: 0;
+	background: url(../images/icon_colon_right.png) no-repeat;
+	background-size: 100% auto;
+}
 .detail_graph .title_md {
+	flex: 1;
 	width: calc(100% - 20px);
 }
 .detail_graph .title_md+.title_sm {
 	margin-top: 10px;
+}
+.inp_unit {
+	width: 50px;
+	text-align: center;
+	font-size: 24px;
+	line-height: 1.2em;
+	border-bottom: 1px solid #000;
 }
 .graph_wrap {
 	width: 100%;
@@ -428,24 +478,24 @@
 /* tablet, mobile */
 @media screen and (max-width: 768px) {
 	.title_lg {
-		text-align: center;
+		/* text-align: center; */
 		font-size: 20px;
 	}
 	.title_md {
 		font-size: 18px;
 	}
-	.main_wrap *[class^="title_"]+.search_bar {
+	/* .main_wrap *[class^="title_"]+.search_bar {
 		margin: 10px auto;
-	}
+	} */
 	.search_bar {
 		width: 80%;
 	}
 	.search_bar form {
 		height: 50px;
 	}
-	.hash_list {
+	/* .hash_list {
 		justify-content: center;
-	}
+	} */
 	.inp_search {
 		font-size: 14px;
 	}
@@ -476,6 +526,21 @@
 	}
 	.graph_wrap text {
 		font-size: 11px;
+	}
+	.inp_unit {
+		font-size: 18px;
+	}
+	.detail_graph.graph_wiki img {
+		width: 65px;
+	}
+	.detail_graph.graph_wiki .title_sm {
+		margin-left: 20px;
+	}
+	.detail_graph.graph_wiki .title_sm:before {
+		top: -20px;
+	}
+	.detail_graph.graph_wiki .title_sm:after {
+		bottom: -20px;
 	}
 	.detail_table .item a {
 		padding: 14px 0;

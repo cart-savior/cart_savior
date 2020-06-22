@@ -12,6 +12,7 @@
 						<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
 					</form>
 				</div>
+				<h3 class="title_sm">온라인 가격과 비교해보세요.</h3>
 				<ul class="hash_list">
 					{% for key in random_keys %}
 					<li class="hash_item"><a href="{{ url_for('search_hash', search_key=key) }}"># {{ key }}</a></li>
