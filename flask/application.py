@@ -11,6 +11,7 @@ import random
 
 import market_api
 import add_unit
+from search import search
 
 # ==================================== global variable ====================================
 # =========================================================================================
@@ -20,6 +21,7 @@ api_template = jinja2.Template("{{ date.strftime('%Y-%m-%d') }}")
 
 application = app = Flask(__name__)
 app.secret_key = "cart_savior"
+app.register_blueprint(search, url_prefix="")
 
 # =========================================================================================
 # =========================================================================================
@@ -63,12 +65,13 @@ def market_search_replace(search_key):
 	return search_key
 
 
-@app.route('/')
-def index():
-	"""메인 페이지 구현 함수"""
-	random_keys = get_random_keywords()
-	context = {'random_keys': random_keys}
-	return render_template("main.html", **context)
+# @app.route('/')
+# def index():
+# 	"""메인 페이지 구현 함수"""
+# 	# 랜덤 해시코드 3개를 받아오는 함수
+# 	random_keys = get_random_keywords()
+# 	context = {'random_keys': random_keys}
+# 	return render_template("main.html", **context)
 
 
 # 차액 표시 필터
@@ -81,9 +84,9 @@ def num_format(value):
 		value = value * -1
 		return f"{value:,d}"
 
-	
 	value = float(value)
 	return "${:,.2f}".format(value)
+
 
 # 날짜와 아이템을 넣어서 obj 까지 생성하여 반환해주는 함수
 def extract_from_url(date, item):
