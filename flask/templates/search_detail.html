@@ -55,10 +55,19 @@
 						<div id="graph" class="graph_wrap"></div>
 					</div>
 				</div>
+				<div class="flex-item col-p-12 col-m-12">
+					<div class="detail_graph graph_wiki">
+						<img src="../static/images/icon_loading.png" alt="">
+						<h3 class="title_sm">배추는 겉잎은 짙은 녹색을 띠는 것이 좋고 반으로 갈랐을 때 속잎은 노란색을 띠는 것, 키가 크지 않는 것이 좋아요.</h3>
+					</div>
+				</div>
 				{% if market|length %}
 				<div class="flex-item col-p-12 col-m-12">
 					<div class="detail_graph">
-						<h3 class="title_md">현재 {{ unit_info.item_name }} 가격은 <span class="txt_green">{{ unit_info.unit }}</span>에 <span class="txt_green">{{ unit_info.unit_price }}원</span>입니다.</h3>
+						<h3 class="title_md">현재 {{ unit_info.item_name }} 가격은 <br class="hidden-p visible-m"/><span class="txt_green"><input type="number" name="" id="unitInput" value="" class="inp_unit" placeholder="단위 입력" onchange="changeUnit(this)"></span><span id="unitTxt"></span> 당 <span><span id="unitPrice" class="txt_green"></span>원</span>입니다.</h3>
+						{% if unitOnlyNum %}
+						<span>{{ unitOnlyNum }}</span>
+						{% endif %}
 						<h3 class="title_sm txt_gray">온라인 가격과 비교해보세요.</h3>
 						<ul class="detail_table">
 							{% for item in market %}
@@ -86,6 +95,22 @@
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script type="text/javascript">
 		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
+		let unitInfo = {{ unit_info | tojson | safe }};
+		let unitOnlyNum = unitInfo.unit.replace(/[^0-9]/g, '');
+		let unitOnlyStr = unitInfo.unit.replace(/[^a-zA-Z가-힣]/g, '');
+		document.getElementById("unitInput").value = unitOnlyNum;
+		document.getElementById("unitTxt").innerHTML = unitOnlyStr;
+		let unitPrice = unitInfo.unit_price;
+		document.getElementById("unitPrice").innerHTML = unitPrice;
+		let price = Math.floor(unitPrice.replace(',', '') / unitOnlyNum);
+		function changeUnit(obj) {
+			let size;
+			size = obj.value ? obj.value.length * 15 : 100;
+			obj.style.width = size + "px";
+			let priceResult = price * obj.value;
+			document.getElementById("unitPrice").innerHTML = priceResult.toLocaleString();
+		}
+
 		let chartData = {{ item | tojson | safe }};
 		
 		// 받은 전체 데이터 중 필요한 데이터만 새로운 Object로 생성한다.
