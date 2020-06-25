@@ -16,11 +16,51 @@ def create_items_table():
 		'CREATE TABLE items('
 		'id INTEGER PRIMARY KEY AUTOINCREMENT,'
 		'item_name TEXT,'
-		'category_code INTEGER,'
+		'item_code INTEGER,'
+		'kind_name TEXT,'
+		'UNIQUE(item_code, kind_name) ON CONFLICT REPLACE)'
+		)
+
+def input_data_items(item_name, item_code, kind_name):
+	c.execute(
+		"INSERT OR IGNORE INTO items(item_name, item_code, kind_name) VALUES(?, ?, ?)",
+		(item_name, item_code, kind_name)
+	)
+	conn.commit()
+
+def fill_items():
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "code_only.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		input_data_items(item['item_name'], item['item_code'], item['kind_name'])
+
+def create_items_unit_table():
+	c.execute(
+		'CREATE TABLE items_unit('
 		'item_code INTEGER,'
 		'unit TEXT,'
-		'ratio REAL)'
-		)
+		'ratio REAL,'
+		'FOREIGN KEY(item_code) REFERENCES items(item_code))'
+	)
+
+def input_data_items_unit(item_code, unit, ratio):
+	c.execute(
+		"INSERT OR IGNORE INTO items_unit(item_code, unit, ratio) VALUES(?, ?, ?)",
+		(item_code, unit, ratio)
+	)
+	conn.commit()
+
+def fill_items_unit():
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "category_code.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		input_data_items_unit(item['item_code'], item['unit'], item['ratio'])
 
 def create_wiki_table():
 	c.execute(
@@ -29,23 +69,7 @@ def create_wiki_table():
 		'item_name TEXT,'
 		'wiki TEXT,'
 		'FOREIGN KEY(item_code) REFERENCES items(item_code))'
-		)
-
-def input_data_items(item_name, category_code, item_code, unit, ratio):
-	c.execute(
-		"INSERT OR IGNORE INTO items(item_name, category_code, item_code, unit, ratio) VALUES(?, ?, ?, ?, ?)",
-		(item_name, category_code, item_code, unit, ratio)
 	)
-	conn.commit()
-
-def fill_items():
-	path_to_current_file = os.path.realpath(__file__)
-	current_directory = os.path.split(path_to_current_file)[0]
-	path_to_file = os.path.join(current_directory, "category_code.json")
-	with open(path_to_file) as mydata:
-		my_json_data = json.load(mydata)
-	for item in my_json_data:
-		input_data_items(item['item_name'], item['category_code'], item['item_code'], item['unit'], item['ratio'])
 
 def input_data_wiki(item_code, item_name):
 	c.execute(
@@ -57,7 +81,6 @@ def input_data_wiki(item_code, item_name):
 def fill_wiki():
 	c.execute("SELECT item_code, item_name FROM items")
 	data = c.fetchall()
-	print("hi")
 	for row in data:
 		print(row[0])
 		input_data_wiki(row[0], row[1])
@@ -77,7 +100,7 @@ def create_price_table():
 		'unit TEXT,'
 		'price INTEGER,'
 		'FOREIGN KEY(item_code) REFERENCES items(item_code),'
-		'UNIQUE(date, item_code, kind_name) ON CONFLICT REPLACE)'
+		'UNIQUE(date, item_code, kind_name, rank) ON CONFLICT REPLACE)'
 	)
 
 def drop_price_table():
@@ -131,6 +154,7 @@ def fill_price_one_day_data(date):
 	
 def fill_price_data():
 	start_date = datetime(2019, 1, 1)
+	# start_date = end_date - timedelta(days=10)
 	end_date = datetime.today()
 	while ((end_date + timedelta(days=1)).date() != start_date.date()):
 		fill_price_one_day_data(start_date)
@@ -139,9 +163,12 @@ def fill_price_data():
 
 
 def read():
-	c.execute("SELECT price FROM item_price WHERE item_code=111 AND date='2020-06-23'")
+	today = api_template.render(date=datetime.today() - timedelta(days=2))
+	c.execute("SELECT * FROM item_price WHERE date='" + today + "'")
 	data = c.fetchall()
-	for row in data:
-		print(row[0])
+	print(data)
+	# for row in data:
+	# 	print(row[0])
 
-read()
+create_price_table()
+fill_price_data()
