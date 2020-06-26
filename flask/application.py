@@ -216,8 +216,8 @@ def get_items_from_price_table(items_searched):
 	"""모든 아이템 코드에 대한 최신일자 행을 반환해주는 함수"""
 	# index, item_name, item_code, kind_name이 저장된 딕셔너리 리스트를 받아온다.
 	# 오늘 날짜
-	# today = datetime.today() - timedelta(days=4)
-	today = datetime.today()
+	today = datetime.today() - timedelta(days=1)
+	# today = datetime.today()
 	result = []
 	conn = sqlite3.connect("cart_savior.db")
 	c = conn.cursor()
@@ -297,6 +297,7 @@ def detail(index):
 		market = market_api.add_all_market(market_key)
 		# unit 관련 데이터 쿼리로 뽑아야함
 		unit_info = add_unit.add_unit(context)
+		import pdb; pdb.set_trace()
 		return render_template("search_detail.html", item=context, market=market, unit_info=unit_info)
 	else:
 		return redirect(url_for("search"))
