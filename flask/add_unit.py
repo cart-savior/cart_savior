@@ -10,11 +10,11 @@ def add_unit(item):
 			"SELECT * FROM items_unit"
 		)
 		data = c.fetchall()
-		result = [{
+		result = {
 		'item_name' : item['item_name'],
 		'unit' : data[0][1],
 		'unit_price' : format(int(data[0][2] * item['item_price']), ",d")
-		}]
+		}
 	else :
 		result = {
 			'item_name' : item['item_name'],
