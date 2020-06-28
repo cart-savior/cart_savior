@@ -94,16 +94,16 @@
 	{% block graph %}
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script type="text/javascript">
-		// flask의 데이터를 json타입으로 변환하여 chartData 변수에 담는다.
-		let unitInfo = {{ unit_info | tojson | safe }};
-
 		// 단위 계산기 함수
+		let unitInfo = {{ unit_info | tojson | safe }};
 		let unitOnlyNum = unitInfo.unit.replace(/[^0-9]/g, '');
 		let unitOnlyStr = unitInfo.unit.match(/[0-9]([a-zA-Z가-힣]+)/);
 		document.getElementById("unitInput").value = unitOnlyNum;
 		document.getElementById("unitTxt").innerHTML = unitOnlyStr[1];
+
 		let unitPrice = unitInfo.unit_price;
 		document.getElementById("unitPrice").innerHTML = unitPrice;
+		// 사용자가 value를 수정할 때마다 input size와 가격 업데이트
 		let price = Math.floor(unitPrice / unitOnlyNum);
 		function changeUnit(obj) {
 			let size;

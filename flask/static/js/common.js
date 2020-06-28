@@ -13,6 +13,7 @@ function modal(){
 		})
 	}
 }
+
 // 검색 버튼 및 키워드를 클릭했을 때 로딩하는 함수.
 function loading(){
 	var btn_search = document.querySelectorAll(".btn_search"),
@@ -53,8 +54,6 @@ function change_value_by_media(pc, mobile) {
 	} else {
 		return pc;
 	}
-	// mql.addListener(e => {
-	// });
 }
 
 
