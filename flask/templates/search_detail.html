@@ -2,7 +2,7 @@
 {% block title %}Cart Savior | 상세{% endblock %}
 {% block search %}
 <div class="search_bar">
-	<form action="{{url_for('search')}}">
+	<form action="{{url_for('search_functions.search')}}">
 		<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
 		<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
 	</form>
@@ -58,7 +58,7 @@
 				<div class="flex-item col-p-12 col-m-12">
 					<div class="detail_graph graph_wiki">
 						<img src="../static/images/icon_loading.png" alt="">
-						<h3 class="title_sm">배추는 겉잎은 짙은 녹색을 띠는 것이 좋고 반으로 갈랐을 때 속잎은 노란색을 띠는 것, 키가 크지 않는 것이 좋아요.</h3>
+						<h3 class="title_sm">{{ item.wiki }}</h3>
 					</div>
 				</div>
 				{% if market|length %}

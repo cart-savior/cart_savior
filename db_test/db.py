@@ -68,8 +68,25 @@ def create_wiki_table():
 		'item_code INTEGER UNIQUE PRIMARY KEY,'
 		'item_name TEXT,'
 		'wiki TEXT,'
-		'FOREIGN KEY(item_code) REFERENCES items(item_code))'
+		'FOREIGN KEY(item_code) REFERENCES items(item_code),'
+		'UNIQUE(item_code) ON CONFLICT REPLACE)'
 	)
+
+def fill_wiki():
+	path_to_current_file = os.path.realpath(__file__)
+	current_directory = os.path.split(path_to_current_file)[0]
+	path_to_file = os.path.join(current_directory, "wiki.json")
+	with open(path_to_file) as mydata:
+		my_json_data = json.load(mydata)
+	for item in my_json_data:
+		c.execute(
+			"INSERT OR IGNORE INTO wiki(item_code, item_name, wiki) VALUES(?, ?, ?)",
+			(item['item_code'], item['item_name'], item['wiki'])
+		)
+		conn.commit()
+		
+create_wiki_table()
+fill_wiki()
 
 def input_data_wiki(item_code, item_name):
 	c.execute(
@@ -153,9 +170,9 @@ def fill_price_one_day_data(date):
 		conn.commit()
 	
 def fill_price_data():
-	start_date = datetime(2019, 1, 1)
-	# start_date = end_date - timedelta(days=10)
 	end_date = datetime.today()
+	# start_date = datetime(2019, 1, 1)
+	start_date = end_date - timedelta(days=10)
 	while ((end_date + timedelta(days=1)).date() != start_date.date()):
 		fill_price_one_day_data(start_date)
 		print(api_template.render(date=start_date))
@@ -170,5 +187,5 @@ def read():
 	# for row in data:
 	# 	print(row[0])
 
-create_price_table()
-fill_price_data()
+# create_price_table()
+# fill_price_data()

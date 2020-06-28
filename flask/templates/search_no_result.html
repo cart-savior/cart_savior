@@ -2,7 +2,7 @@
 {% block title %}Cart Savior | 검색 결과{% endblock %}
 {% block search %}
 	<div class="search_bar">
-		<form action="{{url_for('search')}}">
+		<form action="{{url_for('search_functions.search')}}">
 			<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
 			<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
 		</form>
@@ -14,14 +14,14 @@
 			<div class="flex-item col-p-12">
 				<h2 class="title_md"><span class="txt_green">검색 결과가 없습니다.</span></br>다른 키워드로 검색해주세요.</h2>
 				<div class="search_bar">
-					<form action="{{url_for('search')}}">
+					<form action="{{url_for('search_functions.search')}}">
 						<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
 						<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
 					</form>
 				</div>
 				<ul class="hash_list">
 					{% for key in random_keys %}
-					<li class="hash_item"><a href="{{ url_for('search_hash', search_key=key) }}"># {{ key }}</a></li>
+					<li class="hash_item"><a href="{{ url_for('search_functions.search', search_text=key) }}"># {{ key }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
