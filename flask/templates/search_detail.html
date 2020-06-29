@@ -68,7 +68,7 @@
 						{% if unitOnlyNum %}
 						<span>{{ unitOnlyNum }}</span>
 						{% endif %}
-						<h3 class="title_sm txt_gray">온라인 가격과 비교해보세요.</h3>
+						<h3 class="title_sm txt_gray">원하는 단위를 입력하고 비교해보세요.</h3>
 						<ul class="detail_table">
 							{% for item in market %}
 							<li class="item">
@@ -98,11 +98,11 @@
 		let unitInfo = {{ unit_info | tojson | safe }};
 		let unitOnlyNum = unitInfo.unit.replace(/[^0-9]/g, '');
 		let unitOnlyStr = unitInfo.unit.match(/[0-9]([a-zA-Z가-힣]+)/);
-		document.getElementById("unitInput").value = unitOnlyNum;
+		document.getElementById("unitInput").placeholder = unitOnlyNum;
 		document.getElementById("unitTxt").innerHTML = unitOnlyStr[1];
 
 		let unitPrice = unitInfo.unit_price;
-		document.getElementById("unitPrice").innerHTML = unitPrice;
+		document.getElementById("unitPrice").innerHTML = unitPrice.toLocaleString();
 		// 사용자가 value를 수정할 때마다 input size와 가격 업데이트
 		let price = Math.floor(unitPrice / unitOnlyNum);
 		function changeUnit(obj) {
