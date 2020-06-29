@@ -7,7 +7,7 @@
 			<div class="flex-item col-p-4 col-m-12">
 				<h2 class="title_lg">장보기 전,</br>이제는 <span class="txt_green">시세</span>먼저 보자.</h2>
 				<div class="search_bar">
-					<form action="{{url_for('search')}}">
+					<form action="{{url_for('search_functions.search')}}">
 						<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
 						<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
 					</form>
@@ -15,7 +15,7 @@
 				<h3 class="title_sm">일 년 중 지금이 제일 싸요</h3>
 				<ul class="hash_list">
 					{% for key in random_keys %}
-					<li class="hash_item"><a href="{{ url_for('search_hash', search_key=key) }}"># {{ key }}</a></li>
+					<li class="hash_item"><a href="{{ url_for('search_functions.search', search_text=key) }}"># {{ key }}</a></li>
 					{% endfor %}
 				</ul>
 			</div> 

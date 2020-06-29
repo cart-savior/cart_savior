@@ -2,7 +2,7 @@
 {% block title %}Cart Savior | 검색 결과{% endblock %}
 {% block search %}
 <div class="search_bar">
-	<form action="{{url_for('search')}}">
+	<form action="{{url_for('search_functions.search')}}">
 		<input class="inp_search" type="text" name="search_text" id="" placeholder="오늘의 무 값은?" required aria-required="true"/>
 		<button class="btn_search" type="submit"><span class="ir">검색하기</span></button>
 	</form>
@@ -16,7 +16,7 @@
 				{% for info in list %}
 				<li class="flex-item col-p-4 col-m-12 col-m-12">
 					<div class="sub_item">
-						<a href="{{ url_for('detail', index=loop.index) }}" class="item_info type_{{ info.item_code }}">
+						<a href="{{ url_for('search_functions.detail', index=loop.index) }}" class="item_info type_{{ info.item_code }}">
 							<h3 class="title">{{ info.item_name }} ({{ info.rank }})</h3>
 							<span class="sub_title">{{ info.kind_name }}</span>
 						</a>
@@ -34,7 +34,7 @@
 						</div>
 						<div class="item_bottom">
 							<span class="date">{{ info.date.strftime('%-m월 %d일') }} 기준</span>
-							<a id="btn_more" href="{{ url_for('detail', index=loop.index) }}" class="btn_more">자세히 보기</a>
+							<a id="btn_more" href="{{ url_for('search_functions.detail', index=loop.index) }}" class="btn_more">자세히 보기</a>
 						</div>
 					</div>
 				</li>
