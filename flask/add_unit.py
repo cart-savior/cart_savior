@@ -7,13 +7,14 @@ def add_unit(item):
 	c = conn.cursor()
 	if item['item_name'] != "고등어":
 		c.execute(
-			"SELECT * FROM items_unit"
+			"SELECT * FROM items_unit "
+			"WHERE item_code=" +str(item['item_code'])
 		)
 		data = c.fetchall()
 		result = {
 		'item_name' : item['item_name'],
 		'unit' : data[0][1],
-		'unit_price' : format(int(data[0][2] * item['item_price']), ",d")
+		'unit_price' : item['item_price'] * data[0][2]
 		}
 	else :
 		result = {

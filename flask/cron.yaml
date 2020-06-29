@@ -1,5 +1,0 @@
-version: 1
-cron:
- - name: "filldb"
-   url: "/cron/filldb"
-   schedule: "0 14 * * *"

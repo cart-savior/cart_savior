@@ -60,7 +60,6 @@ def fill_price_one_day_data(date):
 		)
 		conn.commit()
 
-@fill_db.route('/cron/filldb')
 def fill_price_data():
 	end_date = datetime.today()
 	start_date = end_date - timedelta(days=5)
@@ -68,4 +67,3 @@ def fill_price_data():
 		fill_price_one_day_data(start_date)
 		print(api_template.render(date=start_date))
 		start_date = start_date + timedelta(days=1)
-	return redirect(url_for("search_functions.index"))
