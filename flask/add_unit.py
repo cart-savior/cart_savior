@@ -14,7 +14,7 @@ def add_unit(item):
 		result = {
 		'item_name' : item['item_name'],
 		'unit' : data[0][1],
-		'unit_price' : item['item_price'] * data[0][2]
+		'unit_price' : int(item['item_price'] * data[0][2])
 		}
 	else :
 		result = {

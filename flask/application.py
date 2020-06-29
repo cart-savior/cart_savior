@@ -25,10 +25,12 @@ app.register_blueprint(search_functions, url_prefix="")
 # =========================================================================================
 # =========================================================================================
 
-
-cron = BackgroundScheduler()
-cron.add_job(fill_db.fill_price_data, trigger="cron", hour='14', minute='00')
-cron.start()
+@app.before_first_request
+def initialize():
+	cron = BackgroundScheduler()
+	# cron.add_job(fill_db.fill_price_data, trigger="cron", hour='14', minute='00')
+	cron.add_job(fill_db.fill_price_data, trigger="interval", hours=12)
+	cron.start()
 
 # =========================================================================================
 # =========================================================================================
