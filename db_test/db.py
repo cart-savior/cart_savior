@@ -85,8 +85,8 @@ def fill_wiki():
 		)
 		conn.commit()
 		
-create_wiki_table()
-fill_wiki()
+# create_wiki_table()
+# fill_wiki()
 
 def input_data_wiki(item_code, item_name):
 	c.execute(
@@ -171,8 +171,8 @@ def fill_price_one_day_data(date):
 	
 def fill_price_data():
 	end_date = datetime.today()
-	# start_date = datetime(2019, 1, 1)
-	start_date = end_date - timedelta(days=10)
+	start_date = datetime(2020, 6, 10)
+	# start_date = end_date - timedelta(days=10)
 	while ((end_date + timedelta(days=1)).date() != start_date.date()):
 		fill_price_one_day_data(start_date)
 		print(api_template.render(date=start_date))
@@ -188,4 +188,4 @@ def read():
 	# 	print(row[0])
 
 # create_price_table()
-# fill_price_data()
+fill_price_data()
