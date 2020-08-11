@@ -157,7 +157,7 @@ def get_info(items):
 		last_month = get_price_with_rank(item, date_obj - timedelta(days=30))
 		if last_month is None:
 			one_item['last_month'] = 0
-			one_item['last_week_date'] = date_obj - timedelta(days=30)
+			one_item['last_month_date'] = date_obj - timedelta(days=30)
 		else:
 			one_item['last_month'] = last_month['price']
 			one_item['last_month_date'] = datetime.strptime(last_month['date'], '%Y-%m-%d')

@@ -171,7 +171,7 @@ def fill_price_one_day_data(date):
 	
 def fill_price_data():
 	end_date = datetime.today()
-	start_date = datetime(2020, 6, 10)
+	start_date = datetime(2020, 6, 20)
 	# start_date = end_date - timedelta(days=10)
 	while ((end_date + timedelta(days=1)).date() != start_date.date()):
 		fill_price_one_day_data(start_date)
